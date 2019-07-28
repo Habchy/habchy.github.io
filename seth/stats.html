@@ -25,11 +25,13 @@ xmlhttp.onreadystatechange = function() {
         var myObj = JSON.parse(this.responseText);
         document.getElementById("count").innerHTML = "Server Count: " + myObj.server_count;
 		document.getElementById("prefix").innerHTML = "Prefix: " + myObj.prefix;
-		document.getElementById("votes").innerHTML = "Upvotes: " + myObj.points;
-		document.getElementById("lib").innerHTML = "Library: " + myObj.lib;
+		document.getElementById("votes").innerHTML = "Upvotes: " + myObj.votes;
+		document.getElementById("lib").innerHTML = "Library: " + myObj.library;
+	   	document.getElementById("support").innerHTML = "Support Server: " + myObj.support_server;
+	    	document.getElementById("status").innerHTML = "Status: " + myObj.status;
     }
 };
-xmlhttp.open("GET", "https://discordbots.org/api/bots/353287088528949248", true);
+xmlhttp.open("GET", "https://botsfordiscord.com/api/bot/353287088528949248", true);
 xmlhttp.send();
 
 </script>
@@ -46,6 +48,8 @@ xmlhttp.send();
 	<h3 id="prefix" class="animated fadeInUp"><h3>
 	<h3 id="votes" class="animated fadeInUp"><h3>
 	<h3 id="lib" class="animated fadeInUp"><h3>
+	<h3 id="support" class="animated fadeInUp"><h3>
+	<h3 id="status" class="animated fadeInUp"><h3>
 	<br>
   </div>
 </div>
