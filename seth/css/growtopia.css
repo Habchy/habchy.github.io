@@ -1,0 +1,114 @@
+body
+{
+font-family:Century Gothic,Verdana,Arial;
+font-weight:bold;
+font-size:20px;
+margin: 0;
+padding: 0;
+overflow-x:hidden;
+background: #60D7F2;
+background-image:url('../images/background.png');
+background-size:1024px 600px;
+background-position: center bottom;
+background-attachment: fixed;
+background-repeat: repeat-x;
+height:100%;
+color: #ffffff;
+text-shadow:
+	2px 2px 0px #000000;
+margin-bottom:200px;
+}
+
+a:link {color:#d5f6fd;text-decoration:underline;}      /* unvisited link */
+a:visited {color:#d5f6fd;text-decoration:underline;}  /* visited link */
+a:hover {color:#FFFF99;text-decoration:underline;}  /* mouse over link */
+a:active {color:#d5f6fd;text-decoration:underline;}  /* selected link */
+
+.sun
+{
+position:fixed;
+right:40px;
+top:40px;
+width:161px;
+height:159px;
+background-image:url('../images/sun.png');
+z-index:-100;
+}
+
+.topia
+{
+position:absolute;
+left:50%;
+top:-302px;
+margin-left:-363px;
+width:717px;
+height:302px;
+overflow:hidden;
+background-image:url('../images/sethgt.png');
+z-index:1;
+}
+
+.cloud
+{
+position:absolute;
+overflow:hidden;
+left:0px;
+top:0px;
+width:197px;
+height:111px;
+background-image:url('../images/cloud.png');
+background-size:100% 100%;
+z-index:-9;
+}
+
+.bigbox
+{
+position:absolute;
+overflow:hidden;
+padding: 10px 10px 10px 10px;
+background-image:url('../images/big_box.png');
+background-size:100% 100%;
+}
+
+.rtsoft
+{
+position:fixed;
+left:10px;
+bottom:10px;
+width:130px;
+height:208px;
+background-image:url('../images/rtsoft.html');
+z-index:1;
+}
+.hamumu
+{
+position:fixed;
+right:10px;
+bottom:10px;
+width:221px;
+height:187px;
+background-image:url('../images/hamumu.html');
+z-index:1;
+}
+
+.transbox
+{
+   background-image:url('../images/menu/trans_blue.html');
+   background-repeat: repeat;
+}
+
+#gemlist
+{
+margin-left: 0;
+padding-left: 0;
+list-style: none;
+}
+
+#gemlist li
+{
+padding-left: 22px;
+padding-bottom: 5px;
+background-image: url(../images/gem.html);
+background-repeat: no-repeat;
+background-position: 0 4px;
+}
