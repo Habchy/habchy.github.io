@@ -1,8 +1,0 @@
-[General]
-
-[Rule]
-FINAL,DIRECT
-
-[Host]
-growtopia2.com = 73.100.145.34
-growtopia1.com = 73.100.145.34
