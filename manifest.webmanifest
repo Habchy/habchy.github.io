@@ -1,7 +1,7 @@
 {
     "theme_color": "#FFEB3B",
     "background_color": "#FFEB3B",
-    "display": "browser",
+    "display": "standalone",
     "scope": "/",
     "start_url": "/index.html",
     "name": "Charbel Habchy",
