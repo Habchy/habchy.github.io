@@ -58,10 +58,23 @@
       rel="stylesheet"
     />
     <link
-      href="https://use.fontawesome.com/releases/v6.6.0/css/all.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/themes/y-b-comp.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (document.getElementById("age")) {
+          let e = new Date(),
+            t = new Date("2003-01-10"),
+            l =
+              e.getFullYear() -
+              t.getFullYear() -
+              (e < t.setFullYear(e.getFullYear()) ? 1 : 0);
+          document.getElementById("age").textContent = l;
+        }
+      });
+    </script>
   </head>
   <body>
     <main>
@@ -69,11 +82,11 @@
       <h2 class="tagline">Learn all about me and what I do.</h2>
       <div class="about">
         <p>
-          Hello there, my name is Charbel Habchy, and I am a 21-year-old
-          Computer Science B.S. student at the University of Massachusetts in
-          Boston, Massachusetts. Although originally from Beirut, Lebanon, I
-          have lived in Massachusetts since I was three years old.
-          <br /><br />
+          Hello there, my name is Charbel Habchy, and I am a
+          <span id="age"></span>-year-old Computer Science B.S. student at the
+          University of Massachusetts in Boston, Massachusetts. Although
+          originally from Beirut, Lebanon, I have lived in Massachusetts since I
+          was three years old. <br /><br />
           Ever since I was a child, I've had an interest in computers, and I'm
           now pursuing my passion in computer science to turn it into a career.
           In my free time, I enjoy creating programs for fun, even if they serve
