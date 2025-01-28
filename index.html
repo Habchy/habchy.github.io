@@ -11,12 +11,14 @@
       name="keywords"
       content="charbel, habchy, charbel habchy, developer, boston, boston developers"
     />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://habchy.com/" />
     <meta property="og:title" content="Charbel Habchy" />
     <meta property="og:description" content="Visionary, creator, developer." />
     <meta property="og:image" content="https://habchy.com/favicon.png" />
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@habchy77" />
@@ -26,7 +28,51 @@
     <meta name="twitter:description" content="Visionary, creator, developer." />
     <meta name="twitter:image" content="https://habchy.com/favicon.png" />
 
-    <!-- Google tag (gtag.js) -->
+    <!-- Preconnect for faster DNS lookups -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      as="style"
+    />
+    <link rel="preload" href="css/themes/y-b-comp.css" as="style" />
+    <link rel="preload" href="favicon.png" as="image" />
+
+    <!-- Fonts and CSS -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300"
+      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/themes/y-b-comp.css" />
+
+    <!-- Favicon and Icons -->
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/images/icon-192x192.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+
+    <!-- Google Analytics -->
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25"
@@ -37,25 +83,10 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-ES91HT3C25");
     </script>
 
     <title>Charbel Habchy</title>
-
-    <link rel="icon" href="favicon.png" type="image/png" />
-    <link rel="apple-touch-icon" href="assets/images/icon-192x192.png" />
-    <link rel="manifest" href="manifest.webmanifest" />
-
-    <link
-      href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300"
-      rel="stylesheet"
-    />
-    <link
-      href="https://use.fontawesome.com/releases/v6.6.0/css/all.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/themes/y-b-comp.css" />
   </head>
   <body>
     <main>
@@ -72,7 +103,6 @@
           >My Resume</a
         >
       </div>
-      <!-- Find your icons from here - https://fontawesome.com/icons?d=gallery&s=brands -->
       <div class="icons-social">
         <a
           target="_blank"

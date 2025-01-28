@@ -1,21 +1,36 @@
 <!DOCTYPE html>
-<html lang = "en">
-<head>
-  <link rel="stylesheet" href="css/404.css">
-  <script async src="assets/js/404.js"></script>
-  <!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25"></script>
-	<script>
-  		window.dataLayer = window.dataLayer || [];
-  		function gtag(){dataLayer.push(arguments);}
-  		gtag('js', new Date());
+<html lang="en">
+  <head>
+    <!-- Preload Critical CSS -->
+    <link rel="preload" href="css/404.css" as="style" />
+    <link rel="stylesheet" href="css/404.css" />
 
-  		gtag('config', 'G-ES91HT3C25');
-	</script>
+    <!-- Preload and Preconnect External Resources -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
 
-  <link rel="icon" href="favicon.png" type="image/png">
-	<title>404 - Charbel Habchy</title>
-</head>
+    <!-- JavaScript: Async Loading -->
+    <script async src="assets/js/404.js"></script>
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-ES91HT3C25");
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.png" type="image/png" />
+
+    <title>Charbel Habchy - 404</title>
+  </head>
   <h1>404</h1>
 
   <div class="frame">
