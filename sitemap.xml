@@ -1,27 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+            http://www.google.com/schemas/sitemap-image/1.1
+            http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
 
 <url>
   <loc>https://habchy.com/</loc>
-  <lastmod>2024-10-01T14:51:55+00:00</lastmod>
+  <lastmod>2025-03-12T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
+  <changefreq>monthly</changefreq>
+  <image:image>
+    <image:loc>https://habchy.com/assets/images/charbel-profile.jpg</image:loc>
+    <image:title>Charbel Habchy - Developer &amp; Computer Science Student</image:title>
+    <image:caption>Profile photo of Charbel Habchy</image:caption>
+  </image:image>
 </url>
 <url>
   <loc>https://habchy.com/about</loc>
-  <lastmod>2024-10-01T14:51:55+00:00</lastmod>
+  <lastmod>2025-03-12T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
+  <changefreq>monthly</changefreq>
 </url>
 <url>
   <loc>https://habchy.com/assets/Charbel%20Habchy%20Resume%20June%202024.pdf</loc>
-  <lastmod>2024-10-01T14:51:55+00:00</lastmod>
+  <lastmod>2025-03-12T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
+  <changefreq>monthly</changefreq>
 </url>
-
 
 </urlset>

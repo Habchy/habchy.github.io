@@ -83,13 +83,12 @@
       {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://habchy.com/#person",
         "name": "Charbel Habchy",
         "givenName": "Charbel",
         "familyName": "Habchy",
-        "honorificPrefix": "Mr",
         "gender": "Male",
-        "height": "5'10\"",
-        "email": "habchybusiness@gmail.com",
+        "email": "mailto:habchybusiness@gmail.com",
         "url": "https://habchy.com",
         "image": "https://habchy.com/assets/images/charbel-profile.jpg",
         "sameAs": [
@@ -106,41 +105,40 @@
         "jobTitle": "Computer Science Student",
         "worksFor": {
           "@type": "Organization",
-          "name": "University of Massachusetts Boston"
+          "name": "University of Massachusetts Boston",
+          "url": "https://www.umb.edu/"
         },
         "alumniOf": {
           "@type": "Organization",
-          "name": "University of Massachusetts Boston"
+          "name": "University of Massachusetts Boston",
+          "url": "https://www.umb.edu/"
         },
-        "nationality": [
-          {
-            "@type": "Country",
-            "name": "Lebanon"
-          },
-          {
-            "@type": "Country",
-            "name": "United States"
-          }
-        ],
+        "nationality": {
+          "@type": "Country",
+          "name": "United States"
+        },
         "birthPlace": {
           "@type": "Place",
-          "name": "Beirut, Lebanon"
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Beirut",
+            "addressCountry": "Lebanon"
+          }
         },
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Boston",
-          "addressRegion": "Massachusetts",
+          "addressRegion": "MA",
           "addressCountry": "United States"
         },
-        "knowsLanguage": ["en-US", "ar-LB", "es-ES", "fr-FR", "it-IT"],
-        "description": "Computer Science student at UMass Boston. Developer passionate about creating innovative solutions.",
-        "disambiguatingDescription": "Computer Science student and developer from Lebanon living in Boston",
-        "mainEntityOfPage": "https://habchy.com/",
-        "potentialAction": {
-          "@type": "CommunicateAction",
-          "name": "Contact Charbel Habchy",
-          "target": "mailto:habchybusiness@gmail.com"
-        }
+        "knowsLanguage": [
+          { "@type": "Language", "name": "English" },
+          { "@type": "Language", "name": "Arabic" },
+          { "@type": "Language", "name": "Spanish" },
+          { "@type": "Language", "name": "French" },
+          { "@type": "Language", "name": "Italian" }
+        ],
+        "description": "Computer Science student at UMass Boston. Developer passionate about creating innovative solutions."
       }
     </script>
 
@@ -157,6 +155,22 @@
             "item": "https://habchy.com/"
           }
         ]
+      }
+    </script>
+
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://habchy.com/#website",
+        "url": "https://habchy.com/",
+        "name": "Charbel Habchy - Developer & Computer Science Student",
+        "description": "Computer Science student at UMass Boston. Developer passionate about creating innovative solutions.",
+        "publisher": {
+          "@type": "Person",
+          "@id": "https://habchy.com/#person"
+        }
       }
     </script>
 
