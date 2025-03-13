@@ -2,91 +2,285 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="theme-color" content="#FFEB3B" />
     <meta name="description" content="Visionary, creator, developer." />
     <meta name="author" content="Charbel Habchy" />
-    <meta
-      name="keywords"
-      content="charbel, habchy, charbel habchy, developer, boston, boston developers"
-    />
-
-    <!-- Open Graph -->
+    <meta name="keywords" content="charbel,habchy,developer,boston" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://habchy.com/" />
     <meta property="og:title" content="Charbel Habchy" />
     <meta property="og:description" content="Visionary, creator, developer." />
     <meta property="og:image" content="https://habchy.com/favicon.png" />
-
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@habchy77" />
     <meta name="twitter:creator" content="@habchy77" />
-    <meta property="twitter:url" content="https://habchy.com/" />
-    <meta name="twitter:title" content="Charbel Habchy" />
-    <meta name="twitter:description" content="Visionary, creator, developer." />
-    <meta name="twitter:image" content="https://habchy.com/favicon.png" />
-
-    <!-- Preconnect for faster DNS lookups -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="icon" href="favicon.png" type="image/png" fetchpriority="high" />
+    <link rel="apple-touch-icon" href="assets/images/icon-192x192.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <title>Charbel Habchy</title>
 
-    <!-- Preload critical resources -->
+    <!-- Inline critical Font Awesome with only required icons -->
+    <style>
+      @font-face {
+        font-family: "Font Awesome 6 Brands";
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url(assets/fonts/fa-brands-400.woff2) format("woff2");
+      }
+      @font-face {
+        font-family: "Font Awesome 6 Free";
+        font-style: normal;
+        font-weight: 900;
+        font-display: block;
+        src: url(assets/fonts/fa-solid-900.woff2) format("woff2");
+      }
+      .fa,
+      .fab,
+      .fas {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        line-height: 1;
+        text-rendering: auto;
+      }
+      .fa:before,
+      .fab:before,
+      .fas:before {
+        content: var(--fa);
+      }
+      .fab {
+        font-family: "Font Awesome 6 Brands";
+        font-weight: 400;
+      }
+      .fas {
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+      }
+      .fa-envelope {
+        --fa: "\f0e0";
+      }
+      .fa-github {
+        --fa: "\f09b";
+      }
+      .fa-x-twitter {
+        --fa: "\e61b";
+      }
+      .fa-instagram {
+        --fa: "\f16d";
+      }
+      .fa-twitch {
+        --fa: "\f1e8";
+      }
+      .fa-youtube {
+        --fa: "\f167";
+      }
+      .fa-linkedin {
+        --fa: "\f08c";
+      }
+      .fa-discord {
+        --fa: "\f392";
+      }
+      .fa-steam {
+        --fa: "\f1b6";
+      }
+      .fa-playstation {
+        --fa: "\f3df";
+      }
+      .fa-patreon {
+        --fa: "\f3d9";
+      }
+    </style>
+
+    <!-- Critical CSS -->
+    <style>
+      html {
+        box-sizing: border-box;
+        font-size: 12px;
+        font-family: "Roboto", sans-serif;
+        text-size-adjust: 100%;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      ol,
+      ul {
+        margin: 0;
+        padding: 0;
+        font-weight: normal;
+      }
+      ol,
+      ul {
+        list-style: none;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      body {
+        overflow-x: hidden;
+      }
+      @media (min-width: 576px) {
+        html {
+          font-size: 14px;
+        }
+      }
+      @media (min-width: 768px) {
+        html {
+          font-size: 16px;
+        }
+      }
+      @media (min-width: 992px) {
+        html {
+          font-size: 18px;
+        }
+      }
+      @media (min-width: 1200px) {
+        html {
+          font-size: 20px;
+        }
+      }
+      main {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        justify-content: center;
+        padding: 0 30px;
+        text-align: center;
+        contain: content;
+      }
+      @media (prefers-color-scheme: light) {
+        main {
+          background: #ffeb3b;
+          color: #1e1e1e;
+        }
+        .icons-social a {
+          color: #1e1e1e;
+        }
+        .button {
+          color: #ffeb3b;
+          background-color: #1e1e1e;
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        main {
+          background: #1e1e1e;
+          color: #ffeb3b;
+        }
+        .icons-social a {
+          color: #ffeb3b;
+        }
+        .button {
+          color: #1e1e1e;
+          background-color: #ffeb3b;
+        }
+      }
+      main > .intro {
+        font-family: "Reem Kufi", sans-serif;
+        font-size: 3.75em;
+        font-weight: 600;
+      }
+      main > .tagline {
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+        font-weight: 100;
+      }
+      .icons-social i {
+        font-size: 2em;
+        padding: 10px;
+        will-change: opacity;
+      }
+      .button {
+        border-radius: 5px;
+        font-family: "Reem Kufi", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 15px;
+        text-decoration: none;
+        text-transform: uppercase;
+        display: inline-block;
+        cursor: pointer;
+        text-align: center;
+        margin-left: 10px;
+        transition: border-radius 0.3s ease-in-out;
+        will-change: border-radius;
+        transform: translateZ(0);
+      }
+      .button:hover {
+        border-radius: 10px;
+      }
+      .buttons {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+    </style>
+
+    <!-- Optimized font loading -->
     <link
       rel="preload"
-      href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300"
       as="style"
+      href="https://fonts.googleapis.com/css?family=Reem+Kufi:600&family=Roboto:300&display=swap"
     />
     <link
-      rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      as="style"
-    />
-    <link rel="preload" href="css/themes/y-b-comp.css" as="style" />
-    <link rel="preload" href="favicon.png" as="image" />
-
-    <!-- Fonts and CSS -->
-    <link
-      href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300"
       rel="stylesheet"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      href="https://fonts.googleapis.com/css?family=Reem+Kufi:600&family=Roboto:300&display=swap"
+      media="print"
+      onload="this.media='all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css?family=Reem+Kufi|Roboto:300"
+        href="https://fonts.googleapis.com/css?family=Reem+Kufi:600&family=Roboto:300&display=swap"
         rel="stylesheet"
       />
     </noscript>
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/themes/y-b-comp.css" />
 
-    <!-- Favicon and Icons -->
-    <link rel="icon" href="favicon.png" type="image/png" />
-    <link rel="apple-touch-icon" href="assets/images/icon-192x192.png" />
-    <link rel="manifest" href="manifest.webmanifest" />
-
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25"
-    ></script>
+    <!-- Deferred Analytics -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-ES91HT3C25");
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          var a = document.createElement("script");
+          a.src = "https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25";
+          a.async = !0;
+          a.onload = function () {
+            window.dataLayer = window.dataLayer || [];
+            function b() {
+              dataLayer.push(arguments);
+            }
+            b("js", new Date());
+            b("config", "G-ES91HT3C25", { transport_type: "beacon" });
+          };
+          document.head.appendChild(a);
+        }, 2000);
+      });
     </script>
 
-    <title>Charbel Habchy</title>
+    <!-- DNS prefetching for social media domains -->
+    <link rel="dns-prefetch" href="https://github.com" />
+    <link rel="dns-prefetch" href="https://x.com" />
+    <link rel="dns-prefetch" href="https://instagram.com" />
+    <link rel="dns-prefetch" href="https://twitch.tv" />
+    <link rel="dns-prefetch" href="https://youtube.com" />
+    <link rel="dns-prefetch" href="https://linkedin.com" />
+    <link rel="dns-prefetch" href="https://discord.gg" />
+    <link rel="dns-prefetch" href="https://steamcommunity.com" />
+    <link rel="dns-prefetch" href="https://psnprofiles.com" />
+    <link rel="dns-prefetch" href="https://www.patreon.com" />
   </head>
   <body>
     <main>
@@ -106,71 +300,107 @@
       <div class="icons-social">
         <a
           target="_blank"
+          rel="noopener"
           title="Send me an email."
           href="mailto:habchybusiness@gmail.com"
           ><i class="fas fa-envelope"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Visit my GitHub page."
           href="https://github.com/Habchy"
           ><i class="fab fa-github"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Follow me on X (Twitter)."
           href="https://x.com/habchy77"
-          ><i class="fa-brands fa-x-twitter"></i
+          ><i class="fab fa-x-twitter"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Follow me on Instagram."
           href="https://instagram.com/habchys"
           ><i class="fab fa-instagram"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Watch me on Twitch."
           href="https://twitch.tv/habchy"
           ><i class="fab fa-twitch"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Subscribe to my YouTube channel."
           href="https://www.youtube.com/user/habchy77"
           ><i class="fab fa-youtube"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Visit my LinkedIn profile."
           href="https://linkedin.com/in/charbel-habchy"
           ><i class="fab fa-linkedin"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Join my Discord server."
           href="https://discord.gg/FNNNgqb"
           ><i class="fab fa-discord"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Check out my Steam profile."
           href="https://steamcommunity.com/id/habchys"
           ><i class="fab fa-steam"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Add me on PlayStation."
           href="https://psnprofiles.com/Habchy77"
           ><i class="fab fa-playstation"></i
         ></a>
         <a
           target="_blank"
+          rel="noopener"
           title="Check out my Patreon page."
           href="https://www.patreon.com/habchy"
           ><i class="fab fa-patreon"></i
         ></a>
       </div>
     </main>
+
+    <!-- Optimized social icon loading -->
+    <script>
+      (function () {
+        if ("IntersectionObserver" in window) {
+          var a = document.querySelectorAll(".icons-social i");
+          var b = new IntersectionObserver(
+            function (c) {
+              c.forEach(function (d) {
+                if (d.isIntersecting) {
+                  d.target.style.opacity = "1";
+                  b.unobserve(d.target);
+                }
+              });
+            },
+            { rootMargin: "50px" }
+          );
+          a.forEach(function (c) {
+            c.style.opacity = "0";
+            c.style.transition = "opacity 0.3s ease-in-out";
+            b.observe(c);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
