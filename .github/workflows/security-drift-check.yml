@@ -1,0 +1,11 @@
+name: 🕵️ Nightly Security Drift Check
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+jobs:
+  call-drift-check:
+    uses: charbel-security/security-workflows/.github/workflows/security-drift-check.yml@main
+    secrets:
+      DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
