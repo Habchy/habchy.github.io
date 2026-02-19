@@ -215,40 +215,26 @@
   </head>
   <body>
     <!-- =====================================================================
-         Navigation
+         Navigation — floating centered pill
+         Grid: [About] [Logo] [Résumé]
          ===================================================================== -->
     <nav class="site-nav" role="navigation" aria-label="Main navigation">
-      <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
-        <img
-          src="assets/images/habchy.svg"
-          alt="Habchy"
-          class="logo-dark"
-          width="26"
-          height="30"
-        />
-        <img
-          src="assets/images/habchy-white.svg"
-          alt="Habchy"
-          class="logo-light"
-          width="26"
-          height="30"
-        />
-      </a>
-      <div class="nav-links">
+      <div class="nav-link-left">
         <a href="about" class="nav-link">About</a>
-        <a
-          href="assets/Charbel%20Habchy%20Resume%20June%202024.pdf"
-          class="nav-link"
-          title="Download my resume"
-          >Résumé</a
-        >
+      </div>
+      <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
+        <img src="assets/images/habchy.svg"       alt="Habchy" class="logo-dark"  width="22" height="25" />
+        <img src="assets/images/habchy-white.svg" alt="Habchy" class="logo-light" width="22" height="25" />
+      </a>
+      <div class="nav-link-right">
+        <a href="assets/Charbel%20Habchy%20Resume%20June%202024.pdf" class="nav-link" title="Download my resume">Résumé</a>
       </div>
     </nav>
 
     <!-- =====================================================================
          Page wrapper
          ===================================================================== -->
-    <div class="page">
+    <div class="page" aria-label="Home">
       <!-- ==================================================================
            Hero — cinematic two-layer parallax scene
            ================================================================== -->
