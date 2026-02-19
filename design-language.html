@@ -7,6 +7,7 @@
     <meta name="theme-color" content="#0E0D0B" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#F5F1E8" media="(prefers-color-scheme: light)" />
     <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Habchy" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -1048,6 +1049,17 @@
         .dl-kv-key { font-size: 0.65rem; }
         .dl-dodont { grid-template-columns: 1fr; }
         .dl-logo-grid { grid-template-columns: repeat(2, 1fr); }
+
+        /* Animation inventory table — allow horizontal scroll within the card
+           instead of blowing out the page width on narrow screens */
+        .dl-box {
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        .dl-anim-table {
+          /* Minimum width keeps columns readable while the card scrolls */
+          min-width: 560px;
+        }
       }
     </style>
 

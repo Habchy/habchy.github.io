@@ -23,17 +23,27 @@
       content="#F5F1E8"
       media="(prefers-color-scheme: light)"
     />
-    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Habchy" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <!--
       noindex, nofollow — correct and intentional for a 404 error page.
       We never want search engines or AI crawlers indexing or following links on this page.
       The server should also return an HTTP 404 status code for this URL.
     -->
     <meta name="robots" content="noindex, nofollow" />
-    <meta name="description" content="Page not found — this URL doesn't exist on habchy.com. Return to the homepage of Charbel Habchy, developer and Computer Science student at UMass Boston." />
+    <meta
+      name="description"
+      content="Page not found — this URL doesn't exist on habchy.com. Return to the homepage of Charbel Habchy, developer and Computer Science student at UMass Boston."
+    />
     <meta name="author" content="Charbel Habchy" />
 
     <!-- Favicon -->
@@ -62,9 +72,14 @@
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="assets/css/style.css" />
 
+    <!-- Lock viewport — no scroll on the 404 page -->
+    <style>
+      html { overflow: hidden; height: 100%; }
+    </style>
+
     <title>404 — Page Not Found · Charbel Habchy</title>
   </head>
-  <body>
+  <body class="no-scroll">
     <!-- =====================================================================
          Navigation
          ===================================================================== -->
@@ -110,7 +125,6 @@
          ===================================================================== -->
     <div class="page">
       <main class="not-found" aria-label="Page not found">
-
         <!--
           Marquee background — rows of the H mark scrolling continuously.
           The marks are injected and animated by 404.js to keep the HTML lean.
@@ -121,22 +135,17 @@
         <div class="not-found-content">
           <span class="not-found-eyebrow">Error 404</span>
 
-          <h1 class="not-found-title">
-            Lost in<br /><em>the ruins.</em>
-          </h1>
+          <h1 class="not-found-title">Lost in<br /><em>the ruins.</em></h1>
 
           <p class="not-found-text">
-            This page doesn't exist — or perhaps it never did.
-            Let me guide you back.
+            This page doesn't exist — or perhaps it never did. Let me guide you
+            back.
           </p>
 
           <hr class="not-found-rule" />
 
-          <a href="/" class="btn btn-primary">
-            Back to home
-          </a>
+          <a href="/" class="btn btn-primary"> Back to home </a>
         </div>
-
       </main>
     </div>
 
