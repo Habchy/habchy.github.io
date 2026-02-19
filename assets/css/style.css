@@ -9,6 +9,33 @@
    Fonts: Cormorant Garamond (display) + Jost (body)
    ============================================================================= */
 
+/* =============================================================================
+   ACCESSIBILITY — Skip link
+   Visually hidden until focused via keyboard; then snaps into view.
+   Required for WCAG 2.1 SC 2.4.1 (Bypass Blocks).
+   ============================================================================= */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--gold, #C9A84C);
+  color: #0E0D0B;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #0E0D0B;
+  outline-offset: 2px;
+}
+
 /* ---------------------------------------------------------------------------
    Custom Properties — Light
    --------------------------------------------------------------------------- */

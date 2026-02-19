@@ -85,6 +85,7 @@
         "url": "https://habchy.com/design-language",
         "name": "Design Language — Visual & Motion System · Habchy.com",
         "description": "The complete visual and motion design system behind habchy.com — CSS tokens, color palettes, Cormorant Garamond typography, glassmorphism, parallax animation, and the H monogram mark.",
+        "datePublished": "2026-02-19",
         "dateModified": "2026-02-19",
         "author": { "@type": "Person", "@id": "https://habchy.com/#person" },
         "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
@@ -122,6 +123,7 @@
         "url": "https://habchy.com/design-language",
         "headline": "Design Language — Visual & Motion System · Habchy.com",
         "description": "The complete visual and motion system behind habchy.com — covering CSS design tokens, color palettes, typography (Cormorant Garamond + Jost), glassmorphism, parallax animation, scroll-reveal, and the H monogram mark.",
+        "datePublished": "2026-02-19",
         "dateModified": "2026-02-19",
         "author": { "@type": "Person", "@id": "https://habchy.com/#person" },
         "publisher": { "@type": "Person", "@id": "https://habchy.com/#person" },
@@ -135,6 +137,63 @@
           { "@type": "Thing", "name": "Web Typography" },
           { "@type": "Thing", "name": "Parallax Animation" },
           { "@type": "Thing", "name": "UI Animation" }
+        ]
+      }
+    </script>
+
+    <!--
+      FAQPage schema — GEO optimization for AI search engines (ChatGPT, Perplexity, Claude, Gemini).
+      These Q&As target technical queries about CSS design systems, glassmorphism, and web typography
+      so that AI engines cite this page when users ask about those topics.
+      Answer-first format with specific technical details for maximum extractability.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": "https://habchy.com/design-language#faq",
+        "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is a CSS design language or design system?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A CSS design language (also called a design system or design token system) is a centralized set of reusable visual decisions — colors, typography, spacing, motion, and component patterns — defined as CSS custom properties (variables). Rather than hardcoding values throughout a stylesheet, all decisions are declared once in :root and referenced everywhere. This makes global changes (like switching from dark to light mode) a single-variable update instead of a site-wide find-and-replace."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is glassmorphism in web design?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Glassmorphism is a UI design style that simulates frosted glass — semi-transparent surfaces with a background blur, subtle border, and soft shadow. In CSS it is achieved with backdrop-filter: blur(), a semi-transparent background-color (using rgba or oklch with an alpha channel), and a 1px border with low opacity. It works best layered over rich photographic or gradient backgrounds where the blur effect is visually apparent."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What fonts are used on habchy.com?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "habchy.com uses two typefaces: Cormorant Garamond (a high-contrast serif with Renaissance roots, used for display headings and the hero name) and Jost (a geometric sans-serif used for UI labels, navigation, and body text). Both are loaded from Google Fonts with a render-blocking prevention technique: the stylesheet is loaded with media='print' and switched to media='all' via an onload handler, ensuring fonts never block the initial render."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the parallax scroll effect work on habchy.com?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The hero parallax on habchy.com uses a two-layer technique: a background image (Baalbek panorama) and a foreground cutout (portrait photo) that translate at different speeds on scroll. The CSS load-in animation (opacity + translateY) runs on wrapper elements, while the JavaScript parallax writes transform directly on the inner img elements. This separation ensures the CSS animation and JS transform never conflict. The effect is driven by a requestAnimationFrame loop that reads window.scrollY and applies proportional translateY values to each layer."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are CSS design tokens and how are they used?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "CSS design tokens are named CSS custom properties (variables) that store the fundamental visual values of a design system — colors, font sizes, spacing units, border radii, animation durations, and more. They are declared on the :root selector so they are globally available. For example: --color-bg: #0E0D0B; --font-display: 'Cormorant Garamond', serif; --radius-card: 12px. Components then reference these tokens (background: var(--color-bg)) rather than raw values, creating a single source of truth that makes design-wide changes trivial."
+            }
+          }
         ]
       }
     </script>

@@ -17,7 +17,7 @@
     />
     <meta
       name="description"
-      content="Charbel Habchy — Computer Science student at UMass Boston and software developer. Born in Beirut, Lebanon; building in Boston, MA. Specializing in JavaScript, React, Python, and web development."
+      content="Full-stack developer and CS student at UMass Boston. Born in Beirut, raised in Boston — building fast, modern web experiences. Explore my work."
     />
     <!-- Explicit index signal — reinforces to all crawlers and AI bots that this page is fully indexable -->
     <meta name="robots" content="index, follow" />
@@ -41,11 +41,11 @@
     <meta property="og:url" content="https://habchy.com/" />
     <meta
       property="og:title"
-      content="Charbel Habchy — Developer & Computer Science Student"
+      content="Charbel Habchy — Full-Stack Web Developer | Boston, MA"
     />
     <meta
       property="og:description"
-      content="Charbel Habchy — Computer Science student at UMass Boston and software developer. Born in Beirut, Lebanon; building in Boston, MA. Specializing in JavaScript, React, Python, and web development."
+      content="Full-stack developer and CS student at UMass Boston. Born in Beirut, raised in Boston — building fast, modern web experiences. Explore my work."
     />
     <meta
       property="og:image"
@@ -64,11 +64,11 @@
     <meta property="twitter:url" content="https://habchy.com/" />
     <meta
       name="twitter:title"
-      content="Charbel Habchy — Developer & Computer Science Student"
+      content="Charbel Habchy — Full-Stack Web Developer | Boston, MA"
     />
     <meta
       name="twitter:description"
-      content="Charbel Habchy — Computer Science student at UMass Boston and software developer. Born in Beirut, Lebanon; building in Boston, MA. Specializing in JavaScript, React, Python, and web development."
+      content="Full-stack developer and CS student at UMass Boston. Born in Beirut, raised in Boston — building fast, modern web experiences. Explore my work."
     />
     <meta
       name="twitter:image"
@@ -144,7 +144,10 @@
           "name": "University of Massachusetts Boston",
           "url": "https://www.umb.edu/"
         },
-        "nationality": { "@type": "Country", "name": "United States" },
+        "nationality": [
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "Lebanon" }
+        ],
         "birthPlace": {
           "@type": "Place",
           "address": {
@@ -166,7 +169,7 @@
           { "@type": "Language", "name": "French" },
           { "@type": "Language", "name": "Italian" }
         ],
-        "description": "Computer Science student at UMass Boston and software developer. Born in Beirut, Lebanon; raised and based in Boston, MA. Passionate about web development, software engineering, and building things.",
+        "description": "Full-stack web developer and Computer Science B.S. student at UMass Boston. Born in Beirut, Lebanon; raised and based in Boston, MA. Passionate about web development, software engineering, and building things.",
         "dateModified": "2026-02-19"
       }
     </script>
@@ -178,8 +181,8 @@
         "@type": "WebSite",
         "@id": "https://habchy.com/#website",
         "url": "https://habchy.com/",
-        "name": "Charbel Habchy — Developer & Computer Science Student",
-        "description": "Personal portfolio of Charbel Habchy, Computer Science student at UMass Boston and software developer.",
+        "name": "Charbel Habchy — Full-Stack Web Developer | Boston, MA",
+        "description": "Personal portfolio of Charbel Habchy, full-stack web developer and Computer Science student at UMass Boston.",
         "publisher": { "@type": "Person", "@id": "https://habchy.com/#person" },
         "inLanguage": "en-US"
       }
@@ -192,8 +195,9 @@
         "@type": "WebPage",
         "@id": "https://habchy.com/#webpage",
         "url": "https://habchy.com/",
-        "name": "Charbel Habchy — Developer & Computer Science Student",
-        "description": "Personal portfolio of Charbel Habchy, Computer Science student at UMass Boston and software developer born in Beirut, building in Boston.",
+        "name": "Charbel Habchy — Full-Stack Web Developer | Boston, MA",
+        "description": "Personal portfolio of Charbel Habchy, full-stack web developer and Computer Science student at UMass Boston. Born in Beirut, building in Boston.",
+        "datePublished": "2026-02-19",
         "dateModified": "2026-02-19",
         "author": { "@type": "Person", "@id": "https://habchy.com/#person" },
         "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
@@ -268,6 +272,8 @@
     <!--
       Preload both hero images — they are above the fold and LCP candidates.
       The panorama is the background; the cutout is the foreground.
+      Also preload the nav logo SVGs — they are visible immediately on load
+      and flagged as LCP candidates by the audit.
     -->
     <link
       rel="preload"
@@ -280,6 +286,16 @@
       href="assets/images/Charbel-Suit-Cutout.png"
       as="image"
       fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      href="assets/images/habchy.svg"
+      as="image"
+    />
+    <link
+      rel="preload"
+      href="assets/images/habchy-white.svg"
+      as="image"
     />
     <link
       rel="preload"
@@ -324,9 +340,16 @@
     <link rel="dns-prefetch" href="https://youtube.com" />
     <link rel="dns-prefetch" href="https://linkedin.com" />
 
-    <title>Charbel Habchy — Developer &amp; Computer Science Student</title>
+    <title>Charbel Habchy — Full-Stack Web Developer | Boston, MA</title>
   </head>
   <body>
+    <!--
+      Skip-link — allows keyboard and screen reader users to bypass the nav
+      and jump directly to the main content. Visually hidden until focused.
+      Requires a matching #main-content id on the <main> element below.
+    -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- =====================================================================
          Navigation — floating centered pill
          Grid: [About] [Logo] [Résumé]
@@ -341,16 +364,20 @@
         On all other pages the logo links back to /.
       -->
       <a href="design-language" class="nav-logo" aria-label="Design Language — Habchy.com" title="Design Language">
+        <!--
+          Logo alt text describes the mark as a logotype rather than echoing the filename.
+          Both variants (dark/light) carry the same description; CSS toggles which is visible.
+        -->
         <img
           src="assets/images/habchy.svg"
-          alt="Habchy"
+          alt="Habchy logotype"
           class="logo-dark"
           width="22"
           height="25"
         />
         <img
           src="assets/images/habchy-white.svg"
-          alt="Habchy"
+          alt="Habchy logotype"
           class="logo-light"
           width="22"
           height="25"
@@ -369,7 +396,12 @@
     <!-- =====================================================================
          Page wrapper
          ===================================================================== -->
-    <div class="page" aria-label="Home">
+    <div class="page">
+      <!--
+        <main> provides the primary landmark region required for accessibility.
+        id="main-content" is the skip-link target from the <a href="#main-content"> above.
+      -->
+      <main id="main-content" aria-label="Home">
       <!-- ==================================================================
            Hero — cinematic two-layer parallax scene
            ================================================================== -->
@@ -389,10 +421,17 @@
 
           <!-- Background wrapper — animates in, holds the parallax img -->
           <div class="hero-bg-wrap">
+            <!--
+              Descriptive alt text added for accessibility and SEO.
+              width/height set to intrinsic aspect ratio to prevent CLS.
+              The CSS controls the actual display size; these just reserve space.
+            -->
             <img
               src="assets/images/Baalbek-Panorama.jpeg"
-              alt=""
+              alt="Panoramic view of the ancient Roman temples at Baalbek, Lebanon"
               class="hero-bg"
+              width="1920"
+              height="1080"
               loading="eager"
               fetchpriority="high"
               decoding="async"
@@ -405,6 +444,8 @@
               src="assets/images/Charbel-Suit-Cutout.png"
               alt="Charbel Habchy in a suit"
               class="hero-fg"
+              width="800"
+              height="1200"
               loading="eager"
               fetchpriority="high"
               decoding="async"
@@ -550,6 +591,7 @@
         </div>
       </section>
       <!-- /.hero -->
+      </main>
     </div>
     <!-- /.page -->
 
