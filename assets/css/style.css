@@ -366,6 +366,17 @@ ul {
   min-height: 100vh;
 }
 
+/*
+ * <main> is an accessibility landmark and skip-link target.
+ * It must not create its own height context between .page and .hero.
+ * height: 100% + display: block lets it stretch with its content
+ * without adding an extra full-viewport-height box on mobile.
+ */
+main {
+  display: block;
+  height: 100%;
+}
+
 /* Non-hero pages: push content below the floating nav */
 .page--padded {
   padding-top: 5rem;
@@ -948,6 +959,8 @@ ul {
     max-width: 100%;
     width: 100%;
     padding: 1.75rem 1.5rem 2.25rem;
+    /* Snap to the bottom of the grid — override desktop's stretch */
+    align-self: end;
     /* Proper frosted glass on mobile */
     background: var(--glass-bg);
     backdrop-filter: blur(32px) saturate(1.6);
