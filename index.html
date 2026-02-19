@@ -182,6 +182,79 @@
       }
     </script>
 
+    <!-- Schema.org WebPage — identifies the homepage as a distinct page entity for Google/AI search -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://habchy.com/#webpage",
+        "url": "https://habchy.com/",
+        "name": "Charbel Habchy — Developer & Computer Science Student",
+        "description": "Personal portfolio of Charbel Habchy, Computer Science student at UMass Boston and software developer born in Beirut, building in Boston.",
+        "dateModified": "2026-02-19",
+        "author": { "@type": "Person", "@id": "https://habchy.com/#person" },
+        "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
+        "about": { "@type": "Person", "@id": "https://habchy.com/#person" },
+        "inLanguage": "en-US"
+      }
+    </script>
+
+    <!--
+      FAQPage schema — GEO optimization for AI search engines (ChatGPT, Perplexity, Claude, Gemini).
+      According to Princeton GEO research, FAQPage schema increases AI citation visibility by ~40%.
+      Each Q&A uses answer-first format with statistics and authoritative language for maximum GEO impact.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": "https://habchy.com/#faq",
+        "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Who is Charbel Habchy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charbel Habchy is a software developer and Computer Science B.S. student at the University of Massachusetts Boston (UMass Boston). Born in Beirut, Lebanon, and raised in Boston, Massachusetts since age three, he specializes in web development and software engineering. He is proficient in JavaScript, TypeScript, Python, React, Node.js, HTML, CSS, SQL, Java, and Git, and speaks five languages: English, Arabic, Spanish, French, and Italian."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does Charbel Habchy do professionally?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charbel Habchy is a full-stack web developer based in Boston, MA. He has worked on projects including OnlyLinks (onlylinks.com) and Tasty (tastyyyy.com). He is currently pursuing a Bachelor of Science in Computer Science at UMass Boston while building software solutions focused on web performance, modern JavaScript frameworks, and user experience."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is Charbel Habchy from?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charbel Habchy was born in Beirut, Lebanon, and has lived in Boston, Massachusetts since he was three years old. His personal tagline — 'Beirut → Boston' — reflects this dual cultural identity that shapes his perspective as a developer and creator."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What technologies does Charbel Habchy know?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charbel Habchy is skilled in JavaScript, TypeScript, Python, React, Node.js, HTML, CSS, SQL, Java, C, Git, GitHub, and Linux. He has particular expertise in web performance optimization, front-end development, and building responsive, accessible web interfaces."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I contact Charbel Habchy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can contact Charbel Habchy via email at habchybusiness@gmail.com. He is also active on GitHub (github.com/Habchy), LinkedIn (linkedin.com/in/charbel-habchy), X/Twitter (@habchy77), Instagram (@habchys), Twitch (twitch.tv/habchy), and YouTube (youtube.com/user/habchy77)."
+            }
+          }
+        ]
+      }
+    </script>
+
     <!-- Favicon & PWA -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="favicon.png" type="image/png" />
@@ -396,7 +469,7 @@
             <a
               href="mailto:habchybusiness@gmail.com"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               title="Email me"
               role="listitem"
               aria-label="Email"
@@ -406,7 +479,7 @@
             <a
               href="https://github.com/Habchy"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               title="GitHub"
               role="listitem"
               aria-label="GitHub"
@@ -416,7 +489,7 @@
             <a
               href="https://linkedin.com/in/charbel-habchy"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               title="LinkedIn"
               role="listitem"
               aria-label="LinkedIn"
@@ -426,7 +499,7 @@
             <a
               href="https://x.com/habchy77"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               title="X (Twitter)"
               role="listitem"
               aria-label="X"
@@ -436,7 +509,7 @@
             <a
               href="https://instagram.com/habchys"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               title="Instagram"
               role="listitem"
               aria-label="Instagram"
@@ -446,7 +519,7 @@
             <a
               href="https://twitch.tv/habchy"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               title="Twitch"
               role="listitem"
               aria-label="Twitch"
@@ -456,7 +529,7 @@
             <a
               href="https://www.youtube.com/user/habchy77"
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               title="YouTube"
               role="listitem"
               aria-label="YouTube"

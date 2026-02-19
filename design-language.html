@@ -20,6 +20,15 @@
       content="design system, design language, CSS design tokens, glassmorphism, web typography, color palette, UI animation, parallax, Cormorant Garamond, Jost, Charbel Habchy"
     />
 
+    <!--
+      INDEXING INTENT — DO NOT ADD noindex HERE.
+      This page is intentionally indexed by Google, Bing, and all AI search engines
+      (ChatGPT, Perplexity, Claude, Gemini, Copilot). The design language document
+      demonstrates technical craft and is a legitimate SEO/GEO asset — it showcases
+      design system thinking, CSS architecture, and front-end expertise to anyone
+      (human or AI) who discovers it. Adding noindex would be wrong.
+    -->
+
     <!-- Canonical -->
     <link rel="canonical" href="https://habchy.com/design-language" />
 
@@ -86,6 +95,37 @@
             }
           ]
         }
+      }
+    </script>
+
+    <!--
+      TechArticle schema — signals to Google and AI search engines that this page is a
+      technical reference document (a design system / style guide). This increases the
+      likelihood of being cited by AI engines when users ask about CSS design systems,
+      glassmorphism, web typography, or design tokens.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "@id": "https://habchy.com/design-language#techarticle",
+        "url": "https://habchy.com/design-language",
+        "headline": "Design Language — Visual & Motion System · Habchy.com",
+        "description": "The complete visual and motion system behind habchy.com — covering CSS design tokens, color palettes, typography (Cormorant Garamond + Jost), glassmorphism, parallax animation, scroll-reveal, and the H monogram mark.",
+        "dateModified": "2026-02-19",
+        "author": { "@type": "Person", "@id": "https://habchy.com/#person" },
+        "publisher": { "@type": "Person", "@id": "https://habchy.com/#person" },
+        "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
+        "inLanguage": "en-US",
+        "keywords": "design system, design language, CSS design tokens, glassmorphism, web typography, color palette, UI animation, parallax, Cormorant Garamond, Jost, Charbel Habchy",
+        "about": [
+          { "@type": "Thing", "name": "Design System" },
+          { "@type": "Thing", "name": "CSS Design Tokens" },
+          { "@type": "Thing", "name": "Glassmorphism" },
+          { "@type": "Thing", "name": "Web Typography" },
+          { "@type": "Thing", "name": "Parallax Animation" },
+          { "@type": "Thing", "name": "UI Animation" }
+        ]
       }
     </script>
 

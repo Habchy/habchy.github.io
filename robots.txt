@@ -1,4 +1,56 @@
+# robots.txt — habchy.com
+# Allow all crawlers by default, including AI search engine bots.
+# We WANT full indexing and citation by Google, Bing, and all AI engines.
 User-Agent: *
+Allow: /
+
+# Explicitly allow major AI search engine bots to ensure they can crawl and cite this site.
+# Some of these bots check for explicit permission before crawling.
+
+# OpenAI — ChatGPT browsing and training
+User-Agent: GPTBot
+Allow: /
+
+User-Agent: ChatGPT-User
+Allow: /
+
+User-Agent: OAI-SearchBot
+Allow: /
+
+# Anthropic — Claude AI
+User-Agent: ClaudeBot
+Allow: /
+
+User-Agent: anthropic-ai
+Allow: /
+
+User-Agent: Claude-Web
+Allow: /
+
+# Perplexity AI
+User-Agent: PerplexityBot
+Allow: /
+
+# Google — Gemini and AI Overviews use Googlebot; also allow Google-Extended for AI training
+User-Agent: Googlebot
+Allow: /
+
+User-Agent: Google-Extended
+Allow: /
+
+# Microsoft — Copilot uses Bingbot
+User-Agent: Bingbot
+Allow: /
+
+# Meta AI
+User-Agent: FacebookBot
+Allow: /
+
+# Common research and AI crawlers
+User-Agent: CCBot
+Allow: /
+
+User-Agent: cohere-ai
 Allow: /
 
 Sitemap: https://habchy.com/sitemap.xml
