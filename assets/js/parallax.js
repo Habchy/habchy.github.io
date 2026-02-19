@@ -236,7 +236,31 @@
 
   if (revealEls.length > 0) {
     try {
-      if ("IntersectionObserver" in window) {
+      if (prefersReducedMotion) {
+        /*
+         * Honour the user's OS-level "reduce motion" preference.
+         * The file-level contract (line 19) states all motion is disabled
+         * when this flag is set. Sections 1 and 2 already respect it —
+         * section 3 must as well to stay consistent and satisfy
+         * WCAG 2.1 SC 2.3.3 (Animation from Interactions, AAA).
+         *
+         * Skip the IntersectionObserver entirely and mark every element
+         * visible immediately so content is never hidden from the user.
+         */
+        revealEls.forEach(function (el) {
+          el.classList.add("visible");
+        });
+        console.log(
+          "[parallax] Reduced motion — reveal elements shown immediately (" +
+            revealEls.length +
+            " element(s)).",
+        );
+      } else if ("IntersectionObserver" in window) {
+        /*
+         * Normal path: watch each element and add "visible" the moment it
+         * enters the viewport. unobserve() immediately after so the observer
+         * does not keep running once the element has been revealed.
+         */
         var observer = new IntersectionObserver(
           function (entries) {
             entries.forEach(function (entry) {
@@ -262,7 +286,7 @@
             " element(s).",
         );
       } else {
-        /* Fallback: show everything immediately */
+        /* Fallback for browsers that don't support IntersectionObserver */
         revealEls.forEach(function (el) {
           el.classList.add("visible");
         });
@@ -271,6 +295,7 @@
         );
       }
     } catch (err) {
+      /* Fail gracefully: always make content visible even if the observer blows up */
       revealEls.forEach(function (el) {
         el.classList.add("visible");
       });

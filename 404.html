@@ -2,6 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <!--
+      <base href="/"> anchors all relative URLs to the site root.
+      This is critical for 404.html on GitHub Pages: when the server serves
+      this file for a nested path like /foo/bar/baz, the browser would
+      otherwise resolve relative hrefs (assets/css/style.css, favicon.svg,
+      etc.) against /foo/bar/ — causing every asset to 404 itself and
+      leaving the page completely unstyled and broken.
+    -->
+    <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
     <meta
@@ -59,9 +68,16 @@
     <!-- =====================================================================
          Navigation
          ===================================================================== -->
-    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <!--
+      role="navigation" removed — <nav> already carries that implicit ARIA role,
+      so the explicit attribute is redundant per the ARIA spec.
+      href="/about" uses a root-relative path so it resolves correctly regardless
+      of which nested path triggered this 404 page (the <base href="/"> in <head>
+      also covers this, but being explicit here is clearer intent).
+    -->
+    <nav class="site-nav" aria-label="Main navigation">
       <div class="nav-link-left">
-        <a href="about" class="nav-link">About</a>
+        <a href="/about" class="nav-link">About</a>
       </div>
       <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
         <img
