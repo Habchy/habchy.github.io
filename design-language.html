@@ -1,0 +1,2075 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0E0D0B" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F5F1E8" media="(prefers-color-scheme: light)" />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Habchy" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="description"
+      content="The complete visual and motion system behind habchy.com — colors, typography, glassmorphism, parallax, animation, and the H monogram."
+    />
+    <meta name="author" content="Charbel Habchy" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://habchy.com/design-language" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://habchy.com/design-language" />
+    <meta property="og:title" content="Design Language — Habchy.com" />
+    <meta
+      property="og:description"
+      content="The complete visual and motion system behind habchy.com — colors, typography, glassmorphism, parallax, animation, and the H monogram."
+    />
+    <meta
+      property="og:image"
+      content="https://habchy.com/assets/images/Charbel-Suit.jpeg"
+    />
+    <meta property="og:image:alt" content="Charbel Habchy at Villa del Balbianello, Lake Como" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Charbel Habchy" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@habchy77" />
+    <meta property="twitter:url" content="https://habchy.com/design-language" />
+    <meta name="twitter:title" content="Design Language — Habchy.com" />
+    <meta
+      name="twitter:description"
+      content="The complete visual and motion system behind habchy.com — colors, typography, glassmorphism, parallax, animation, and the H monogram."
+    />
+    <meta
+      name="twitter:image"
+      content="https://habchy.com/assets/images/Charbel-Suit.jpeg"
+    />
+    <meta name="twitter:image:alt" content="Charbel Habchy at Villa del Balbianello, Lake Como" />
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="preload" href="assets/css/style.css" as="style" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap" />
+    </noscript>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <style>
+      /* ============================================================
+         DESIGN LANGUAGE PAGE — LOCAL OVERRIDES
+         
+         These styles extend style.css for this document only.
+         All color/spacing tokens are consumed from :root variables
+         defined in style.css. Never hardcode a hex here.
+         ============================================================ */
+
+      /* ── Layout ─────────────────────────────────────────────── */
+      .dl {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 7rem 2.5rem 8rem;
+      }
+
+      /* ── Document header ─────────────────────────────────────── */
+      .dl-head {
+        margin-bottom: 6rem;
+      }
+
+      .dl-head .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        font-size: 0.58rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--accent-bright);
+        margin-bottom: 1.5rem;
+        padding-right: 0.32em;
+      }
+
+      .dl-head .eyebrow::before {
+        content: "";
+        display: block;
+        width: 36px;
+        height: 1px;
+        background: linear-gradient(to right, var(--accent-bright), transparent);
+        flex-shrink: 0;
+      }
+
+      .dl-head h1 {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: clamp(3rem, 7vw, 5.5rem);
+        line-height: 0.88;
+        letter-spacing: -0.03em;
+        color: var(--fg);
+        margin-bottom: 2rem;
+      }
+
+      .dl-head h1 em {
+        display: block;
+        font-style: italic;
+        font-weight: 400;
+        color: var(--accent);
+        font-size: 1.08em;
+        margin-left: -0.03em;
+      }
+
+      .dl-head .intro {
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        font-size: 1rem;
+        line-height: 1.8;
+        color: var(--fg-muted);
+        max-width: 600px;
+      }
+
+      .dl-head .intro strong {
+        color: var(--fg);
+        font-weight: 400;
+      }
+
+      /* ── Section ─────────────────────────────────────────────── */
+      .dl-section {
+        margin-bottom: 6rem;
+      }
+
+      .dl-section-head {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .dl-section-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent-bright);
+        letter-spacing: 0.12em;
+        opacity: 0.55;
+        flex-shrink: 0;
+      }
+
+      .dl-section-title {
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        font-size: 0.6rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--accent);
+        padding-right: 0.3em;
+        flex-shrink: 0;
+      }
+
+      .dl-section-rule {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, rgba(201,168,76,0.25), transparent);
+      }
+
+      /* ── Info box (bordered card) ─────────────────────────────── */
+      .dl-box {
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 14px;
+        padding: 2rem 2.25rem;
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-hi);
+        margin-bottom: 1rem;
+      }
+
+      .dl-box + .dl-box {
+        margin-top: 0.75rem;
+      }
+
+      .dl-box-label {
+        font-family: "Jost", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .dl-box-label::before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 1px;
+        background: linear-gradient(to right, var(--accent), transparent);
+        flex-shrink: 0;
+      }
+
+      /* ── Key-value pairs ─────────────────────────────────────── */
+      .dl-kv {
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+
+      .dl-kv-row {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 1.25rem;
+        align-items: baseline;
+        padding-bottom: 0.7rem;
+        border-bottom: 1px solid var(--glass-border);
+        font-size: 0.78rem;
+      }
+
+      .dl-kv-row:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .dl-kv-key {
+        font-family: "Jost", monospace;
+        color: var(--accent-bright);
+        letter-spacing: 0.04em;
+        font-size: 0.72rem;
+        flex-shrink: 0;
+      }
+
+      .dl-kv-val {
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        color: var(--fg-muted);
+        line-height: 1.65;
+      }
+
+      .dl-kv-val strong {
+        color: var(--fg);
+        font-weight: 400;
+      }
+
+      .dl-kv-val em {
+        color: var(--accent);
+        font-style: normal;
+      }
+
+      .dl-kv-val code {
+        font-family: "Jost", monospace;
+        font-size: 0.85em;
+        background: var(--accent-dim);
+        color: var(--accent-bright);
+        padding: 0.1em 0.4em;
+        border-radius: 3px;
+        letter-spacing: 0.04em;
+      }
+
+      /* ── Warning/note callout ─────────────────────────────────── */
+      .dl-warn {
+        background: rgba(201, 168, 76, 0.07);
+        border: 1px solid rgba(201, 168, 76, 0.25);
+        border-left: 3px solid var(--accent);
+        border-radius: 6px;
+        padding: 1rem 1.25rem;
+        margin-top: 1rem;
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        font-size: 0.78rem;
+        color: var(--fg-muted);
+        line-height: 1.7;
+      }
+
+      .dl-warn strong {
+        color: var(--accent);
+        font-weight: 400;
+      }
+
+      /* ── DO/DON'T grid ───────────────────────────────────────── */
+      .dl-dodont {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+      }
+
+      .dl-do, .dl-dont {
+        padding: 1.5rem;
+        border-radius: 10px;
+        font-family: "Jost", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 300;
+        line-height: 1.7;
+        color: var(--fg-muted);
+      }
+
+      .dl-do {
+        background: rgba(201, 168, 76, 0.05);
+        border: 1px solid rgba(201, 168, 76, 0.2);
+      }
+
+      .dl-dont {
+        background: rgba(180, 60, 60, 0.05);
+        border: 1px solid rgba(180, 60, 60, 0.15);
+      }
+
+      .dl-do-label {
+        font-family: "Jost", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.75rem;
+        font-weight: 400;
+      }
+
+      .dl-dont-label {
+        font-family: "Jost", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: rgba(200, 80, 80, 0.75);
+        margin-bottom: 0.75rem;
+        font-weight: 400;
+      }
+
+      /* ── Color swatches ──────────────────────────────────────── */
+      .dl-palette {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+      }
+
+      .dl-swatch {
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--glass-shadow);
+      }
+
+      .dl-swatch-chip {
+        height: 64px;
+        display: block;
+      }
+
+      .dl-swatch-meta {
+        padding: 0.7rem 0.85rem;
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .dl-swatch-name {
+        font-family: "Jost", sans-serif;
+        font-weight: 400;
+        font-size: 0.68rem;
+        color: var(--fg);
+        margin-bottom: 0.15rem;
+      }
+
+      .dl-swatch-hex {
+        font-family: "Jost", monospace;
+        font-size: 0.62rem;
+        color: var(--accent-bright);
+        letter-spacing: 0.04em;
+      }
+
+      .dl-swatch-token {
+        font-family: "Jost", monospace;
+        font-size: 0.58rem;
+        color: var(--fg-muted);
+        margin-top: 0.15rem;
+        opacity: 0.7;
+      }
+
+      .dl-mode-label {
+        font-family: "Jost", sans-serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 300;
+        margin-bottom: 0.85rem;
+        padding-right: 0.2em;
+      }
+
+      /* ── Type specimens ──────────────────────────────────────── */
+      .dl-type-block {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        align-items: center;
+        gap: 2rem;
+        padding: 1.75rem 2rem;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 14px;
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-hi);
+        margin-bottom: 0.75rem;
+      }
+
+      .dl-type-meta {
+        text-align: right;
+        border-left: 1px solid var(--glass-border);
+        padding-left: 2rem;
+      }
+
+      .dl-type-meta-label {
+        font-family: "Jost", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+
+      .dl-type-meta-specs {
+        font-family: "Jost", monospace;
+        font-size: 0.65rem;
+        color: var(--fg-muted);
+        line-height: 1.8;
+        letter-spacing: 0.03em;
+      }
+
+      /* Type specimens */
+      .s-display {
+        font-family: "Cormorant Garamond", serif;
+        font-weight: 600;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        line-height: 0.88;
+        letter-spacing: -0.03em;
+        color: var(--fg);
+      }
+      .s-display em { font-style: italic; font-weight: 400; color: var(--accent); display: block; font-size: 1.08em; }
+      .s-eyebrow {
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        font-size: 0.62rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--accent-bright);
+        padding-right: 0.32em;
+      }
+      .s-card-label {
+        font-family: "Jost", sans-serif;
+        font-size: 0.6rem;
+        font-weight: 400;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      .s-body {
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: var(--fg-muted);
+      }
+      .s-nav-link {
+        font-family: "Jost", sans-serif;
+        font-weight: 300;
+        font-size: 0.6rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--fg-muted);
+      }
+      .s-back-link {
+        font-family: "Jost", sans-serif;
+        font-size: 0.62rem;
+        font-weight: 300;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--fg-muted);
+      }
+
+      /* ── Spacing visual ──────────────────────────────────────── */
+      .dl-space-row {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .dl-space-row:last-child { border-bottom: none; }
+      .dl-space-bar {
+        height: 3px;
+        background: var(--accent);
+        opacity: 0.6;
+        border-radius: 2px;
+        flex-shrink: 0;
+      }
+      .dl-space-token {
+        font-family: "Jost", monospace;
+        font-size: 0.68rem;
+        color: var(--accent-bright);
+        min-width: 56px;
+        flex-shrink: 0;
+      }
+      .dl-space-px {
+        font-family: "Jost", monospace;
+        font-size: 0.62rem;
+        color: var(--fg-muted);
+        min-width: 40px;
+        flex-shrink: 0;
+        opacity: 0.6;
+      }
+      .dl-space-use {
+        font-family: "Jost", sans-serif;
+        font-size: 0.73rem;
+        color: var(--fg-muted);
+        font-weight: 300;
+      }
+
+      /* ── Motion cards ────────────────────────────────────────── */
+      .dl-motion-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 0.75rem;
+      }
+      .dl-motion-card {
+        padding: 1.5rem 1.75rem;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: var(--glass-shadow);
+        /*
+         * Each card's hover transition uses its OWN easing curve —
+         * so hovering is itself a live demo of the curve it describes.
+         * The transition property is set per-card via data attributes below.
+         */
+      }
+
+      /* Standard — smooth deceleration */
+      .dl-motion-card[data-ease="standard"] {
+        transition:
+          transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          border-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      /* Expo — explosive start, long tail */
+      .dl-motion-card[data-ease="expo"] {
+        transition:
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      /* Spring — slight overshoot */
+      .dl-motion-card[data-ease="spring"] {
+        transition:
+          transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+          border-color 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      /* Shared hover state — the easing curve is what differs */
+      .dl-motion-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(201, 168, 76, 0.22);
+        box-shadow:
+          var(--glass-shadow),
+          0 0 0 1px rgba(201, 168, 76, 0.1),
+          0 8px 24px rgba(201, 168, 76, 0.08);
+      }
+      .dl-motion-tag {
+        font-family: "Jost", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.4rem;
+      }
+      .dl-motion-value {
+        font-family: "Jost", monospace;
+        font-size: 0.7rem;
+        color: var(--fg);
+        letter-spacing: 0.02em;
+        margin-bottom: 0.75rem;
+        word-break: break-all;
+      }
+      .dl-motion-desc {
+        font-family: "Jost", sans-serif;
+        font-size: 0.72rem;
+        color: var(--fg-muted);
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      /* ── Principles cards ─────────────────────────────────────── */
+      .dl-principles {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 0.75rem;
+      }
+      .dl-principle {
+        padding: 1.75rem 1.5rem;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: var(--glass-shadow);
+      }
+      .dl-principle-n {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: var(--accent-bright);
+        opacity: 0.25;
+        line-height: 1;
+        letter-spacing: -0.04em;
+        margin-bottom: 0.75rem;
+      }
+      .dl-principle-title {
+        font-family: "Jost", sans-serif;
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--fg);
+        font-weight: 400;
+        margin-bottom: 0.6rem;
+      }
+      .dl-principle-body {
+        font-family: "Jost", sans-serif;
+        font-size: 0.76rem;
+        color: var(--fg-muted);
+        font-weight: 300;
+        line-height: 1.65;
+      }
+
+      /* ── Anim inventory table ─────────────────────────────────── */
+      .dl-anim-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: "Jost", sans-serif;
+        font-size: 0.73rem;
+      }
+      .dl-anim-table th {
+        text-align: left;
+        font-weight: 300;
+        font-size: 0.58rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        padding: 0 0.75rem 0.75rem 0;
+        border-bottom: 1px solid var(--glass-border);
+      }
+      .dl-anim-table td {
+        padding: 0.65rem 0.75rem 0.65rem 0;
+        border-bottom: 1px solid var(--glass-border);
+        color: var(--fg-muted);
+        font-weight: 300;
+        vertical-align: top;
+        line-height: 1.55;
+      }
+      .dl-anim-table tr:last-child td { border-bottom: none; }
+      .dl-anim-table td:first-child {
+        font-family: "Jost", monospace;
+        color: var(--accent-bright);
+        font-size: 0.68rem;
+        white-space: nowrap;
+      }
+
+      /* ── Code block ──────────────────────────────────────────── */
+      .dl-code {
+        background: rgba(14, 13, 11, 0.6);
+        border: 1px solid var(--glass-border);
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        font-family: "Jost", monospace;
+        font-size: 0.72rem;
+        color: var(--fg-muted);
+        line-height: 1.75;
+        overflow-x: auto;
+        margin-top: 0.75rem;
+      }
+      @media (prefers-color-scheme: light) {
+        .dl-code {
+          background: rgba(245, 241, 232, 0.9);
+          border-color: var(--glass-border);
+        }
+      }
+      .dl-code .kw { color: var(--accent-bright); }
+      .dl-code .val { color: var(--fg); }
+      .dl-code .cm { color: var(--fg-muted); opacity: 0.55; }
+
+      /* ── Page divider ─────────────────────────────────────────── */
+      .dl-hr {
+        border: none;
+        border-top: 1px solid var(--glass-border);
+        margin: 5rem 0;
+      }
+
+      /* ── Footer ──────────────────────────────────────────────── */
+      .dl-footer {
+        padding-top: 3rem;
+        border-top: 1px solid var(--glass-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .dl-footer-note {
+        font-family: "Jost", sans-serif;
+        font-size: 0.62rem;
+        color: var(--fg-muted);
+        letter-spacing: 0.06em;
+        opacity: 0.6;
+      }
+
+      /* ── Logo section ────────────────────────────────────────── */
+      .dl-logo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .dl-logo-card {
+        border-radius: 14px;
+        border: 1px solid var(--glass-border);
+        overflow: hidden;
+        box-shadow: var(--glass-shadow);
+      }
+
+      /* The preview swatch — the colored/textured background */
+      .dl-logo-preview {
+        height: 140px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      /* Preview backgrounds */
+      .dl-logo-preview--dark     { background: #0E0D0B; }
+      .dl-logo-preview--light    { background: #F5F1E8; }
+      .dl-logo-preview--gold-bg  { background: linear-gradient(135deg, #B8922E, #DDB95A); }
+      .dl-logo-preview--glass    {
+        background: linear-gradient(135deg, rgba(14,13,11,0.7), rgba(30,25,15,0.85));
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .dl-logo-preview--favicon-dark  { background: #0E0D0B; }
+      .dl-logo-preview--favicon-light { background: #F5F1E8; }
+
+      /* The inline SVG H inside each card */
+      .dl-logo-svg {
+        width: 52px;
+        height: auto;
+        display: block;
+      }
+
+      /* Favicon previews are smaller — they render at ~32px in real life */
+      .dl-logo-preview--favicon-dark .dl-logo-svg,
+      .dl-logo-preview--favicon-light .dl-logo-svg {
+        width: 32px;
+      }
+
+      /* Gold rule accent at bottom of preview */
+      .dl-logo-preview::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--accent), transparent);
+        opacity: 0.3;
+      }
+
+      .dl-logo-meta {
+        padding: 1rem 1.25rem;
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+
+      .dl-logo-meta-name {
+        font-family: "Jost", sans-serif;
+        font-weight: 400;
+        font-size: 0.72rem;
+        color: var(--fg);
+        margin-bottom: 0.2rem;
+        letter-spacing: 0.04em;
+      }
+
+      .dl-logo-meta-file {
+        font-family: "Jost", monospace;
+        font-size: 0.62rem;
+        color: var(--accent-bright);
+        letter-spacing: 0.04em;
+        margin-bottom: 0.15rem;
+      }
+
+      .dl-logo-meta-use {
+        font-family: "Jost", sans-serif;
+        font-size: 0.62rem;
+        color: var(--fg-muted);
+        font-weight: 300;
+        line-height: 1.5;
+      }
+
+      /* Inline watermark demo strip */
+      .dl-watermark-demo {
+        position: relative;
+        height: 160px;
+        border-radius: 14px;
+        border: 1px solid var(--glass-border);
+        overflow: hidden;
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: var(--glass-shadow);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 6%;
+      }
+
+      .dl-watermark-demo-svg {
+        width: clamp(100px, 30%, 180px);
+        height: auto;
+        opacity: 0.065;
+        flex-shrink: 0;
+      }
+
+      .dl-watermark-demo-svg path {
+        fill: var(--accent);
+      }
+
+      .dl-watermark-demo-label {
+        position: absolute;
+        left: 1.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: "Jost", sans-serif;
+        font-size: 0.68rem;
+        color: var(--fg-muted);
+        font-weight: 300;
+        max-width: 55%;
+        line-height: 1.6;
+      }
+
+      .dl-watermark-demo-label strong {
+        display: block;
+        font-family: "Jost", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 400;
+        margin-bottom: 0.3rem;
+      }
+
+      /* ── Responsive ──────────────────────────────────────────── */
+      @media (max-width: 700px) {
+        .dl { padding: 3rem 1.5rem 5rem; }
+        .dl-type-block { grid-template-columns: 1fr; }
+        .dl-type-meta { text-align: left; border-left: none; border-top: 1px solid var(--glass-border); padding-left: 0; padding-top: 1rem; margin-top: 0.5rem; }
+        .dl-kv-row { grid-template-columns: 1fr; gap: 0.3rem; }
+        .dl-kv-key { font-size: 0.65rem; }
+        .dl-dodont { grid-template-columns: 1fr; }
+        .dl-logo-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+    </style>
+
+    <title>Design Language — Habchy.com</title>
+  </head>
+  <body>
+    <!-- =====================================================================
+         Navigation
+         ===================================================================== -->
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-link-left">
+        <a href="about" class="nav-link">About</a>
+      </div>
+      <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
+        <img src="assets/images/habchy.svg"       alt="Habchy" class="logo-dark"  width="22" height="25" />
+        <img src="assets/images/habchy-white.svg" alt="Habchy" class="logo-light" width="22" height="25" />
+      </a>
+      <div class="nav-link-right">
+        <a href="assets/Charbel%20Habchy%20Resume%20June%202024.pdf" class="nav-link" title="Download my resume">Résumé</a>
+      </div>
+    </nav>
+
+    <!-- =====================================================================
+         DESIGN LANGUAGE DOCUMENT
+         ===================================================================== -->
+    <div class="page page--padded">
+      <div class="dl">
+
+        <!-- ══════════════════════════════════════════════════════════════
+             DOCUMENT HEADER
+             ══════════════════════════════════════════════════════════════ -->
+        <header class="dl-head">
+          <p class="eyebrow">Internal Reference — habchy.com</p>
+          <h1>Design<br /><em>Language.</em></h1>
+          <p class="intro">
+            This document is the <strong>single source of truth</strong> for every visual, motion, and code decision on habchy.com.
+            Read it before you change anything. Every token, rule, and number here is exact — pulled directly from <code>style.css</code>, <code>parallax.js</code>, and <code>404.js</code>.
+            The design concept is <strong>warm archaeological luxury</strong>: Baalbek ruins, cream linen suit, gilded afternoon light. Every decision — color, type, motion — traces back to that one image.
+            If it doesn't feel like it belongs in that image, it doesn't belong on this site.
+          </p>
+        </header>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             01 · CORE CONCEPT
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">01</span>
+            <span class="dl-section-title">Core Concept &amp; Philosophy</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-principles">
+            <div class="dl-principle">
+              <div class="dl-principle-n">01</div>
+              <div class="dl-principle-title">Restraint over decoration</div>
+              <p class="dl-principle-body">Nothing is added unless it earns its place. Empty space is not waste — it is the breathing room that makes what remains feel precious. When in doubt, remove it.</p>
+            </div>
+            <div class="dl-principle">
+              <div class="dl-principle-n">02</div>
+              <div class="dl-principle-title">Depth without noise</div>
+              <p class="dl-principle-body">Parallax, glass, and shadow create dimensionality. Never orbs, particles, gradients blobs, or decorative geometry. Depth comes from light and material, not busyness.</p>
+            </div>
+            <div class="dl-principle">
+              <div class="dl-principle-n">03</div>
+              <div class="dl-principle-title">Typography as architecture</div>
+              <p class="dl-principle-body">Cormorant Garamond carries monumental editorial weight. Jost is the quiet structural grid underneath. The H monogram is silent — always intentional, never decorative.</p>
+            </div>
+            <div class="dl-principle">
+              <div class="dl-principle-n">04</div>
+              <div class="dl-principle-title">Warmth, not coldness</div>
+              <p class="dl-principle-body">Gold over blue. Parchment over stark white. The palette references ancient stone and candlelight — human and warm even in dark mode. Never icy, never techy-blue, never flat grey.</p>
+            </div>
+            <div class="dl-principle">
+              <div class="dl-principle-n">05</div>
+              <div class="dl-principle-title">Mobile is not a fallback</div>
+              <p class="dl-principle-body">The mobile experience is designed on its own terms. The nav disappears; a glass panel, a mobile H mark, and adapted type scale replace it. Nothing is just "shrunk from desktop."</p>
+            </div>
+            <div class="dl-principle">
+              <div class="dl-principle-n">06</div>
+              <div class="dl-principle-title">Performance is aesthetic</div>
+              <p class="dl-principle-body">Instant feels luxurious. Slow feels cheap. Hero images are preloaded, analytics deferred 2s, fonts non-blocking, all animations on GPU-composited properties only.</p>
+            </div>
+          </div>
+
+          <div class="dl-warn" style="margin-top:2rem;">
+            <strong>The one rule to remember:</strong> If you're about to add something and you can't directly trace it back to the Baalbek image — the stone, the light, the suit, the gold — reconsider it.
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             02 · COLOR SYSTEM
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">02</span>
+            <span class="dl-section-title">Color System</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <p class="dl-mode-label">Dark Mode — <code>@media (prefers-color-scheme: dark)</code></p>
+          <div class="dl-palette">
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#0E0D0B;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Charcoal</div>
+                <div class="dl-swatch-hex">#0E0D0B</div>
+                <div class="dl-swatch-token">--bg</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#161410;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Deep Umber</div>
+                <div class="dl-swatch-hex">#161410</div>
+                <div class="dl-swatch-token">--bg-secondary</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#F2EFE8;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Sand White</div>
+                <div class="dl-swatch-hex">#F2EFE8</div>
+                <div class="dl-swatch-token">--fg</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#9A9080;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Dust</div>
+                <div class="dl-swatch-hex">#9A9080</div>
+                <div class="dl-swatch-token">--fg-muted</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#C9A84C;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Gold</div>
+                <div class="dl-swatch-hex">#C9A84C</div>
+                <div class="dl-swatch-token">--accent</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#DDB95A;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Bright Gold</div>
+                <div class="dl-swatch-hex">#DDB95A</div>
+                <div class="dl-swatch-token">--accent-bright</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="dl-mode-label" style="margin-top:2rem;">Light Mode — <code>:root</code> (default)</p>
+          <div class="dl-palette">
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#F5F1E8; outline:1px solid rgba(0,0,0,0.08);"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Parchment</div>
+                <div class="dl-swatch-hex">#F5F1E8</div>
+                <div class="dl-swatch-token">--bg</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#EDE8DC; outline:1px solid rgba(0,0,0,0.08);"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Linen</div>
+                <div class="dl-swatch-hex">#EDE8DC</div>
+                <div class="dl-swatch-token">--bg-secondary</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#1A1510;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Umber</div>
+                <div class="dl-swatch-hex">#1A1510</div>
+                <div class="dl-swatch-token">--fg</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#6B5F4A;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Sienna</div>
+                <div class="dl-swatch-hex">#6B5F4A</div>
+                <div class="dl-swatch-token">--fg-muted</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#B8922E;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Antique Gold</div>
+                <div class="dl-swatch-hex">#B8922E</div>
+                <div class="dl-swatch-token">--accent</div>
+              </div>
+            </div>
+            <div class="dl-swatch">
+              <div class="dl-swatch-chip" style="background:#C9A84C;"></div>
+              <div class="dl-swatch-meta">
+                <div class="dl-swatch-name">Gold</div>
+                <div class="dl-swatch-hex">#C9A84C</div>
+                <div class="dl-swatch-token">--accent-bright</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:1.5rem;">
+            <div class="dl-box-label">Full token reference — <code>style.css :root</code></div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">--glass-bg (dark)</span><span class="dl-kv-val"><code>rgba(14, 13, 11, 0.55)</code> — card background, always semi-transparent</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--glass-bg (light)</span><span class="dl-kv-val"><code>rgba(245, 241, 232, 0.52)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--glass-border (dark)</span><span class="dl-kv-val"><code>rgba(242, 239, 232, 0.08)</code> — barely visible white stroke</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--glass-border (light)</span><span class="dl-kv-val"><code>rgba(26, 21, 16, 0.09)</code> — barely visible dark stroke</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--glass-hi (dark)</span><span class="dl-kv-val"><code>rgba(255, 255, 255, 0.04)</code> — top-edge inner glow</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--glass-hi (light)</span><span class="dl-kv-val"><code>rgba(255, 255, 255, 0.55)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--glass-shadow (dark)</span><span class="dl-kv-val"><code>0 16px 64px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--glass-shadow (light)</span><span class="dl-kv-val"><code>0 16px 64px rgba(26,21,16,0.1), 0 2px 8px rgba(26,21,16,0.05)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--nav-bg (dark)</span><span class="dl-kv-val"><code>rgba(14, 13, 11, 0.85)</code> — more opaque than cards; nav needs to be legible</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--nav-bg (light)</span><span class="dl-kv-val"><code>rgba(245, 241, 232, 0.80)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--watermark-fill</span><span class="dl-kv-val"><code>#C9A84C</code> dark / <code>#1A1510</code> light</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--watermark-opacity</span><span class="dl-kv-val"><code>0.065</code> dark / <code>0.045</code> light — always extremely subtle</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--accent-dim</span><span class="dl-kv-val"><code>rgba(201,168,76, 0.10–0.12)</code> — hover backgrounds on pills, buttons</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">--pill-bg / --pill-border / --pill-fg</span><span class="dl-kv-val">Semi-transparent, adapts per mode — always use tokens, never hardcode</span></div>
+            </div>
+          </div>
+
+          <div class="dl-dodont">
+            <div class="dl-do">
+              <div class="dl-do-label">Do</div>
+              Always reference <code>var(--accent)</code>, <code>var(--fg)</code>, etc. for every color value. The theme switch is entirely automatic through CSS custom properties.
+            </div>
+            <div class="dl-dont">
+              <div class="dl-dont-label">Don't</div>
+              Never hardcode <code>#C9A84C</code>, <code>#0E0D0B</code>, or any hex directly in HTML or new CSS rules. If you hardcode, the light/dark switch breaks.
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             03 · TYPOGRAPHY
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">03</span>
+            <span class="dl-section-title">Typography System</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <!-- Display -->
+          <div class="dl-type-block">
+            <div class="s-display">Charbel<br /><em>Habchy.</em></div>
+            <div class="dl-type-meta">
+              <div class="dl-type-meta-label">Display / Hero Name</div>
+              <div class="dl-type-meta-specs">
+                Cormorant Garamond<br />
+                600 upright / 400 italic<br />
+                font-size: clamp(4.2rem, 9vw, 8rem)<br />
+                line-height: 0.87<br />
+                letter-spacing: −0.038em<br />
+                color: #F2EFE8 (always — even light mode)<br />
+                em: italic 400, 1.12em, accent-bright<br />
+                Mobile: clamp(2.6rem, 11vw, 3.8rem)
+              </div>
+            </div>
+          </div>
+
+          <!-- Display — About page variant -->
+          <div class="dl-type-block">
+            <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2.5rem,5vw,4rem);line-height:0.88;letter-spacing:-0.03em;color:var(--fg);">
+              Charbel<br /><em style="font-style:italic;font-weight:400;color:var(--accent);display:block;font-size:1.08em;margin-left:-0.03em;">Habchy.</em>
+            </div>
+            <div class="dl-type-meta">
+              <div class="dl-type-meta-label">Display / About Header</div>
+              <div class="dl-type-meta-specs">
+                Cormorant Garamond<br />
+                600 upright / 400 italic<br />
+                font-size: clamp(3.8rem, 8vw, 6.8rem)<br />
+                line-height: 0.88<br />
+                letter-spacing: −0.03em<br />
+                color: var(--fg) (adapts to mode)<br />
+                em: italic 400, 1.08em, var(--accent)<br />
+                Mobile: clamp(3rem, 12vw, 4.5rem)
+              </div>
+            </div>
+          </div>
+
+          <!-- Eyebrow -->
+          <div class="dl-type-block">
+            <div class="s-eyebrow">Beirut → Boston</div>
+            <div class="dl-type-meta">
+              <div class="dl-type-meta-label">Eyebrow / Section Labels</div>
+              <div class="dl-type-meta-specs">
+                Jost 300<br />
+                font-size: 0.58–0.62rem<br />
+                letter-spacing: 0.28–0.32em<br />
+                text-transform: uppercase<br />
+                color: var(--accent-bright)<br />
+                padding-right: same as letter-spacing<br />
+                (optical compensation for trailing gap)
+              </div>
+            </div>
+          </div>
+
+          <!-- Card label -->
+          <div class="dl-type-block">
+            <div class="s-card-label">Bio</div>
+            <div class="dl-type-meta">
+              <div class="dl-type-meta-label">Card Label / Section Title</div>
+              <div class="dl-type-meta-specs">
+                Jost 400<br />
+                font-size: 0.6rem<br />
+                letter-spacing: 0.26em<br />
+                text-transform: uppercase<br />
+                color: var(--accent)<br />
+                Preceded by a short gold rule<br />
+                via ::before pseudo-element
+              </div>
+            </div>
+          </div>
+
+          <!-- Body -->
+          <div class="dl-type-block">
+            <div class="s-body">Developer, computer science student, and perpetual explorer — born in Beirut, raised in Boston, building everywhere in between.</div>
+            <div class="dl-type-meta">
+              <div class="dl-type-meta-label">Body / Lead Text</div>
+              <div class="dl-type-meta-specs">
+                Jost 300<br />
+                font-size: clamp(0.88rem, 1.6vw, 1rem)<br />
+                line-height: 1.7–1.9<br />
+                letter-spacing: 0.02em<br />
+                color: var(--fg-muted)<br />
+                Bio text uses line-height: 2.0
+              </div>
+            </div>
+          </div>
+
+          <!-- Nav link -->
+          <div class="dl-type-block">
+            <div class="s-nav-link">About</div>
+            <div class="dl-type-meta">
+              <div class="dl-type-meta-label">Nav Links</div>
+              <div class="dl-type-meta-specs">
+                Jost 300<br />
+                font-size: 0.6rem<br />
+                letter-spacing: 0.28em<br />
+                text-transform: uppercase<br />
+                color: var(--fg-muted)<br />
+                hover: color → var(--fg)<br />
+                + gold dot 3px below via ::after
+              </div>
+            </div>
+          </div>
+
+          <!-- Back link -->
+          <div class="dl-type-block">
+            <div class="s-back-link">Back to home</div>
+            <div class="dl-type-meta">
+              <div class="dl-type-meta-label">Footer / Back Link</div>
+              <div class="dl-type-meta-specs">
+                Jost 300<br />
+                font-size: 0.62rem<br />
+                letter-spacing: 0.24em<br />
+                text-transform: uppercase<br />
+                color: var(--fg-muted)<br />
+                ::before rule 24px → 40px on hover<br />
+                gap 0.6rem → 0.8rem on hover
+              </div>
+            </div>
+          </div>
+
+          <div class="dl-warn">
+            <strong>Critical type rule:</strong> Hero name (<code>.hero-name</code>) is always <code>#F2EFE8</code> in dark mode and <code>#1A1510</code> in light mode — it is NOT <code>var(--fg)</code>. The hero is a photo background, so the text color must be fixed for contrast regardless of the glass vignette. Don't change this to <code>var(--fg)</code> — it will break light mode contrast.
+          </div>
+
+          <div class="dl-box" style="margin-top:1.5rem;">
+            <div class="dl-box-label">Font loading strategy</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Loading method</span><span class="dl-kv-val"><code>media="print" onload="this.media='all'"</code> — non-blocking. Falls back via <code>&lt;noscript&gt;</code>. Never use render-blocking link.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Families</span><span class="dl-kv-val">Cormorant Garamond: ital,wght 0,400; 0,600; 1,400; 1,600 — Jost: wght 300; 400</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Font Awesome</span><span class="dl-kv-val">Self-hosted in <code>assets/fonts/</code>: <code>fa-brands-400.woff2</code>, <code>fa-solid-900.woff2</code>. Used for social icons only.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Preload</span><span class="dl-kv-val">Both <code>.woff2</code> files are preloaded via <code>&lt;link rel="preload"&gt;</code> with <code>crossorigin</code> on index.html.</span></div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             04 · GLASSMORPHISM
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">04</span>
+            <span class="dl-section-title">Glassmorphism — The Full Recipe</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">Glass Card (.glass-card) — exact CSS values</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">background</span><span class="dl-kv-val"><code>var(--glass-bg)</code> — semi-transparent, adapts per mode. Never opaque.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">border</span><span class="dl-kv-val"><code>1px solid var(--glass-border)</code> — hairline, barely visible.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">border-radius</span><span class="dl-kv-val"><code>16px</code> for cards. <code>100px</code> for nav pill. <code>12px</code> for lang items. <code>100px</code> for skill pills. <code>2px</code> for buttons (intentionally sharp — contrast to the rounded surfaces).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">backdrop-filter</span><span class="dl-kv-val"><code>blur(32px) saturate(1.4)</code>. Always include <code>-webkit-backdrop-filter</code> for Safari. Nav uses <code>blur(32px) saturate(1.8)</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">box-shadow</span><span class="dl-kv-val"><code>var(--glass-shadow), inset 0 1px 0 var(--glass-hi)</code>. The <code>inset</code> creates a top-edge highlight like light catching the glass rim.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">padding</span><span class="dl-kv-val"><code>clamp(1.75rem, 4vw, 2.75rem)</code> default. Bio card: <code>clamp(2rem, 5vw, 3.5rem)</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">hover</span><span class="dl-kv-val"><code>translateY(-2px)</code> lift + <code>border-color: rgba(201,168,76,0.18)</code> + faint outer gold ring <code>0 0 0 1px rgba(201,168,76,0.08)</code>. Duration: 0.32s.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Nav pill — glass variant</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">background</span><span class="dl-kv-val"><code>var(--nav-bg)</code> — more opaque than cards (0.80 light / 0.85 dark) so text is always legible.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">border</span><span class="dl-kv-val"><code>1px solid var(--nav-border)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">box-shadow</span><span class="dl-kv-val"><code>0 4px 24px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08), inset 0 1px 0 var(--glass-hi)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">backdrop-filter</span><span class="dl-kv-val"><code>blur(32px) saturate(1.8)</code> — stronger saturation so the nav pops against any background.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">height</span><span class="dl-kv-val"><code>50px</code> fixed. Padding: <code>0 2.5rem</code>. min-width: <code>320px</code>.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-warn">
+            <strong>Safari gotcha:</strong> <code>backdrop-filter</code> requires the element to have a non-100% opaque background. If you set <code>background: transparent</code> the blur disappears on Safari. Always use a semi-transparent background with backdrop-filter.
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             05 · SPACING
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">05</span>
+            <span class="dl-section-title">Spacing Scale</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-kv" style="gap:0;">
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:4px;"></div><span class="dl-space-token">0.25rem</span><span class="dl-space-px">4px</span><span class="dl-space-use">Dot indicators, micro gaps, thin rule margins</span></div>
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:8px;"></div><span class="dl-space-token">0.5rem</span><span class="dl-space-px">8px</span><span class="dl-space-use">Lang dot gap (3px actual), tight intra-element</span></div>
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:12px;"></div><span class="dl-space-token">0.75rem</span><span class="dl-space-px">12px</span><span class="dl-space-use">Eyebrow-to-heading gap, social icon gap, lang grid gap</span></div>
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:16px;"></div><span class="dl-space-token">1rem</span><span class="dl-space-px">16px</span><span class="dl-space-use">Card label → content, mobile panel gap, about-sections gap</span></div>
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:24px;"></div><span class="dl-space-token">1.5rem</span><span class="dl-space-px">24px</span><span class="dl-space-use">Card label margin-bottom, nav padding horizontal unit</span></div>
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:32px;"></div><span class="dl-space-token">2rem</span><span class="dl-space-px">32px</span><span class="dl-space-use">Hero panel gap (desktop), nav left/right cell padding</span></div>
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:40px;"></div><span class="dl-space-token">2.5rem</span><span class="dl-space-px">40px</span><span class="dl-space-use">Nav pill horizontal padding, page-level side padding</span></div>
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:64px;"></div><span class="dl-space-token">4–5rem</span><span class="dl-space-px">64–80px</span><span class="dl-space-use">Section separation, page padding top/bottom on about</span></div>
+              <div class="dl-space-row"><div class="dl-space-bar" style="width:96px;"></div><span class="dl-space-token">6–7rem</span><span class="dl-space-px">96–112px</span><span class="dl-space-use">About page bottom padding, major page breathing room</span></div>
+            </div>
+          </div>
+
+          <div class="dl-warn">
+            <strong>Fluid spacing:</strong> Use <code>clamp()</code> for any spacing that should adapt between mobile and desktop. Example: <code>clamp(1.75rem, 4vw, 2.75rem)</code>. The middle value is the ideal at ~1200px. Never use a fixed px value for structural layout padding.
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             06 · MOTION & ANIMATION
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">06</span>
+            <span class="dl-section-title">Motion &amp; Animation</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <!-- Each card's hover transition uses its own easing curve — hover to feel the difference. -->
+          <div class="dl-motion-grid" style="margin-bottom:1.5rem;">
+            <div class="dl-motion-card" data-ease="standard" title="Hover to feel --ease">
+              <div class="dl-motion-tag">--ease / Standard</div>
+              <div class="dl-motion-value">cubic-bezier(0.25, 0.46, 0.45, 0.94)</div>
+              <p class="dl-motion-desc">Color transitions, opacity fades, border-color changes, link hover states. Duration: <strong>0.22–0.35s</strong>. <em style="color:var(--accent);font-style:normal;">Hover this card to feel it.</em></p>
+            </div>
+            <div class="dl-motion-card" data-ease="expo" title="Hover to feel --ease-out">
+              <div class="dl-motion-tag">--ease-out / Expo</div>
+              <div class="dl-motion-value">cubic-bezier(0.16, 1, 0.3, 1)</div>
+              <p class="dl-motion-desc">Load-in animations, scroll reveals, entrance keyframes. Explosive deceleration — feels cinematic. Duration: <strong>0.8–2s</strong>. <em style="color:var(--accent);font-style:normal;">Hover this card to feel it.</em></p>
+            </div>
+            <div class="dl-motion-card" data-ease="spring" title="Hover to feel --ease-spring">
+              <div class="dl-motion-tag">--ease-spring / Spring</div>
+              <div class="dl-motion-value">cubic-bezier(0.34, 1.56, 0.64, 1)</div>
+              <p class="dl-motion-desc">Micro-interactions: nav dot reveal, logo hover scale, pill hover lift, back-link gap expand. Slight overshoot = alive. Duration: <strong>0.22–0.28s</strong>. <em style="color:var(--accent);font-style:normal;">Hover this card to feel it.</em></p>
+            </div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">Complete Animation Inventory</div>
+            <table class="dl-anim-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Element</th>
+                  <th>Duration / Delay</th>
+                  <th>What it does</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>bgReveal</td>
+                  <td>.hero-bg-wrap</td>
+                  <td>2s / delay 0.1s</td>
+                  <td>opacity 0→1, scale 1.05→1. Panorama swells into view. Uses --ease-out.</td>
+                </tr>
+                <tr>
+                  <td>fgReveal</td>
+                  <td>.hero-fg-wrap (desktop)</td>
+                  <td>1.6s / delay 0.8s</td>
+                  <td>opacity 0→1, translateY(32px→0). Figure rises up after bg has settled.</td>
+                </tr>
+                <tr>
+                  <td>fgRevealMobile</td>
+                  <td>.hero-fg-wrap (mobile)</td>
+                  <td>1.6s / delay 0.8s</td>
+                  <td>translateX(-50%) translateY(32px→0). Preserves centering transform during load-in. Critical — see parallax section.</td>
+                </tr>
+                <tr>
+                  <td>panelReveal</td>
+                  <td>.hero-panel and each child</td>
+                  <td>1.4s / staggered 0.1s steps</td>
+                  <td>opacity + translateY(22px→0). Eyebrow 0.2s, name 0.28s, tagline 0.36s, rule 0.42s, buttons 0.48s, icons 0.54s.</td>
+                </tr>
+                <tr>
+                  <td>navFade</td>
+                  <td>.site-nav</td>
+                  <td>1.6s / delay 0.3s</td>
+                  <td>Opacity only — 0→1. No movement. Nav arrives like a watermark, not a UI element.</td>
+                </tr>
+                <tr>
+                  <td>logoMarkFade</td>
+                  <td>.hero-mark (mobile)</td>
+                  <td>2.2s / delay 1.2s</td>
+                  <td>opacity 0→0.12, translateY(calc(-50%+18px)→-50%). Defined once but ends at opacity 0.12, not 1.</td>
+                </tr>
+                <tr>
+                  <td>aboutMarkFade</td>
+                  <td>.about-header-mark (mobile)</td>
+                  <td>2s / delay 0.6s</td>
+                  <td>opacity 0→0.08, translateY(10px→0). Arrives quietly after heading text.</td>
+                </tr>
+                <tr>
+                  <td>nfBgReveal</td>
+                  <td>.nf-marquee-bg</td>
+                  <td>1.8s / delay 0.2s</td>
+                  <td>opacity 0→1 on 404 marquee background.</td>
+                </tr>
+                <tr>
+                  <td>nfContentReveal</td>
+                  <td>.not-found-content</td>
+                  <td>1s / delay 0.3s</td>
+                  <td>opacity + translateY(20px→0). 404 page text arrives.</td>
+                </tr>
+                <tr>
+                  <td>nfMarqueeLeft / Right</td>
+                  <td>.nf-marquee-track</td>
+                  <td>JS-generated, 28–36s, linear, infinite</td>
+                  <td>Injected by 404.js. translateX(0 ↔ -totalShift). totalShift = (MARK_SIZE+GAP) × MARKS_PER_ROW = 2100px.</td>
+                </tr>
+                <tr>
+                  <td>Scroll reveal</td>
+                  <td>.reveal, .reveal-stagger</td>
+                  <td>0.8s (elements), 0.55s (stagger children)</td>
+                  <td>IntersectionObserver triggers .visible class. translateY(32px→0) + opacity. Cards stagger at 0/0.12/0.24s. Pill children stagger at 0.04s increments up to child 12.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="dl-warn" style="margin-top:1rem;">
+            <strong>prefers-reduced-motion:</strong> All CSS keyframe animations are disabled and set to final state. <code>will-change</code> is set to <code>auto</code>. The JS <code>parallax.js</code> checks <code>window.matchMedia('(prefers-reduced-motion: reduce)')</code> before running. The 404.js checks it too. <strong>Never add an animation without adding its reduced-motion override in the <code>@media (prefers-reduced-motion: reduce)</code> block at the bottom of style.css.</strong>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             07 · PARALLAX SYSTEM
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">07</span>
+            <span class="dl-section-title">Parallax System — Critical Architecture</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-warn" style="margin-bottom:1.5rem;">
+            <strong>Read this entire section before touching parallax.js or the hero HTML/CSS.</strong> The wrapper architecture and the mobile transform strategy are the most fragile parts of the codebase. Misunderstanding either will break the hero on mobile.
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">Why wrapper divs exist — the core problem</div>
+            <p style="font-family:'Jost',sans-serif;font-size:0.8rem;color:var(--fg-muted);line-height:1.75;font-weight:300;margin-bottom:1rem;">
+              The JS parallax writes <code>style.transform</code> directly on <code>.hero-bg</code> and <code>.hero-fg</code> every animation frame via <code>requestAnimationFrame</code>. If we also put a CSS <em>load-in animation</em> on those same elements using <code>transform</code>, the JS overwrites it the instant the mouse moves — the element snaps to its JS position, killing the animation.
+            </p>
+            <p style="font-family:'Jost',sans-serif;font-size:0.8rem;color:var(--fg-muted);line-height:1.75;font-weight:300;">
+              <strong style="color:var(--fg);">Solution:</strong> Two wrapper divs: <code>.hero-bg-wrap</code> and <code>.hero-fg-wrap</code>. CSS animations run on the wrappers. JS writes transforms on the inner img elements. These are always different DOM nodes → no conflict.
+            </p>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Mouse parallax — strength values</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">BG_STRENGTH</span><span class="dl-kv-val"><code>0.022</code> — background moves 2.2% of cursor offset from viewport center. Conservative: keeps the Baalbek columns in frame.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">FG_STRENGTH</span><span class="dl-kv-val"><code>0.058</code> — foreground figure moves 5.8%. Greater delta = apparent depth. The ratio matters more than the absolute values.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">LERP</span><span class="dl-kv-val"><code>0.07</code> — interpolation factor per frame. Each frame: <code>current += (target - current) * 0.07</code>. Lower = more cinematic lag. Don't go above 0.12.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Y damping</span><span class="dl-kv-val">FG Y offset is multiplied by <code>0.55</code> before writing — vertical motion is more restrained. The figure stays grounded.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Stop condition</span><span class="dl-kv-val">rAF loop stops when all deltas &lt; 0.05px. Saves CPU when idle.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">mouseleave</span><span class="dl-kv-val">Targets reset to 0 — layers lerp back to center. Feels natural.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Touch devices</span><span class="dl-kv-val"><code>'ontouchstart' in window</code> check disables parallax on mobile. The hero still looks correct because the CSS wrapper positions handle the initial state.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">BG transform formula — critical</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">JS writes on .hero-bg</span>
+                <span class="dl-kv-val">
+                  <code>translate3d(calc(-50% + Xpx), calc(-50% + Ypx), 0)</code><br />
+                  The <code>-50%</code> preserves the CSS centering (<code>top:50%; left:50%; transform:translate(-50%,-50%)</code>). If you write just <code>translate3d(Xpx, Ypx, 0)</code> the image jumps to the top-left corner of the scene.
+                </span>
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">JS writes on .hero-fg</span>
+                <span class="dl-kv-val">
+                  <code>translate3d(Xpx, Ypx, 0)</code> — plain, no percentage offset.<br />
+                  <strong>Desktop:</strong> .hero-fg-wrap is positioned with <code>right</code> + <code>bottom</code>. No CSS transform on the wrapper, so the img has a clean slate.<br />
+                  <strong>Mobile:</strong> .hero-fg-wrap carries <code>left:50%; transform:translateX(-50%)</code> for centering. The img fills the wrapper 100%. JS writes plain translate3d on the img — no -50% needed because the WRAPPER is already centering it. If you accidentally add -50% to the JS transform on mobile it will double-apply the offset and shift the figure off to the left.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Mobile wrapper positioning (≤700px)</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">.hero-fg-wrap</span><span class="dl-kv-val"><code>left: 50%; top: 4vh; width: 88vw; max-width: 88vw; height: 115vh; transform: translateX(-50%)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Mobile animation</span><span class="dl-kv-val"><code>fgRevealMobile</code> — from <code>translateX(-50%) translateY(32px)</code> to <code>translateX(-50%) translateY(0)</code>. Must include the -50% in both keyframe states or the element snaps to the wrong X position when the animation ends.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Reduced motion (mobile)</span><span class="dl-kv-val">The <code>@media (prefers-reduced-motion: reduce)</code> block resets <code>.hero-fg-wrap { transform: none }</code> for desktop, but a nested <code>@media (max-width: 700px)</code> inside it restores <code>transform: translateX(-50%)</code>. This is required — without it the figure is off-center when animations are disabled.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">About page — scroll parallax + reveal</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">SCROLL_STRENGTH</span><span class="dl-kv-val"><code>0.32</code> — watermark translates upward at 32% of scroll speed. Feels like it's on a deeper plane.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Transform written</span><span class="dl-kv-val"><code>translateY(-(scrollY * 0.32)px)</code> on <code>.about-watermark</code>. Passive scroll listener, rAF-debounced, only fires when scrollY changes.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">IntersectionObserver</span><span class="dl-kv-val">threshold: <code>0.08</code>, rootMargin: <code>"0px 0px -60px 0px"</code> (elements trigger 60px before bottom of viewport). Adds <code>.visible</code> class then unobserves.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Fallback</span><span class="dl-kv-val">If IntersectionObserver isn't supported, all .reveal elements immediately get .visible. No content is ever hidden.</span></div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             08 · NAVIGATION
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">08</span>
+            <span class="dl-section-title">Navigation — Floating Pill</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">Layout &amp; Structure</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Grid</span><span class="dl-kv-val"><code>grid-template-columns: 1fr auto 1fr</code>. Left cell = About link (right-aligned). Center cell = Logo. Right cell = Résumé link (left-aligned).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Position</span><span class="dl-kv-val"><code>position: fixed; top: 1.5rem; left: 50%; transform: translateX(-50%)</code>. Always centered, always floating.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">z-index</span><span class="dl-kv-val"><code>200</code> — above parallax layers (0), hero panel (10), watermark (0).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Height / min-width</span><span class="dl-kv-val"><code>height: 50px; min-width: 320px; white-space: nowrap</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Mobile</span><span class="dl-kv-val"><code>display: none</code> at ≤700px. The hero has its own CTA buttons and the panel is full-width at the bottom.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Vertical gold rules — the bracketed monogram effect</div>
+            <p style="font-family:'Jost',sans-serif;font-size:0.78rem;color:var(--fg-muted);line-height:1.75;font-weight:300;margin-bottom:1rem;">
+              The vertical hairline rules on either side of the logo are <strong>not</strong> pseudo-elements of <code>.nav-logo</code>. They are pseudo-elements of <code>.nav-link-left::after</code> (right edge) and <code>.nav-link-right::before</code> (left edge). This is intentional: if they were on the logo, they would participate in <code>transform: scale(1.08)</code> on logo hover and wiggle. By living on the sibling cells, they are completely independent of hover states.
+            </p>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Rule dimensions</span><span class="dl-kv-val"><code>width: 1px; height: 14px</code>. Centered vertically with <code>top: 50%; transform: translateY(-50%)</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Rule color</span><span class="dl-kv-val"><code>linear-gradient(to bottom, transparent, var(--accent), transparent)</code> — fades to invisible at both ends. opacity: 0.4.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Logo theme switching — exact selectors</div>
+            <p style="font-family:'Jost',sans-serif;font-size:0.78rem;color:var(--fg-muted);line-height:1.75;font-weight:300;margin-bottom:1rem;">
+              Two <code>&lt;img&gt;</code> elements are always in the DOM. One shows, one hides. The selector is scoped to <code>.nav-logo</code> for full specificity — without this scope, the rules can be overridden by less-specific selectors elsewhere.
+            </p>
+            <div class="dl-code">
+<span class="cm">/* Light mode (default :root) */</span>
+<span class="kw">.nav-logo</span> .logo-dark  { <span class="kw">display:</span> <span class="val">block;</span> }   <span class="cm">/* habchy.svg — dark ink for light bg */</span>
+<span class="kw">.nav-logo</span> .logo-light { <span class="kw">display:</span> <span class="val">none;</span>  }
+
+<span class="cm">/* Dark mode */</span>
+<span class="kw">@media (prefers-color-scheme: dark)</span> {
+  <span class="kw">.nav-logo</span> .logo-dark  { <span class="kw">display:</span> <span class="val">none;</span>  }
+  <span class="kw">.nav-logo</span> .logo-light { <span class="kw">display:</span> <span class="val">block;</span> }  <span class="cm">/* habchy-white.svg — white for dark bg */</span>
+}
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Homepage: logo links to design-language page</div>
+            <p style="font-family:'Jost',sans-serif;font-size:0.78rem;color:var(--fg-muted);line-height:1.75;font-weight:300;">
+              On <code>index.html</code>, <code>.nav-logo</code> links to <code>design-language</code> (this page). On all other pages, it links to <code>/</code> (home). Since the nav is hidden on mobile, this is effectively a desktop-only Easter egg link.
+            </p>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             09 · H MONOGRAM — USAGE RULES
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">09</span>
+            <span class="dl-section-title">H Monogram — Every Placement</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">SVG path data — the single source of truth</div>
+            <p style="font-family:'Jost',sans-serif;font-size:0.78rem;color:var(--fg-muted);line-height:1.75;font-weight:300;">
+              The H letterform is a single <code>&lt;path&gt;</code> element. The viewBox is always <code>"0 0 3971.7893 4497.9053"</code>. The <code>&lt;g&gt;</code> group always has <code>transform="translate(-2132.5701,-1799.2671)"</code>. The path <code>d</code> attribute begins <code>m 2187.2791,6296.0601...</code>. This is the same path used everywhere — nav logo SVGs, inline watermarks, 404 marquee. Never modify the path data.
+            </p>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Placement inventory</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Nav (all pages, desktop)</span>
+                <span class="dl-kv-val">
+                  <code>habchy.svg</code> (dark ink) in light mode / <code>habchy-white.svg</code> in dark mode. External <code>&lt;img&gt;</code> elements, <code>height: 28px; width: auto</code>. Hover: <code>scale(1.08)</code> spring, <code>opacity: 0.8</code>.
+                </span>
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">About watermark (desktop)</span>
+                <span class="dl-kv-val">
+                  Inline SVG, class <code>.about-watermark</code>. Fixed to right side of viewport: <code>right: -6vw</code>, <code>width: clamp(240px, 48vmin, 460px)</code>, vertically centered. Opacity via <code>var(--watermark-opacity)</code> (0.045–0.065). Gold in dark mode, umber in light mode via <code>var(--watermark-fill)</code>. Hidden below 600px. Smaller on 601–900px.
+                </span>
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">About header mark (mobile, ≤680px)</span>
+                <span class="dl-kv-val">
+                  Inline SVG, class <code>.about-header-mark</code>. Absolutely positioned within <code>.about-header</code>: <code>top: -4vw; right: -18vw; width: 62vw; max-width: 280px</code>. The negative right causes it to bleed half off-screen. Opacity animates <code>0→0.08</code> via <code>aboutMarkFade</code> (2s delay 0.6s). Fill: <code>var(--accent-bright)</code>.
+                </span>
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Hero mark (mobile, ≤700px)</span>
+                <span class="dl-kv-val">
+                  Inline SVG inside <code>.hero-panel</code>, class <code>.hero-mark</code>. <code>display: none</code> on desktop. Mobile: <code>position: absolute; top: 44%; right: 4%; transform: translateY(-50%); width: 42vw</code>. Behind panel text via <code>z-index: -1</code>. Animates via <code>logoMarkFade</code> to opacity 0.12.
+                </span>
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">404 marquee background</span>
+                <span class="dl-kv-val">
+                  JS-generated via <code>404.js</code>. 5 rows of 28 marks (14 original + 14 duplicate for seamless loop). Each mark: <code>110px × 110px</code>, gap <code>40px</code>. Odd rows scroll left, even rows scroll right. Duration: 28–36s per row, staggered by −3.5s × row index. Fill: <code>var(--accent)</code>, opacity: <code>0.10</code> on the path element.
+                </span>
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Favicon</span>
+                <span class="dl-kv-val">
+                  <code>favicon.svg</code> at root. Inline <code>&lt;style&gt;</code> inside it: fill <code>#1A1510</code> in light mode, <code>#C9A84C</code> in dark mode via <code>prefers-color-scheme</code>. Fallback: <code>favicon.png</code>.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="dl-dodont" style="margin-top:1rem;">
+            <div class="dl-do">
+              <div class="dl-do-label">Do</div>
+              Always use <code>aria-hidden="true" focusable="false"</code> on every decorative SVG instance (watermarks, hero mark, 404 marks). They are visual decoration — screen readers must skip them.
+            </div>
+            <div class="dl-dont">
+              <div class="dl-dont-label">Don't</div>
+              Don't scale the logo below ~20px rendered height. Don't use any fill color other than <code>var(--accent)</code>, <code>var(--accent-bright)</code>, <code>var(--fg)</code>, or <code>var(--watermark-fill)</code>. Don't add more than one prominent H mark on the same screen — they should be accents, not patterns.
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             09b · LOGO — VISUAL VARIANTS & FILE GUIDE
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">09b</span>
+            <span class="dl-section-title">Logo — Visual Variants &amp; File Guide</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <p style="font-family:'Jost',sans-serif;font-size:0.82rem;color:var(--fg-muted);line-height:1.75;font-weight:300;margin-bottom:2rem;">
+            The logo is a single custom <strong style="color:var(--fg);">H letterform</strong> — a hand-drawn monogram representing the Habchy name. It exists as external SVG files (for the nav), an inline SVG path (for watermarks and 404), and a theme-adaptive SVG favicon. There are no other variants of the wordmark and no horizontal lockup. The H alone <em>is</em> the brand.
+          </p>
+
+          <!-- All variants -->
+          <div class="dl-logo-grid">
+
+            <!-- Dark fill — light mode nav -->
+            <div class="dl-logo-card">
+              <div class="dl-logo-preview dl-logo-preview--light">
+                <svg class="dl-logo-svg" viewBox="0 0 3971.7893 4497.9053" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <g transform="translate(-2132.5701,-1799.2671)">
+                    <path style="fill:#1A1510" d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="dl-logo-meta">
+                <div class="dl-logo-meta-name">Dark Ink</div>
+                <div class="dl-logo-meta-file">habchy.svg</div>
+                <div class="dl-logo-meta-use">Nav in light mode. Fill: #000000 (in SVG file). Shown via .logo-dark selector.</div>
+              </div>
+            </div>
+
+            <!-- White fill — dark mode nav -->
+            <div class="dl-logo-card">
+              <div class="dl-logo-preview dl-logo-preview--dark">
+                <svg class="dl-logo-svg" viewBox="0 0 3971.7893 4497.9053" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <g transform="translate(-2132.5701,-1799.2671)">
+                    <path style="fill:#ffffff" d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="dl-logo-meta">
+                <div class="dl-logo-meta-name">White</div>
+                <div class="dl-logo-meta-file">habchy-white.svg</div>
+                <div class="dl-logo-meta-use">Nav in dark mode. Fill: #ffffff (in SVG file). Shown via .logo-light selector.</div>
+              </div>
+            </div>
+
+            <!-- Gold — accent fill for watermarks and marks -->
+            <div class="dl-logo-card">
+              <div class="dl-logo-preview dl-logo-preview--dark">
+                <svg class="dl-logo-svg" viewBox="0 0 3971.7893 4497.9053" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <g transform="translate(-2132.5701,-1799.2671)">
+                    <path style="fill:#C9A84C" d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="dl-logo-meta">
+                <div class="dl-logo-meta-name">Gold</div>
+                <div class="dl-logo-meta-file">Inline SVG — fill: var(--accent)</div>
+                <div class="dl-logo-meta-use">Mobile hero mark, about header mark, 404 marquee marks. Used as a decorative accent, never at full opacity.</div>
+              </div>
+            </div>
+
+            <!-- Gold on gold bg — button / accent context -->
+            <div class="dl-logo-card">
+              <div class="dl-logo-preview dl-logo-preview--gold-bg">
+                <svg class="dl-logo-svg" viewBox="0 0 3971.7893 4497.9053" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <g transform="translate(-2132.5701,-1799.2671)">
+                    <path style="fill:rgba(14,13,11,0.18)" d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="dl-logo-meta">
+                <div class="dl-logo-meta-name">Embossed</div>
+                <div class="dl-logo-meta-file">Not used — reference only</div>
+                <div class="dl-logo-meta-use">Shows how the mark looks set into a gold surface at very low opacity. Demonstrates the form holds its legibility even subtly.</div>
+              </div>
+            </div>
+
+            <!-- Favicon — dark mode -->
+            <div class="dl-logo-card">
+              <div class="dl-logo-preview dl-logo-preview--favicon-dark">
+                <svg class="dl-logo-svg" viewBox="0 0 3971.7893 4497.9053" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <g transform="translate(-2132.5701,-1799.2671)">
+                    <path style="fill:#C9A84C" d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="dl-logo-meta">
+                <div class="dl-logo-meta-name">Favicon — Dark mode</div>
+                <div class="dl-logo-meta-file">favicon.svg (dark context)</div>
+                <div class="dl-logo-meta-use">Gold #C9A84C on charcoal tab background. Inline &lt;style&gt; in favicon.svg handles the switch via prefers-color-scheme.</div>
+              </div>
+            </div>
+
+            <!-- Favicon — light mode -->
+            <div class="dl-logo-card">
+              <div class="dl-logo-preview dl-logo-preview--favicon-light">
+                <svg class="dl-logo-svg" viewBox="0 0 3971.7893 4497.9053" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <g transform="translate(-2132.5701,-1799.2671)">
+                    <path style="fill:#1A1510" d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"/>
+                  </g>
+                </svg>
+              </div>
+              <div class="dl-logo-meta">
+                <div class="dl-logo-meta-name">Favicon — Light mode</div>
+                <div class="dl-logo-meta-file">favicon.svg (light context)</div>
+                <div class="dl-logo-meta-use">Umber #1A1510 on white/grey tab background. favicon.png is the PNG fallback for older browsers.</div>
+              </div>
+            </div>
+
+          </div>
+          <!-- /.dl-logo-grid -->
+
+          <!-- Watermark demo -->
+          <div class="dl-watermark-demo" aria-hidden="true">
+            <div class="dl-watermark-demo-label">
+              <strong>Watermark (about page)</strong>
+              Fixed to right side · opacity 0.045–0.065 · scroll-parallax at 0.32× speed · hidden below 600px
+            </div>
+            <svg class="dl-watermark-demo-svg" viewBox="0 0 3971.7893 4497.9053" xmlns="http://www.w3.org/2000/svg" focusable="false">
+              <g transform="translate(-2132.5701,-1799.2671)">
+                <path d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">SVG technical specs</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">viewBox</span><span class="dl-kv-val"><code>0 0 3971.7893 4497.9053</code> — always. The path coordinates are relative to this box.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Group transform</span><span class="dl-kv-val"><code>translate(-2132.5701,-1799.2671)</code> — always on the wrapping <code>&lt;g&gt;</code>. This offsets the path from the original Inkscape canvas coordinates.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Aspect ratio</span><span class="dl-kv-val">~0.88:1 (slightly taller than wide). The H letterform is naturally vertical-leaning.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Single path</span><span class="dl-kv-val">The entire H is one <code>&lt;path&gt;</code> element — no groups of sub-paths, no clipping masks. This is why it renders crisply at any size and is easy to color.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Minimum size</span><span class="dl-kv-val">~20px rendered height. Below this the crossbar detail of the H becomes indistinct. The favicon renders at 16–32px and still reads correctly because the stroke weight is generous relative to the overall form.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Scaling</span><span class="dl-kv-val">Always use <code>width</code> or <code>height</code> + <code>viewBox</code> for scaling. Never use <code>transform: scale()</code> on the SVG element itself — it breaks positioning in some contexts.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-warn" style="margin-top:1rem;">
+            <strong>The path is sacred.</strong> The <code>d</code> attribute of the H path is a handcrafted letterform. Never run it through an SVG optimizer that simplifies path data — it will subtly alter the curves. The path data in the HTML, in the two SVG files, and in the JS config must always be identical.
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             10 · PAGE-BY-PAGE BREAKDOWN
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">10</span>
+            <span class="dl-section-title">Page-by-Page Breakdown</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <!-- index.html -->
+          <div class="dl-box">
+            <div class="dl-box-label">index.html — Homepage</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Layout</span><span class="dl-kv-val"><code>.hero</code>: <code>position: relative; height: 100vh; display: grid; grid-template-columns: auto 1fr; overflow: hidden</code>. Grid places <code>.hero-panel</code> in column 1, rest of scene fills column 2 (via absolute positioning).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Scene layers (z-index)</span><span class="dl-kv-val">0: .hero-bg-wrap (panorama bg). 1: .hero-vignette (gradient overlay). 10: .hero-panel (text content). The foreground figure (.hero-fg-wrap) sits between 0 and 10 by default flow — behind the panel.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Vignette (dark)</span><span class="dl-kv-val">Three gradients layered: (1) 105deg horizontal — 90% dark left → 3% right (text readability). (2) vertical bottom-up — 65% → 0% at 52% (ground the scene). (3) Top-down — 28% → 0% at 18% (darken nav area). Dark charcoal <code>rgba(8,7,5)</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Vignette (light)</span><span class="dl-kv-val">Same angles, parchment color <code>rgba(245,241,232)</code> instead: (1) 105deg — 94%→0% (dense warm wash on left). (2) Bottom-up — 55%→0% at 50%. No top gradient. Creates warm-white editorial feel.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">hero-bg image</span><span class="dl-kv-val"><code>Baalbek-Panorama.jpeg</code>. 110vw × 110vh, centered. Extra 10% gives parallax room to move. <code>object-fit: cover; object-position: center 30%</code>. Filter dark: <code>saturate(0.82) brightness(0.76) contrast(1.06)</code>. Filter light: <code>saturate(0.78) brightness(0.68) contrast(1.10)</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">hero-fg image</span><span class="dl-kv-val"><code>Charbel-Suit-Cutout.png</code>. Desktop: <code>right: clamp(8vw,14vw,18vw); bottom: -95%; height: 185%; max-width: 55%</code>. The negative bottom pushes it down so the torso is visible; the tall height ensures the cutout is appropriately large. Shadow: <code>drop-shadow(-16px 0 48px rgba(30,20,5,0.5)) drop-shadow(0 24px 32px rgba(20,15,5,0.35))</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">hero-panel (desktop)</span><span class="dl-kv-val"><code>padding: 0 clamp(2.5rem,6.5vw,5rem); max-width: clamp(420px,56vw,720px); gap: 2rem; justify-content: center; align-self: stretch</code>. Left-anchored glass-free content panel.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">hero-panel (mobile)</span><span class="dl-kv-val"><code>max-width: 100%; padding: 1.75rem 1.5rem 2.25rem; gap: 1rem</code>. Gets full glass treatment: <code>var(--glass-bg)</code>, <code>backdrop-filter: blur(32px)</code>, top border, inner highlight. Sits at the bottom of the screen (hero is <code>align-items: flex-end</code> on mobile).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Eyebrow text</span><span class="dl-kv-val">"Beirut → Boston". Has a 40px gold rule before it via <code>::before</code> that fades from <code>var(--accent-bright)</code> to transparent.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Script</span><span class="dl-kv-val"><code>assets/js/parallax.js</code> deferred. Analytics deferred 2s after load.</span></div>
+            </div>
+          </div>
+
+          <!-- about.html -->
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">about.html — About Page</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Page shell</span><span class="dl-kv-val"><code>.page.page--padded</code> — 5rem top padding to clear the fixed nav. Background is bare <code>var(--bg)</code> — no hero image.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">about-header</span><span class="dl-kv-val"><code>max-width: 860px; margin: 0 auto</code>. Desktop: 2-column grid — name left (col 1), lead text right (col 2), <code>align-items: start; lead align-self: center</code>. The lead text vertically centers against the name's height. Mobile: 1-column, lead drops below name.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">about-divider</span><span class="dl-kv-val">Thin 1px gold rule: <code>linear-gradient(to right, var(--accent), rgba(201,168,76,0.15), transparent)</code>. Fades out to the right. <code>max-width: 860px; margin: 0 auto</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Glass cards</span><span class="dl-kv-val">Bio, Skills, Languages — all <code>.glass-card</code>. Bio has <code>.glass-card--bio</code> extra padding. Cards are in a flex column with 1rem gap. Max-width 860px, centered.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Drop cap</span><span class="dl-kv-val"><code>.bio-text p:first-child::first-letter</code>: Cormorant Garamond 600, 3.2em, float left. A <code>::after</code> clearfix pseudo-element on the same paragraph prevents following paragraphs from wrapping under the float.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Skills grid</span><span class="dl-kv-val">Flex wrap, gap 0.55rem. Each <code>.pill</code> is 100px-radius, <code>background: var(--pill-bg)</code>. Hover: gold border + accent color + translateY(-2px) + subtle gold shadow.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Lang grid</span><span class="dl-kv-val"><code>grid-template-columns: repeat(5, 1fr)</code> always — exactly 5 languages. Mobile (≤560px): <code>repeat(3, 1fr)</code> for 3+2 layout. Each item has: flag emoji 1.65rem, name, 3-dot proficiency row (filled dots = <code>var(--accent)</code>), level label.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Scroll reveal</span><span class="dl-kv-val">Header, divider, bio card, skills card, lang card, footer all have <code>.reveal</code>. Cards stagger: 0s, 0.12s, 0.24s. Script: <code>parallax.js</code> deferred.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Watermark</span><span class="dl-kv-val">Fixed to right side, vertically centered. Z-index 0 (behind content at z-index 1). Hidden below 600px. Scroll-parallax driven at 0.32× speed.</span></div>
+            </div>
+          </div>
+
+          <!-- 404.html -->
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">404.html — Not Found</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Structure</span><span class="dl-kv-val"><code>.not-found</code> is <code>min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: visible</code>. The marquee is <code>position: fixed; inset: 0</code> so it fills the screen independently.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">404.js marquee config</span><span class="dl-kv-val">ROWS: 5, MARKS_PER_ROW: 14, MARK_SIZE: 110px, GAP: 40px, DURATION_BASE: 28s, DURATION_VAR: 8s. Track width = 14 × 150 = 2100px per set. Doubled (×2) = 4200px total track, animated -2100px for seamless loop.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Row directions</span><span class="dl-kv-val">Even rows (0, 2, 4) → scroll left (<code>nfMarqueeLeft</code>). Odd rows (1, 3) → scroll right (<code>nfMarqueeRight</code>). Duration increases per row by <code>DURATION_VAR / ROWS = 1.6s per row</code>. Start delay: <code>-rowIndex × 3.5s</code> (negative = already in progress).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">404 content</span><span class="dl-kv-val">Eyebrow: "Error 404" with gold rules on both sides. Title: "Lost in / <em>the ruins.</em>" (Cormorant Garamond, clamp 2rem–3.5rem). Body copy: max 300px wide. Gold center rule (48px, centered gradient). Button: standard .btn.btn-primary. All at z-index 1.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">noindex</span><span class="dl-kv-val"><code>&lt;meta name="robots" content="noindex, nofollow"&gt;</code>. No schema, no OG tags — 404 pages should never be indexed.</span></div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             11 · BUTTONS
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">11</span>
+            <span class="dl-section-title">Buttons</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">Base .btn</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Typography</span><span class="dl-kv-val">Jost 300, 0.65rem, letter-spacing 0.22em, uppercase, centered via <code>display: inline-flex; align-items: center; justify-content: center</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Padding</span><span class="dl-kv-val"><code>0.85rem 1.75rem</code>. border-radius: <code>2px</code> — intentionally almost square. This contrasts with the very rounded nav pill and cards. Sharpness = precision.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Shimmer</span><span class="dl-kv-val"><code>::before</code> pseudo-element: <code>left: -100%</code> → <code>left: 160%</code> on hover. A 60%-wide angled white gradient sweeps through. Transition: 0.45s ease-out. Creates a luxurious light-across-surface effect.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">.btn-primary — Gold filled</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">background</span><span class="dl-kv-val"><code>linear-gradient(135deg, var(--accent) 0%, var(--accent-bright) 100%)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">color</span><span class="dl-kv-val"><code>#0E0D0B</code> — always charcoal, regardless of mode. Gold bg requires dark text for contrast.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">box-shadow</span><span class="dl-kv-val"><code>inset 0 1px 0 rgba(255,255,255,0.22), 0 4px 16px rgba(201,168,76,0.22)</code></span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">hover</span><span class="dl-kv-val">Brighter gradient, <code>translateY(-3px)</code>, larger gold glow shadow.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">.btn-secondary — Ghost / glass</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">dark mode</span><span class="dl-kv-val"><code>background: rgba(242,239,232,0.06)</code>, color: <code>rgba(242,239,232,0.78)</code>, border: <code>rgba(242,239,232,0.18)</code>. Subtle glass look.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">light mode</span><span class="dl-kv-val"><code>background: rgba(26,21,16,0.05)</code>, color: <code>var(--fg)</code>, border: <code>rgba(26,21,16,0.18)</code>. Adapts to warm parchment bg.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">hover (both)</span><span class="dl-kv-val">border → <code>var(--accent)</code>, color → <code>var(--accent)</code>, bg → gold dim, <code>translateY(-3px)</code>.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-warn">
+            <strong>Common mistake:</strong> Never set <code>display: block</code> on a <code>.btn</code>. They use <code>display: inline-flex</code> for text centering. If you need a block-level button, wrap it in a block container.
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             12 · ACCESSIBILITY & PERFORMANCE
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">12</span>
+            <span class="dl-section-title">Accessibility &amp; Performance</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">Accessibility checklist</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Decorative SVGs</span><span class="dl-kv-val">All inline SVG watermarks, hero marks, and 404 marks must have <code>aria-hidden="true" focusable="false"</code>. They have no semantic content.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Decorative images</span><span class="dl-kv-val">Hero bg and fg images have <code>alt=""</code> (empty alt, not missing). They are presentational — screen readers skip empty alt correctly.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Nav landmark</span><span class="dl-kv-val"><code>role="navigation" aria-label="Main navigation"</code> on <code>&lt;nav&gt;</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Social icons</span><span class="dl-kv-val">Each <code>&lt;a&gt;</code> has <code>role="listitem"</code>, <code>aria-label</code>, and the <code>&lt;i&gt;</code> inside has <code>aria-hidden="true"</code>. The list wrapper has <code>role="list"</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Reduced motion</span><span class="dl-kv-val">Full <code>@media (prefers-reduced-motion: reduce)</code> block at end of style.css. All animation properties nulled. Parallax.js and 404.js both check matchMedia before initialising motion. Never skip this for new animations.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Color contrast</span><span class="dl-kv-val">Dark mode: <code>#F2EFE8</code> on <code>#0E0D0B</code> passes WCAG AA. Light mode hero: text is over a dense parchment vignette (0.94 opacity) — effectively parchment on parchment. Always test the hero in light mode when changing vignette values.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Focus states</span><span class="dl-kv-val">Not overridden — browser defaults are preserved. Do not add <code>outline: none</code> without providing an alternative focus indicator.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Performance checklist</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Hero images</span><span class="dl-kv-val">Preloaded via <code>&lt;link rel="preload" as="image" fetchpriority="high"&gt;</code> in index.html <code>&lt;head&gt;</code>. Also have <code>loading="eager" fetchpriority="high" decoding="async"</code> on the img element.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">CSS</span><span class="dl-kv-val">Preloaded via <code>&lt;link rel="preload" href="assets/css/style.css" as="style"&gt;</code> on all pages.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Fonts</span><span class="dl-kv-val">FA woff2 files preloaded with <code>crossorigin</code> on index.html. Google Fonts loaded non-blocking (<code>media="print" onload</code>).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Analytics</span><span class="dl-kv-val">GA script injected dynamically 2000ms after the <code>load</code> event. Never in <code>&lt;head&gt;</code>, never blocking. ID: <code>G-ES91HT3C25</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">GPU compositing</span><span class="dl-kv-val"><code>will-change: transform</code> on <code>.hero-bg</code>, <code>.hero-fg</code>, and <code>.about-watermark</code>. All parallax transforms use <code>translate3d</code> (forces GPU layer). Disabled by <code>will-change: auto</code> under reduced-motion.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Scroll listeners</span><span class="dl-kv-val">All <code>addEventListener</code> scroll/mousemove calls use <code>{ passive: true }</code>. Never call <code>preventDefault()</code> in scroll handlers.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">rAF usage</span><span class="dl-kv-val">Parallax loop only starts a new rAF when not already animating. Stops when all deltas &lt; 0.05px. Scroll parallax is rAF-debounced (only one pending rAF at a time). No unnecessary rendering cost when idle.</span></div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             13 · FILE STRUCTURE & SEO
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">13</span>
+            <span class="dl-section-title">File Structure, SEO &amp; Meta</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-box-label">File map</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">index.html</span><span class="dl-kv-val">Homepage. Cinematic hero, parallax, hero panel. Logo links to design-language on desktop.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">about.html</span><span class="dl-kv-val">About page. Bio, skills, languages. Scroll reveal, watermark, mobile H mark.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">404.html</span><span class="dl-kv-val">Error page. Animated H marquee background. noindex.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">design-language.html</span><span class="dl-kv-val">This document. noindex, nofollow. Logo links home from here.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">assets/css/style.css</span><span class="dl-kv-val">Single shared stylesheet — all tokens, all components, all pages. 1844 lines.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">assets/js/parallax.js</span><span class="dl-kv-val">Mouse parallax (index) + scroll watermark (about) + IntersectionObserver reveal (about).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">assets/js/404.js</span><span class="dl-kv-val">404 marquee DOM builder + keyframe injector.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">favicon.svg / favicon.png</span><span class="dl-kv-val">SVG preferred. PNG fallback. SVG has built-in dark/light fill switching.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">manifest.webmanifest</span><span class="dl-kv-val">PWA manifest. theme_color: <code>#0E0D0B</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">sitemap.xml</span><span class="dl-kv-val">Covers /  /about and resume PDF. Image: Charbel-Suit.jpeg. Update lastmod when pages change.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">CNAME</span><span class="dl-kv-val">habchy.com — GitHub Pages custom domain.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">OpenGraph &amp; Social meta</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">OG image (all pages)</span><span class="dl-kv-val"><code>https://habchy.com/assets/images/Charbel-Suit.jpeg</code> — the suit photo, not the panorama. People need a face for social previews.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Schema.org Person image</span><span class="dl-kv-val">Same: <code>Charbel-Suit.jpeg</code>. Used in structured data on index.html and about.html.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">twitter:card</span><span class="dl-kv-val"><code>summary_large_image</code> — ensures the image is shown large in Twitter/X previews.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">canonical</span><span class="dl-kv-val">index.html → <code>https://habchy.com/</code>. about.html → <code>https://habchy.com/about</code>.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">404 meta</span><span class="dl-kv-val"><code>noindex, nofollow</code>. No OG tags. No schema. No canonical.</span></div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top:0.75rem;">
+            <div class="dl-box-label">Images in assets/images/ and their roles</div>
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">Baalbek-Panorama.jpeg</span><span class="dl-kv-val">Hero background — preloaded, parallax bg layer. Wide panoramic shot of the Baalbek ruins.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Charbel-Suit-Cutout.png</span><span class="dl-kv-val">Hero foreground — preloaded, parallax fg layer. PNG with transparency (cutout of suit photo).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Charbel-Suit.jpeg</span><span class="dl-kv-val">OG/social share image. Full photo (no cutout). Never used in the actual page UI.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">habchy.svg / habchy-white.svg</span><span class="dl-kv-val">Logo for nav: habchy.svg has dark fill (for light mode), habchy-white.svg has white fill (for dark mode).</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">icon-192x192.png</span><span class="dl-kv-val">PWA icon, apple-touch-icon.</span></div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ══════════════════════════════════════════════════════════════
+             14 · WHAT NEVER TO DO
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section">
+          <div class="dl-section-head">
+            <span class="dl-section-num">14</span>
+            <span class="dl-section-title">What Never to Do — Hard Rules</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <div class="dl-box">
+            <div class="dl-kv">
+              <div class="dl-kv-row"><span class="dl-kv-key">No orbs / blobs</span><span class="dl-kv-val">No animated gradient orbs, no glowing particles, no noise textures, no decorative geometry. The ruins ARE the texture. See principle 02.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">No hardcoded hex in CSS</span><span class="dl-kv-val">Every color must come from a CSS custom property. If you need a new color, add a new token to <code>:root</code> and the dark-mode override block.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">No new fonts</span><span class="dl-kv-val">The Cormorant Garamond / Jost pairing is the typographic identity. Adding a third typeface would dilute the aesthetic immediately.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">No frameworks / libraries</span><span class="dl-kv-val">No jQuery, no Bootstrap, no Alpine, no GSAP. Pure vanilla HTML/CSS/JS only. The codebase is intentionally zero-dependency.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">No build tools</span><span class="dl-kv-val">No webpack, no Vite, no SASS (even though .scss files existed previously — they were deleted). All CSS is in one flat file.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">No JS theming</span><span class="dl-kv-val">Light/dark mode is handled entirely by <code>@media (prefers-color-scheme)</code> in CSS. Never add a JS theme toggle — it's not in the design, it would add complexity, and the CSS-only approach is more reliable.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">No <code>outline: none</code></span><span class="dl-kv-val">Don't suppress focus rings without providing an equivalent. Keyboard users need to see focus states.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Don't animate on .hero-bg/.hero-fg directly</span><span class="dl-kv-val">The JS parallax owns their <code>transform</code>. Animate the wrapper divs (.hero-bg-wrap, .hero-fg-wrap) for load-in. See section 07.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">Don't add -webkit-only</span><span class="dl-kv-val">Always pair <code>backdrop-filter</code> with <code>-webkit-backdrop-filter</code>. Same for any other vendor-prefix property.</span></div>
+              <div class="dl-kv-row"><span class="dl-kv-key">No new full pages</span><span class="dl-kv-val">The site is intentionally 3+1 pages. Adding more pages must be a deliberate decision, not a gradual accumulation of content.</span></div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Footer ─────────────────────────────────────────────────── -->
+        <footer class="dl-footer">
+          <a href="/" class="back-link" aria-label="Back to homepage">Back to home</a>
+          <span class="dl-footer-note">habchy.com · Design Language · Feb 2026</span>
+        </footer>
+
+      </div>
+    </div>
+
+    <!-- Deferred Analytics -->
+    <script>
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          try {
+            var s = document.createElement("script");
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25";
+            s.async = true;
+            s.onload = function () {
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { dataLayer.push(arguments); }
+              gtag("js", new Date());
+              gtag("config", "G-ES91HT3C25", { transport_type: "beacon" });
+            };
+            document.head.appendChild(s);
+          } catch (e) {
+            console.error("[analytics] Failed to load GA:", e);
+          }
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

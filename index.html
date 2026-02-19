@@ -3,25 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Declares both color schemes are supported; eliminates flash of wrong bg before CSS loads -->
+    <meta name="color-scheme" content="dark light" />
     <meta
       name="theme-color"
-      content="#111110"
+      content="#0E0D0B"
       media="(prefers-color-scheme: dark)"
     />
     <meta
       name="theme-color"
-      content="#F7F6F1"
+      content="#F5F1E8"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="description"
-      content="Charbel Habchy - Computer Science Student & Developer from Boston. Passionate about programming, technology, and creating innovative solutions."
+      content="Charbel Habchy — Computer Science student at UMass Boston and developer. Born in Beirut, building in Boston."
     />
     <meta name="author" content="Charbel Habchy" />
     <meta
       name="keywords"
       content="charbel,habchy,developer,boston,programming,web developer,computer science,umass boston,lebanese developer"
     />
+    <!-- Prevent iOS from auto-linking phone numbers / addresses in text -->
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <!-- iOS home screen PWA appearance -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Habchy" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://habchy.com/" />
@@ -31,7 +39,7 @@
     <meta property="og:url" content="https://habchy.com/" />
     <meta
       property="og:title"
-      content="Charbel Habchy - Developer & Computer Science Student"
+      content="Charbel Habchy — Developer & Computer Science Student"
     />
     <meta
       property="og:description"
@@ -39,16 +47,22 @@
     />
     <meta
       property="og:image"
-      content="https://habchy.com/assets/images/Baalbek-Panorama.jpeg"
+      content="https://habchy.com/assets/images/Charbel-Suit.jpeg"
     />
+    <meta property="og:image:alt" content="Charbel Habchy at Villa del Balbianello, Lake Como" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Charbel Habchy" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@habchy77" />
     <meta name="twitter:creator" content="@habchy77" />
     <meta property="twitter:url" content="https://habchy.com/" />
     <meta
       name="twitter:title"
-      content="Charbel Habchy - Developer & Computer Science Student"
+      content="Charbel Habchy — Developer & Computer Science Student"
     />
     <meta
       name="twitter:description"
@@ -56,10 +70,11 @@
     />
     <meta
       name="twitter:image"
-      content="https://habchy.com/assets/images/Baalbek-Panorama.jpeg"
+      content="https://habchy.com/assets/images/Charbel-Suit.jpeg"
     />
+    <meta name="twitter:image:alt" content="Charbel Habchy at Villa del Balbianello, Lake Como" />
 
-    <!-- Schema.org Person -->
+    <!-- Schema.org Person — full identity card for Google Knowledge Graph / AI search engines -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -69,25 +84,61 @@
         "givenName": "Charbel",
         "familyName": "Habchy",
         "gender": "Male",
-        "email": "mailto:habchybusiness@gmail.com",
+        "email": "habchybusiness@gmail.com",
         "url": "https://habchy.com",
-        "image": "https://habchy.com/assets/images/Baalbek-Panorama.jpeg",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://habchy.com/assets/images/Charbel-Suit.jpeg",
+          "width": 1200,
+          "height": 1500
+        },
         "sameAs": [
+          "https://habchy.com",
           "https://github.com/Habchy",
+          "https://linkedin.com/in/charbel-habchy",
           "https://x.com/habchy77",
           "https://instagram.com/habchys",
           "https://twitch.tv/habchy",
-          "https://www.youtube.com/user/habchy77",
-          "https://linkedin.com/in/charbel-habchy"
+          "https://www.youtube.com/user/habchy77"
         ],
-        "jobTitle": "Computer Science Student",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "University of Massachusetts Boston",
-          "url": "https://www.umb.edu/"
+        "jobTitle": "Computer Science Student & Developer",
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Software Developer",
+          "occupationLocation": {
+            "@type": "City",
+            "name": "Boston, MA"
+          },
+          "skills": "JavaScript, TypeScript, Python, React, Node.js, HTML, CSS, SQL, Java, Git"
         },
-        "alumniOf": {
-          "@type": "Organization",
+        "knowsAbout": [
+          "Web Development",
+          "Software Engineering",
+          "Computer Science",
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "React",
+          "Node.js",
+          "SQL",
+          "Linux",
+          "Git"
+        ],
+        "worksFor": [
+          {
+            "@type": "Organization",
+            "name": "OnlyLinks",
+            "url": "https://onlylinks.com/"
+          },
+          {
+            "@type": "Organization",
+            "name": "Tasty",
+            "url": "https://tastyyyy.com/"
+          }
+        ],
+        "affiliation": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.umb.edu/",
           "name": "University of Massachusetts Boston",
           "url": "https://www.umb.edu/"
         },
@@ -97,14 +148,14 @@
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Beirut",
-            "addressCountry": "Lebanon"
+            "addressCountry": "LB"
           }
         },
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Boston",
           "addressRegion": "MA",
-          "addressCountry": "United States"
+          "addressCountry": "US"
         },
         "knowsLanguage": [
           { "@type": "Language", "name": "English" },
@@ -113,41 +164,52 @@
           { "@type": "Language", "name": "French" },
           { "@type": "Language", "name": "Italian" }
         ],
-        "description": "Computer Science student at UMass Boston. Developer passionate about creating innovative solutions."
+        "description": "Computer Science student at UMass Boston and software developer. Born in Beirut, Lebanon; raised and based in Boston, MA. Passionate about web development, software engineering, and building things."
       }
     </script>
 
-    <!-- Breadcrumbs Schema -->
+    <!-- Schema.org ProfilePage — identifies this page as a personal profile for entity disambiguation -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://habchy.com/"
-          }
-        ]
+        "@type": "ProfilePage",
+        "@id": "https://habchy.com/#profilepage",
+        "url": "https://habchy.com/",
+        "name": "Charbel Habchy — Developer & Computer Science Student",
+        "description": "Personal portfolio of Charbel Habchy, Computer Science student at UMass Boston and software developer.",
+        "dateModified": "2026-02-19",
+        "mainEntity": { "@type": "Person", "@id": "https://habchy.com/#person" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://habchy.com/"
+            }
+          ]
+        }
       }
     </script>
 
-    <!-- Website Schema -->
+    <!-- Schema.org WebSite — enables Google Sitelinks Search Box if applicable -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
         "@id": "https://habchy.com/#website",
         "url": "https://habchy.com/",
-        "name": "Charbel Habchy - Developer & Computer Science Student",
-        "description": "Computer Science student at UMass Boston. Developer passionate about creating innovative solutions.",
-        "publisher": { "@type": "Person", "@id": "https://habchy.com/#person" }
+        "name": "Charbel Habchy — Developer & Computer Science Student",
+        "description": "Personal portfolio of Charbel Habchy, Computer Science student at UMass Boston and software developer.",
+        "publisher": { "@type": "Person", "@id": "https://habchy.com/#person" },
+        "inLanguage": "en-US"
       }
     </script>
 
     <!-- Favicon & PWA -->
-    <link rel="icon" href="favicon.png" type="image/png" fetchpriority="high" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="assets/images/icon-192x192.png" />
     <link rel="manifest" href="manifest.webmanifest" />
 
@@ -211,7 +273,7 @@
     <link rel="dns-prefetch" href="https://youtube.com" />
     <link rel="dns-prefetch" href="https://linkedin.com" />
 
-    <title>Charbel Habchy — Developer & Computer Science Student</title>
+    <title>Charbel Habchy — Developer &amp; Computer Science Student</title>
   </head>
   <body>
     <!-- =====================================================================
@@ -222,7 +284,12 @@
       <div class="nav-link-left">
         <a href="about" class="nav-link">About</a>
       </div>
-      <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
+      <!--
+        On the homepage, the logo links to the internal design language document.
+        The nav is hidden on mobile, so this link is effectively desktop-only.
+        On all other pages the logo links back to /.
+      -->
+      <a href="design-language" class="nav-logo" aria-label="Design Language — Habchy.com" title="Design Language">
         <img
           src="assets/images/habchy.svg"
           alt="Habchy"

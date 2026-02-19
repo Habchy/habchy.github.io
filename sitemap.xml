@@ -9,26 +9,37 @@
 
 <url>
   <loc>https://habchy.com/</loc>
-  <lastmod>2025-03-12T00:00:00+00:00</lastmod>
+  <lastmod>2026-02-19T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
   <changefreq>monthly</changefreq>
   <image:image>
-    <image:loc>https://habchy.com/assets/images/charbel-profile.jpg</image:loc>
+    <image:loc>https://habchy.com/assets/images/Charbel-Suit.jpeg</image:loc>
     <image:title>Charbel Habchy - Developer &amp; Computer Science Student</image:title>
-    <image:caption>Profile photo of Charbel Habchy</image:caption>
+    <image:caption>Charbel Habchy at Villa del Balbianello, Lake Como, Italy</image:caption>
   </image:image>
 </url>
 <url>
   <loc>https://habchy.com/about</loc>
-  <lastmod>2025-03-12T00:00:00+00:00</lastmod>
+  <lastmod>2026-02-19T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
   <changefreq>monthly</changefreq>
+  <image:image>
+    <image:loc>https://habchy.com/assets/images/Charbel-Suit.jpeg</image:loc>
+    <image:title>About Charbel Habchy — Developer &amp; Computer Science Student</image:title>
+    <image:caption>Charbel Habchy at Villa del Balbianello, Lake Como, Italy</image:caption>
+  </image:image>
+</url>
+<url>
+  <loc>https://habchy.com/design-language</loc>
+  <lastmod>2026-02-19T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
+  <changefreq>yearly</changefreq>
 </url>
 <url>
   <loc>https://habchy.com/assets/Charbel%20Habchy%20Resume%20June%202024.pdf</loc>
-  <lastmod>2025-03-12T00:00:00+00:00</lastmod>
-  <priority>0.80</priority>
-  <changefreq>monthly</changefreq>
+  <lastmod>2026-02-19T00:00:00+00:00</lastmod>
+  <priority>0.60</priority>
+  <changefreq>yearly</changefreq>
 </url>
 
 </urlset>
