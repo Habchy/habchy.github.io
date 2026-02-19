@@ -20,9 +20,9 @@
   left: 1rem;
   z-index: 9999;
   padding: 0.5rem 1rem;
-  background: var(--gold, #C9A84C);
-  color: #0E0D0B;
-  font-family: var(--font-body, 'Jost', sans-serif);
+  background: var(--gold, #c9a84c);
+  color: #0e0d0b;
+  font-family: var(--font-body, "Jost", sans-serif);
   font-size: 0.875rem;
   font-weight: 400;
   text-decoration: none;
@@ -32,7 +32,7 @@
 
 .skip-link:focus {
   top: 0;
-  outline: 2px solid #0E0D0B;
+  outline: 2px solid #0e0d0b;
   outline-offset: 2px;
 }
 
@@ -626,7 +626,7 @@ main {
 
 @media (prefers-color-scheme: light) {
   .hero-bg {
-    filter: saturate(0.78) brightness(0.68) contrast(1.10);
+    filter: saturate(0.78) brightness(0.68) contrast(1.1);
   }
   .hero-vignette {
     /*
@@ -641,7 +641,7 @@ main {
         rgba(245, 241, 232, 0.94) 0%,
         rgba(245, 241, 232, 0.72) 22%,
         rgba(245, 241, 232, 0.22) 52%,
-        rgba(245, 241, 232, 0.0) 100%
+        rgba(245, 241, 232, 0) 100%
       ),
       linear-gradient(
         to top,
@@ -760,7 +760,7 @@ main {
 @media (prefers-color-scheme: light) {
   /* Left vignette is warm-white — dark umber text reads cleanly against it */
   .hero-name {
-    color: #1A1510;
+    color: #1a1510;
   }
 }
 
@@ -771,7 +771,7 @@ main {
   font-size: clamp(0.78rem, 1.4vw, 0.92rem);
   letter-spacing: 0.07em;
   line-height: 1.8;
-  color: rgba(242, 239, 232, 0.70);
+  color: rgba(242, 239, 232, 0.7);
   animation: panelReveal 1.4s 0.36s var(--ease-out) both;
 }
 
@@ -1219,14 +1219,14 @@ main {
   font-family: "Jost", sans-serif;
   font-size: 0.6rem;
   font-weight: 300;
-  letter-spacing: 0.30em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding-right: 0.30em;
+  padding-right: 0.3em;
 }
 
 .about-header .page-label::before {
@@ -1341,8 +1341,14 @@ main {
   }
 
   @keyframes aboutMarkFade {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 0.05; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 0.05;
+      transform: translateY(0);
+    }
   }
 
   .about-header-mark path {
@@ -1446,7 +1452,7 @@ main {
   font-family: "Jost", sans-serif;
   font-weight: 300;
   font-size: clamp(0.9rem, 1.8vw, 1rem);
-  line-height: 2.0;
+  line-height: 2;
   color: var(--fg);
 }
 
@@ -1620,9 +1626,15 @@ main {
 }
 
 /* Stagger the about page cards so they arrive sequentially */
-.about-sections .reveal:nth-child(1) { transition-delay: 0s;     }
-.about-sections .reveal:nth-child(2) { transition-delay: 0.12s;  }
-.about-sections .reveal:nth-child(3) { transition-delay: 0.24s;  }
+.about-sections .reveal:nth-child(1) {
+  transition-delay: 0s;
+}
+.about-sections .reveal:nth-child(2) {
+  transition-delay: 0.12s;
+}
+.about-sections .reveal:nth-child(3) {
+  transition-delay: 0.24s;
+}
 
 .reveal-stagger > * {
   opacity: 0;
@@ -1797,8 +1809,12 @@ body.no-scroll {
 }
 
 @keyframes nfBgReveal {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Each row is 1/5 of the viewport height */
@@ -1844,7 +1860,7 @@ body.no-scroll {
 /* Mark fill — uses accent color at very low opacity */
 .nf-mark-path {
   fill: var(--accent);
-  opacity: 0.10;
+  opacity: 0.1;
   transition: opacity 0.3s var(--ease);
 }
 
@@ -1860,8 +1876,14 @@ body.no-scroll {
 }
 
 @keyframes nfContentReveal {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Eyebrow above the title */
@@ -1872,10 +1894,10 @@ body.no-scroll {
   font-family: "Jost", sans-serif;
   font-weight: 300;
   font-size: 0.6rem;
-  letter-spacing: 0.30em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: var(--accent);
-  padding-right: 0.30em;
+  padding-right: 0.3em;
 }
 
 .not-found-eyebrow::before,
@@ -1920,7 +1942,12 @@ body.no-scroll {
 .not-found-rule {
   width: 48px;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--accent),
+    transparent
+  );
   border: none;
   margin: 0;
 }

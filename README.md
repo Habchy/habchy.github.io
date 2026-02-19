@@ -4,12 +4,12 @@ Personal portfolio website for **Charbel Habchy** — Computer Science student a
 
 ## Pages
 
-| Page | URL | Description |
-|---|---|---|
-| Home | `/` | Cinematic hero with two-layer parallax (Baalbek backdrop + suit cutout foreground), name, tagline, and CTAs |
-| About | `/about` | Bio, skills & technologies, language proficiency with scroll reveal animations |
-| 404 | `/404` | "Lost in the ruins." — animated H monogram marquee background |
-| Design Language | `/design-language` | Internal design system reference (noindex) |
+| Page            | URL                | Description                                                                                                 |
+| --------------- | ------------------ | ----------------------------------------------------------------------------------------------------------- |
+| Home            | `/`                | Cinematic hero with two-layer parallax (Baalbek backdrop + suit cutout foreground), name, tagline, and CTAs |
+| About           | `/about`           | Bio, skills & technologies, language proficiency with scroll reveal animations                              |
+| 404             | `/404`             | "Lost in the ruins." — animated H monogram marquee background                                               |
+| Design Language | `/design-language` | Internal design system reference (noindex)                                                                  |
 
 ## Tech Stack
 

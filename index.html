@@ -27,12 +27,18 @@
       content="charbel habchy, developer, boston, programming, web developer, computer science, umass boston, lebanese developer, javascript developer, react developer"
     />
     <!-- Prevent iOS from auto-linking phone numbers / addresses in text -->
-    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta
+      name="format-detection"
+      content="telephone=no, address=no, email=no"
+    />
     <!-- iOS home screen PWA appearance -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Habchy" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
 
     <!-- Canonical -->
     <link rel="canonical" href="https://habchy.com/" />
@@ -52,7 +58,10 @@
       property="og:image"
       content="https://habchy.com/assets/images/Charbel-Suit.jpeg"
     />
-    <meta property="og:image:alt" content="Charbel Habchy at Villa del Balbianello, Lake Como" />
+    <meta
+      property="og:image:alt"
+      content="Charbel Habchy at Villa del Balbianello, Lake Como"
+    />
     <meta property="og:image:width" content="724" />
     <meta property="og:image:height" content="1086" />
     <meta property="og:locale" content="en_US" />
@@ -75,7 +84,10 @@
       name="twitter:image"
       content="https://habchy.com/assets/images/Charbel-Suit.jpeg"
     />
-    <meta name="twitter:image:alt" content="Charbel Habchy at Villa del Balbianello, Lake Como" />
+    <meta
+      name="twitter:image:alt"
+      content="Charbel Habchy at Villa del Balbianello, Lake Como"
+    />
 
     <!-- Schema.org Person — full identity card for Google Knowledge Graph / AI search engines -->
     <script type="application/ld+json">
@@ -201,7 +213,10 @@
         "datePublished": "2026-02-19",
         "dateModified": "2026-02-19",
         "author": { "@type": "Person", "@id": "https://habchy.com/#person" },
-        "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://habchy.com/#website"
+        },
         "about": { "@type": "Person", "@id": "https://habchy.com/#person" },
         "inLanguage": "en-US"
       }
@@ -217,7 +232,10 @@
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "@id": "https://habchy.com/#faq",
-        "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
+        "isPartOf": {
+          "@type": "WebSite",
+          "@id": "https://habchy.com/#website"
+        },
         "mainEntity": [
           {
             "@type": "Question",
@@ -288,16 +306,8 @@
       as="image"
       fetchpriority="high"
     />
-    <link
-      rel="preload"
-      href="assets/images/habchy.svg"
-      as="image"
-    />
-    <link
-      rel="preload"
-      href="assets/images/habchy-white.svg"
-      as="image"
-    />
+    <link rel="preload" href="assets/images/habchy.svg" as="image" />
+    <link rel="preload" href="assets/images/habchy-white.svg" as="image" />
     <link
       rel="preload"
       href="assets/fonts/fa-brands-400.woff2"
@@ -364,7 +374,12 @@
         The nav is hidden on mobile, so this link is effectively desktop-only.
         On all other pages the logo links back to /.
       -->
-      <a href="design-language" class="nav-logo" aria-label="Design Language — Habchy.com" title="Design Language">
+      <a
+        href="design-language"
+        class="nav-logo"
+        aria-label="Design Language — Habchy.com"
+        title="Design Language"
+      >
         <!--
           Logo alt text describes the mark as a logotype rather than echoing the filename.
           Both variants (dark/light) carry the same description; CSS toggles which is visible.
@@ -403,16 +418,16 @@
         id="main-content" is the skip-link target from the <a href="#main-content"> above.
       -->
       <main id="main-content" aria-label="Home">
-      <!-- ==================================================================
+        <!-- ==================================================================
            Hero — cinematic two-layer parallax scene
            ================================================================== -->
-      <section class="hero" aria-label="Introduction">
-        <!--
+        <section class="hero" aria-label="Introduction">
+          <!--
           Scene container — holds both image layers and the vignette.
           Overflow hidden so the oversized background never bleeds out.
         -->
-        <div class="hero-scene" aria-hidden="true">
-          <!--
+          <div class="hero-scene" aria-hidden="true">
+            <!--
             Each parallax layer is wrapped in a div (.hero-bg-wrap / .hero-fg-wrap).
             The CSS load-in animation runs on the WRAPPER (opacity + translateY).
             The JS parallax writes transform on the inner IMG directly.
@@ -420,178 +435,178 @@
             zero conflict, zero risk of overwriting each other.
           -->
 
-          <!-- Background wrapper — animates in, holds the parallax img -->
-          <div class="hero-bg-wrap">
-            <!--
+            <!-- Background wrapper — animates in, holds the parallax img -->
+            <div class="hero-bg-wrap">
+              <!--
               Descriptive alt text added for accessibility and SEO.
               width/height set to intrinsic aspect ratio to prevent CLS.
               The CSS controls the actual display size; these just reserve space.
             -->
-            <img
-              src="assets/images/Baalbek-Panorama.jpeg"
-              alt="Panoramic view of the ancient Roman temples at Baalbek, Lebanon"
-              class="hero-bg"
-              width="1920"
-              height="1080"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
+              <img
+                src="assets/images/Baalbek-Panorama.jpeg"
+                alt="Panoramic view of the ancient Roman temples at Baalbek, Lebanon"
+                class="hero-bg"
+                width="1920"
+                height="1080"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+
+            <!-- Foreground wrapper — animates in with a delay, holds the cutout -->
+            <div class="hero-fg-wrap">
+              <img
+                src="assets/images/Charbel-Suit-Cutout.png"
+                alt="Charbel Habchy in a suit"
+                class="hero-fg"
+                width="800"
+                height="1200"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+
+            <!-- Gradient vignette for readability and cinematic depth -->
+            <div class="hero-vignette"></div>
           </div>
 
-          <!-- Foreground wrapper — animates in with a delay, holds the cutout -->
-          <div class="hero-fg-wrap">
-            <img
-              src="assets/images/Charbel-Suit-Cutout.png"
-              alt="Charbel Habchy in a suit"
-              class="hero-fg"
-              width="800"
-              height="1200"
-              loading="eager"
-              fetchpriority="high"
-              decoding="async"
-            />
-          </div>
-
-          <!-- Gradient vignette for readability and cinematic depth -->
-          <div class="hero-vignette"></div>
-        </div>
-
-        <!--
+          <!--
           Info panel — floats over the scene on the left.
           Contains all text content and CTAs.
           On mobile this becomes a bottom-anchored glass panel.
         -->
-        <div class="hero-panel">
-          <!--
+          <div class="hero-panel">
+            <!--
             H logo mark — inline SVG so it renders identically everywhere.
             Positioned absolutely via CSS, sits between the text and the figure.
             aria-hidden so screen readers skip it entirely.
           -->
-          <svg
-            class="hero-mark"
-            viewBox="0 0 3971.7893 4497.9053"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            focusable="false"
-          >
-            <g transform="translate(-2132.5701,-1799.2671)">
-              <path
-                d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"
-              />
-            </g>
-          </svg>
-
-          <span class="hero-eyebrow">Beirut &rarr; Boston</span>
-
-          <h1 class="hero-name">Charbel<br /><em>Habchy.</em></h1>
-
-          <p class="hero-tagline">
-            Developer &amp; Computer Science Student<br />University of
-            Massachusetts Boston
-          </p>
-
-          <hr class="hero-rule" />
-
-          <div class="btn-group">
-            <a
-              href="about"
-              class="btn btn-primary"
-              title="Learn all about me and what I do."
+            <svg
+              class="hero-mark"
+              viewBox="0 0 3971.7893 4497.9053"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
             >
-              About Me
-            </a>
-            <a
-              href="assets/Charbel-Habchy-Resume.pdf"
-              class="btn btn-secondary"
-              title="Download my detailed resume."
-            >
-              Résumé
-            </a>
+              <g transform="translate(-2132.5701,-1799.2671)">
+                <path
+                  d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"
+                />
+              </g>
+            </svg>
+
+            <span class="hero-eyebrow">Beirut &rarr; Boston</span>
+
+            <h1 class="hero-name">Charbel<br /><em>Habchy.</em></h1>
+
+            <p class="hero-tagline">
+              Developer &amp; Computer Science Student<br />University of
+              Massachusetts Boston
+            </p>
+
+            <hr class="hero-rule" />
+
+            <div class="btn-group">
+              <a
+                href="about"
+                class="btn btn-primary"
+                title="Learn all about me and what I do."
+              >
+                About Me
+              </a>
+              <a
+                href="assets/Charbel-Habchy-Resume.pdf"
+                class="btn btn-secondary"
+                title="Download my detailed resume."
+              >
+                Résumé
+              </a>
+            </div>
+
+            <div class="social-icons" role="list">
+              <a
+                href="mailto:habchybusiness@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="Email"
+                data-tooltip="Email"
+              >
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://github.com/Habchy"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="GitHub"
+                data-tooltip="GitHub"
+              >
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://linkedin.com/in/charbel-habchy"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="LinkedIn"
+                data-tooltip="LinkedIn"
+              >
+                <i class="fab fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://x.com/habchy77"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="X / Twitter"
+                data-tooltip="X · Twitter"
+              >
+                <i class="fab fa-x-twitter" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://instagram.com/habchys"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="Instagram"
+                data-tooltip="Instagram"
+              >
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://twitch.tv/habchy"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="Twitch"
+                data-tooltip="Twitch"
+              >
+                <i class="fab fa-twitch" aria-hidden="true"></i>
+              </a>
+              <a
+                href="https://www.youtube.com/user/habchy77"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+                aria-label="YouTube"
+                data-tooltip="YouTube"
+              >
+                <i class="fab fa-youtube" aria-hidden="true"></i>
+              </a>
+            </div>
           </div>
+          <!-- /.hero-panel -->
 
-          <div class="social-icons" role="list">
-            <a
-              href="mailto:habchybusiness@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="Email"
-              data-tooltip="Email"
-            >
-              <i class="fas fa-envelope" aria-hidden="true"></i>
-            </a>
-            <a
-              href="https://github.com/Habchy"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="GitHub"
-              data-tooltip="GitHub"
-            >
-              <i class="fab fa-github" aria-hidden="true"></i>
-            </a>
-            <a
-              href="https://linkedin.com/in/charbel-habchy"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="LinkedIn"
-              data-tooltip="LinkedIn"
-            >
-              <i class="fab fa-linkedin" aria-hidden="true"></i>
-            </a>
-            <a
-              href="https://x.com/habchy77"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="X / Twitter"
-              data-tooltip="X · Twitter"
-            >
-              <i class="fab fa-x-twitter" aria-hidden="true"></i>
-            </a>
-            <a
-              href="https://instagram.com/habchys"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="Instagram"
-              data-tooltip="Instagram"
-            >
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a
-              href="https://twitch.tv/habchy"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="Twitch"
-              data-tooltip="Twitch"
-            >
-              <i class="fab fa-twitch" aria-hidden="true"></i>
-            </a>
-            <a
-              href="https://www.youtube.com/user/habchy77"
-              target="_blank"
-              rel="noopener noreferrer"
-              role="listitem"
-              aria-label="YouTube"
-              data-tooltip="YouTube"
-            >
-              <i class="fab fa-youtube" aria-hidden="true"></i>
-            </a>
+          <!-- Subtle scroll indicator -->
+          <div class="hero-scroll-hint" aria-hidden="true">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
           </div>
-        </div>
-        <!-- /.hero-panel -->
-
-        <!-- Subtle scroll indicator -->
-        <div class="hero-scroll-hint" aria-hidden="true">
-          <span>Scroll</span>
-          <div class="scroll-line"></div>
-        </div>
-      </section>
-      <!-- /.hero -->
+        </section>
+        <!-- /.hero -->
       </main>
     </div>
     <!-- /.page -->
