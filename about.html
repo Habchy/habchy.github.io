@@ -2,37 +2,61 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#FFEB3B" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta
+      name="theme-color"
+      content="#0E0D0B"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#F5F1E8"
+      media="(prefers-color-scheme: light)"
+    />
     <meta
       name="description"
-      content="Learn about Charbel Habchy - UMass Boston Computer Science student, developer, and tech enthusiast. Originally from Beirut, Lebanon, now based in Boston, MA."
+      content="Born in Beirut, raised in Boston. Charbel Habchy is a full-stack developer and CS student at UMass Boston — skilled in JavaScript, React, Python, and more."
     />
     <meta name="author" content="Charbel Habchy" />
     <meta
       name="keywords"
       content="charbel, habchy, charbel habchy, developer, boston, umass boston, boston developers, lebanese developer, computer science student"
     />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Habchy" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Explicit index signal — reinforces to all crawlers and AI bots that this page is fully indexable -->
+    <meta name="robots" content="index, follow" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://habchy.com/about" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <!-- og:type "profile" is the correct type for a person's about/profile page -->
+    <meta property="og:type" content="profile" />
+    <meta property="profile:first_name" content="Charbel" />
+    <meta property="profile:last_name" content="Habchy" />
+    <meta property="profile:username" content="habchy77" />
     <meta property="og:url" content="https://habchy.com/about" />
     <meta
       property="og:title"
-      content="About Charbel Habchy - Developer & CS Student"
+      content="About Charbel Habchy — Full-Stack Developer &amp; CS Student at UMass Boston"
     />
     <meta
       property="og:description"
-      content="Learn about Charbel Habchy - UMass Boston Computer Science student, developer, and tech enthusiast from Lebanon."
+      content="Born in Beirut, raised in Boston. Charbel Habchy is a full-stack developer and CS student at UMass Boston — skilled in JavaScript, React, Python, and more."
     />
     <meta
       property="og:image"
-      content="https://habchy.com/assets/images/charbel-profile.jpg"
+      content="https://habchy.com/assets/images/Charbel-Suit.jpeg"
     />
+    <meta property="og:image:alt" content="Charbel Habchy at Villa del Balbianello, Lake Como" />
+    <meta property="og:image:width" content="724" />
+    <meta property="og:image:height" content="1086" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Charbel Habchy" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -41,26 +65,19 @@
     <meta property="twitter:url" content="https://habchy.com/about" />
     <meta
       name="twitter:title"
-      content="About Charbel Habchy - Developer & CS Student"
+      content="About Charbel Habchy — Full-Stack Developer &amp; CS Student at UMass Boston"
     />
     <meta
       name="twitter:description"
-      content="Learn about Charbel Habchy - UMass Boston Computer Science student, developer, and tech enthusiast from Lebanon."
+      content="Born in Beirut, raised in Boston. Charbel Habchy is a full-stack developer and CS student at UMass Boston — skilled in JavaScript, React, Python, and more."
     />
     <meta
       name="twitter:image"
-      content="https://habchy.com/assets/images/charbel-profile.jpg"
+      content="https://habchy.com/assets/images/Charbel-Suit.jpeg"
     />
+    <meta name="twitter:image:alt" content="Charbel Habchy at Villa del Balbianello, Lake Como" />
 
-    <!-- Preload critical resources -->
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css?family=Reem+Kufi:600&family=Roboto:300&display=swap"
-      as="style"
-    />
-    <link rel="preload" href="favicon.png" as="image" fetchpriority="high" />
-
-    <!-- Schema.org Person Markup -->
+    <!-- Schema.org Person — same canonical entity as index.html, cross-referenced by @id -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -70,45 +87,81 @@
         "givenName": "Charbel",
         "familyName": "Habchy",
         "gender": "Male",
-        "email": "mailto:habchybusiness@gmail.com",
+        "email": "habchybusiness@gmail.com",
         "url": "https://habchy.com",
-        "image": "https://habchy.com/assets/images/charbel-profile.jpg",
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://habchy.com/assets/images/Charbel-Suit.jpeg",
+          "width": 1200,
+          "height": 1500
+        },
         "sameAs": [
+          "https://habchy.com",
           "https://github.com/Habchy",
+          "https://linkedin.com/in/charbel-habchy",
           "https://x.com/habchy77",
           "https://instagram.com/habchys",
           "https://twitch.tv/habchy",
-          "https://www.youtube.com/user/habchy77",
-          "https://linkedin.com/in/charbel-habchy"
+          "https://www.youtube.com/user/habchy77"
         ],
-        "jobTitle": "Computer Science Student",
-        "worksFor": {
-          "@type": "Organization",
+        "jobTitle": "Computer Science Student & Developer",
+        "hasOccupation": {
+          "@type": "Occupation",
+          "name": "Software Developer",
+          "occupationLocation": {
+            "@type": "City",
+            "name": "Boston, MA"
+          },
+          "skills": "JavaScript, TypeScript, Python, React, Node.js, HTML, CSS, SQL, Java, Git"
+        },
+        "knowsAbout": [
+          "Web Development",
+          "Software Engineering",
+          "Computer Science",
+          "JavaScript",
+          "TypeScript",
+          "Python",
+          "React",
+          "Node.js",
+          "SQL",
+          "Linux",
+          "Git"
+        ],
+        "worksFor": [
+          {
+            "@type": "Organization",
+            "name": "OnlyLinks",
+            "url": "https://onlylinks.com/"
+          },
+          {
+            "@type": "Organization",
+            "name": "Tasty",
+            "url": "https://tastyyyy.com/"
+          }
+        ],
+        "affiliation": {
+          "@type": "EducationalOrganization",
+          "@id": "https://www.umb.edu/",
           "name": "University of Massachusetts Boston",
           "url": "https://www.umb.edu/"
         },
-        "alumniOf": {
-          "@type": "Organization",
-          "name": "University of Massachusetts Boston",
-          "url": "https://www.umb.edu/"
-        },
-        "nationality": {
-          "@type": "Country",
-          "name": "United States"
-        },
+        "nationality": [
+          { "@type": "Country", "name": "United States" },
+          { "@type": "Country", "name": "Lebanon" }
+        ],
         "birthPlace": {
           "@type": "Place",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Beirut",
-            "addressCountry": "Lebanon"
+            "addressCountry": "LB"
           }
         },
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Boston",
           "addressRegion": "MA",
-          "addressCountry": "United States"
+          "addressCountry": "US"
         },
         "knowsLanguage": [
           { "@type": "Language", "name": "English" },
@@ -117,216 +170,361 @@
           { "@type": "Language", "name": "French" },
           { "@type": "Language", "name": "Italian" }
         ],
-        "description": "Computer Science student at UMass Boston. Developer passionate about creating innovative solutions."
+        "description": "Full-stack web developer and Computer Science B.S. student at UMass Boston. Born in Beirut, Lebanon; raised and based in Boston, MA. Passionate about web development, software engineering, and building things.",
+        "dateModified": "2026-02-19"
       }
     </script>
 
-    <!-- Breadcrumbs Schema -->
+    <!-- Schema.org ProfilePage — about.html IS the canonical profile page for this person -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
+        "@type": "ProfilePage",
+        "@id": "https://habchy.com/about#profilepage",
+        "url": "https://habchy.com/about",
+        "name": "About Charbel Habchy — Full-Stack Developer & CS Student at UMass Boston",
+        "description": "Born in Beirut, raised in Boston. Charbel Habchy is a full-stack developer and CS student at UMass Boston — skilled in JavaScript, React, Python, Node.js, and more.",
+        "datePublished": "2026-02-19",
+        "dateModified": "2026-02-19",
+        "mainEntity": { "@type": "Person", "@id": "https://habchy.com/#person" },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://habchy.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "About",
+              "item": "https://habchy.com/about"
+            }
+          ]
+        },
+        "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" }
+      }
+    </script>
+
+    <!--
+      FAQPage schema — GEO optimization for AI search engines (ChatGPT, Perplexity, Claude, Gemini).
+      FAQPage schema increases AI citation visibility by ~40% per Princeton GEO research.
+      These Q&As are written in answer-first format with specific details for maximum extractability.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": "https://habchy.com/about#faq",
+        "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
+        "mainEntity": [
           {
-            "@type": "ListItem",
-            "position": 1,
-            "name": "Home",
-            "item": "https://habchy.com/"
+            "@type": "Question",
+            "name": "What is Charbel Habchy's educational background?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charbel Habchy is pursuing a Bachelor of Science in Computer Science at the University of Massachusetts Boston (UMass Boston). He has been passionate about computers since childhood and is turning that lifelong interest into a professional career in software development and engineering."
+            }
           },
           {
-            "@type": "ListItem",
-            "position": 2,
-            "name": "About",
-            "item": "https://habchy.com/about"
+            "@type": "Question",
+            "name": "What programming languages and technologies does Charbel Habchy use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charbel Habchy is proficient in Python, JavaScript, TypeScript, HTML & CSS, Java, C, SQL, Node.js, React, Git & GitHub, Linux, and web performance optimization. His technical skill set spans both front-end and back-end development, with a focus on building responsive, performant web applications."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What languages does Charbel Habchy speak?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charbel Habchy speaks five languages: English (native), Arabic (native), Spanish (advanced), French (beginner), and Italian (beginner). His multilingual background reflects his Lebanese heritage and his goal to visit every country in the world."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is Charbel Habchy based and where is he from?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Charbel Habchy is based in Boston, Massachusetts. He was born in Beirut, Lebanon, and has lived in Massachusetts since he was three years old. This dual cultural background — Beirut to Boston — is central to his identity as a developer and creator."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are Charbel Habchy's interests outside of programming?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Outside of programming, Charbel Habchy is passionate about travel and photography. He aims to visit every country in the world. He also enjoys building personal software projects purely for the joy of creating, even when they serve no practical purpose beyond personal satisfaction."
+            }
           }
         ]
       }
     </script>
 
-    <!-- Website Schema -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "@id": "https://habchy.com/#website",
-        "url": "https://habchy.com/",
-        "name": "Charbel Habchy - Developer & Computer Science Student",
-        "description": "Computer Science student at UMass Boston. Developer passionate about creating innovative solutions.",
-        "publisher": {
-          "@type": "Person",
-          "@id": "https://habchy.com/#person"
-        }
-      }
-    </script>
+    <!-- Favicon & PWA -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/images/icon-192x192.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
 
-    <!-- Critical CSS inlined -->
-    <style>
-      html {
-        box-sizing: border-box;
-        font-size: 12px;
-        font-family: "Roboto", sans-serif;
-      }
-      *,
-      *:before,
-      *:after {
-        box-sizing: inherit;
-      }
-      body,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      p,
-      ol,
-      ul {
-        margin: 0;
-        padding: 0;
-        font-weight: normal;
-      }
-      ol,
-      ul {
-        list-style: none;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-      @media (min-width: 576px) {
-        html {
-          font-size: 14px;
-        }
-      }
-      @media (min-width: 768px) {
-        html {
-          font-size: 16px;
-        }
-      }
-      @media (min-width: 992px) {
-        html {
-          font-size: 18px;
-        }
-      }
-      @media (min-width: 1200px) {
-        html {
-          font-size: 20px;
-        }
-      }
-      main {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        justify-content: center;
-        padding: 0 30px;
-        text-align: center;
-        contain: content;
-      }
-      @media (prefers-color-scheme: light) {
-        main {
-          background: #ffeb3b;
-          color: #1e1e1e;
-        }
-        .hyperlink {
-          color: #1e1e1e;
-        }
-      }
-      @media (prefers-color-scheme: dark) {
-        main {
-          background: #1e1e1e;
-          color: #ffeb3b;
-        }
-        .hyperlink {
-          color: #ffeb3b;
-        }
-      }
-      main > .intro {
-        font-family: "Reem Kufi", sans-serif;
-        font-size: 3.75em;
-        font-weight: 600;
-      }
-      main > .tagline {
-        font-size: 1.5rem;
-        margin: 1.5rem 0;
-        font-weight: 100;
-      }
-      .about {
-        max-width: 600px;
-        margin: 0 auto;
-        text-align: center;
-      }
-      .hyperlink:hover {
-        font-weight: bold;
-      }
-    </style>
+    <!-- Preload -->
+    <link rel="preload" href="assets/css/style.css" as="style" />
 
-    <!-- Optimized font loading -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Reem+Kufi:600&family=Roboto:300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap"
       media="print"
       onload="this.media = 'all'"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css?family=Reem+Kufi:600&family=Roboto:300&display=swap"
         rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap"
       />
     </noscript>
 
-    <!-- Favicon and Icons -->
-    <link rel="icon" href="favicon.png" type="image/png" fetchpriority="high" />
-    <link rel="apple-touch-icon" href="assets/images/icon-192x192.png" />
-    <link rel="manifest" href="manifest.webmanifest" />
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css" />
 
-    <title>About Charbel Habchy - Developer & Computer Science Student</title>
+    <title>About Charbel Habchy — Full-Stack Developer &amp; CS Student at UMass Boston</title>
   </head>
   <body>
-    <main>
-      <h1 class="intro">About Me</h1>
-      <h2 class="tagline">Learn all about me and what I do.</h2>
-
-      <div class="about">
-        <p>
-          Hello there, my name is Charbel Habchy, and I am a 23-year-old
-          Computer Science B.S. student at the University of Massachusetts in
-          Boston, Massachusetts. Although originally from Beirut, Lebanon, I
-          have lived in Massachusetts since I was three years old. <br /><br />
-          Ever since I was a child, I've had an interest in computers, and I'm
-          now pursuing my passion in computer science to turn it into a career.
-          In my free time, I enjoy creating programs for fun, even if they serve
-          no purpose other than to bring me joy. I also love traveling to
-          different places and taking pictures of the sights I see. My goal is
-          to visit every country in the world someday!
-          <br /><br />
-          I'm particularly interested in web development, software engineering,
-          and creating solutions that enhance people's daily lives. My
-          background combines technical education with a creative approach to
-          problem-solving.
-          <br /><br />
-          If you want to know more about my professional background, you can
-          download my resume from the
-          <a href="/" class="hyperlink">homepage</a>.
-        </p>
+    <!-- =====================================================================
+         Navigation
+         ===================================================================== -->
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-link-left">
+        <a href="about" class="nav-link nav-link--active" aria-current="page">About</a>
       </div>
-    </main>
+      <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
+        <img
+          src="assets/images/habchy.svg"
+          alt="Habchy logotype"
+          class="logo-dark"
+          width="22"
+          height="25"
+        />
+        <img
+          src="assets/images/habchy-white.svg"
+          alt="Habchy logotype"
+          class="logo-light"
+          width="22"
+          height="25"
+        />
+      </a>
+      <div class="nav-link-right">
+        <a
+          href="assets/Charbel-Habchy-Resume.pdf"
+          class="nav-link"
+          title="Download my resume"
+          >Résumé</a
+        >
+      </div>
+    </nav>
+
+    <!-- =====================================================================
+         Page wrapper
+         ===================================================================== -->
+    <div class="page page--padded">
+      <!--
+        Scroll-parallax watermark — same H letterform, fixed to the right side.
+        JS in parallax.js translates this upward at 0.32× scroll speed.
+        Hidden on mobile via CSS for a cleaner small-screen experience.
+      -->
+      <div class="about-watermark-wrap" aria-hidden="true">
+        <svg
+          class="about-watermark"
+          viewBox="0 0 3971.7893 4497.9053"
+          xmlns="http://www.w3.org/2000/svg"
+          focusable="false"
+        >
+          <!-- Fill is controlled by .wm-path-about in style.css via --watermark-fill -->
+          <g transform="translate(-2132.5701,-1799.2671)">
+            <path
+              class="wm-path-about"
+              d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"
+            />
+          </g>
+        </svg>
+      </div>
+
+      <!-- ==================================================================
+           About content
+           ================================================================== -->
+      <main class="about-page" aria-label="About Charbel Habchy">
+        <!-- Page header -->
+        <header class="about-header reveal">
+
+          <!-- Ghost H mark — mobile only, top-right corner of header -->
+          <svg
+            class="about-header-mark"
+            viewBox="0 0 3971.7893 4497.9053"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <g transform="translate(-2132.5701,-1799.2671)">
+              <path d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z" />
+            </g>
+          </svg>
+
+          <span class="page-label">About</span>
+          <h1>Developer.<br /><em>Explorer.</em></h1>
+          <p class="lead">
+            Developer, computer science student, and perpetual explorer —
+            born in Beirut, raised in Boston, building everywhere in between.
+          </p>
+        </header>
+
+        <!-- Thin gold divider between header and cards -->
+        <hr class="about-divider reveal" />
+
+        <!-- Content sections -->
+        <div class="about-sections">
+          <!-- Bio card — primary card, gets extra vertical padding -->
+          <article class="glass-card glass-card--bio reveal" aria-label="Biography">
+            <span class="card-label">Bio</span>
+            <div class="bio-text">
+              <p>
+                Born in Beirut, raised in Boston since age three — I've spent
+                my whole life between two worlds, and I think that's made me a
+                better builder. I'm currently pursuing a Computer Science B.S.
+                at the University of Massachusetts Boston, turning a lifelong
+                obsession with computers into a career.
+              </p>
+              <p>
+                I build things for the web. Sometimes they're useful. Sometimes
+                they serve no purpose other than to bring me joy — and I'm
+                completely fine with that. Outside of code, I'm chasing a goal
+                to visit every country in the world, camera in hand.
+              </p>
+              <p>
+                I'm particularly drawn to web development, software engineering,
+                and creating experiences that feel fast, polished, and human.
+                My background combines technical depth with a creative approach
+                to problem-solving.
+              </p>
+              <p>
+                Want to know more about my professional background?
+                <a href="assets/Charbel-Habchy-Resume.pdf">Download my résumé.</a>
+              </p>
+            </div>
+          </article>
+
+          <!-- Skills card -->
+          <article
+            class="glass-card reveal"
+            aria-label="Skills and technologies"
+          >
+            <span class="card-label">Skills &amp; Technologies</span>
+            <!--
+              Pill badges stagger in via reveal-stagger class.
+              Each child gets an incremental transition-delay in CSS.
+            -->
+            <div class="pill-grid reveal-stagger">
+              <span class="pill">Python</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">HTML &amp; CSS</span>
+              <span class="pill">Java</span>
+              <span class="pill">C</span>
+              <span class="pill">SQL</span>
+              <span class="pill">Node.js</span>
+              <span class="pill">React</span>
+              <span class="pill">Git &amp; GitHub</span>
+              <span class="pill">Linux</span>
+              <span class="pill">Web Performance</span>
+            </div>
+          </article>
+
+          <!-- Languages card -->
+          <article class="glass-card reveal" aria-label="Languages spoken">
+            <span class="card-label">Languages</span>
+            <div class="lang-grid reveal-stagger">
+              <div class="lang-item">
+                <span class="lang-flag" aria-hidden="true">🇺🇸</span>
+                <span class="lang-name">English</span>
+                <div class="lang-dots" aria-hidden="true">
+                  <span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                </div>
+                <span class="lang-level">Native</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-flag" aria-hidden="true">🇱🇧</span>
+                <span class="lang-name">Arabic</span>
+                <div class="lang-dots" aria-hidden="true">
+                  <span class="filled"></span><span class="filled"></span><span class="filled"></span>
+                </div>
+                <span class="lang-level">Native</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-flag" aria-hidden="true">🇪🇸</span>
+                <span class="lang-name">Spanish</span>
+                <div class="lang-dots" aria-hidden="true">
+                  <span class="filled"></span><span class="filled"></span><span></span>
+                </div>
+                <span class="lang-level">Advanced</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-flag" aria-hidden="true">🇫🇷</span>
+                <span class="lang-name">French</span>
+                <div class="lang-dots" aria-hidden="true">
+                  <span class="filled"></span><span></span><span></span>
+                </div>
+                <span class="lang-level">Beginner</span>
+              </div>
+              <div class="lang-item">
+                <span class="lang-flag" aria-hidden="true">🇮🇹</span>
+                <span class="lang-name">Italian</span>
+                <div class="lang-dots" aria-hidden="true">
+                  <span class="filled"></span><span></span><span></span>
+                </div>
+                <span class="lang-level">Beginner</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <!-- /.about-sections -->
+
+        <!-- Footer / back link -->
+        <footer class="page-footer reveal">
+          <a href="/" class="back-link" aria-label="Back to homepage">
+            Back to home
+          </a>
+        </footer>
+      </main>
+    </div>
+    <!-- /.page -->
+
+    <!-- Parallax + scroll reveal JS -->
+    <script src="assets/js/parallax.js" defer></script>
 
     <!-- Deferred Analytics -->
     <script>
       window.addEventListener("load", function () {
         setTimeout(function () {
-          var a = document.createElement("script");
-          a.src = "https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25";
-          a.async = !0;
-          a.onload = function () {
-            window.dataLayer = window.dataLayer || [];
-            function b() {
-              dataLayer.push(arguments);
-            }
-            b("js", new Date());
-            b("config", "G-ES91HT3C25", { transport_type: "beacon" });
-          };
-          document.head.appendChild(a);
+          try {
+            var s = document.createElement("script");
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25";
+            s.async = true;
+            s.onload = function () {
+              window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                dataLayer.push(arguments);
+              }
+              gtag("js", new Date());
+              gtag("config", "G-ES91HT3C25", { transport_type: "beacon" });
+            };
+            document.head.appendChild(s);
+          } catch (e) {
+            console.error("[analytics] Failed to load GA:", e);
+          }
         }, 2000);
       });
     </script>

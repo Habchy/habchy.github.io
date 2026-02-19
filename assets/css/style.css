@@ -1,0 +1,1893 @@
+/* =============================================================================
+   HABCHY.COM — Main Stylesheet
+   
+   Design language: Warm archaeological luxury.
+   Baalbek ruins + cream suit + gold light. Everything references this.
+   
+   Dark:  #0E0D0B charcoal / #F2EFE8 sand-white / #C9A84C gold
+   Light: #F5F1E8 parchment / #1A1510 umber / #B8922E gold
+   Fonts: Cormorant Garamond (display) + Jost (body)
+   ============================================================================= */
+
+/* =============================================================================
+   ACCESSIBILITY — Skip link
+   Visually hidden until focused via keyboard; then snaps into view.
+   Required for WCAG 2.1 SC 2.4.1 (Bypass Blocks).
+   ============================================================================= */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--gold, #C9A84C);
+  color: #0E0D0B;
+  font-family: var(--font-body, 'Jost', sans-serif);
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #0E0D0B;
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   Custom Properties — Light
+   --------------------------------------------------------------------------- */
+:root {
+  --bg: #f5f1e8;
+  --bg-secondary: #ede8dc;
+  --fg: #1a1510;
+  --fg-muted: #6b5f4a;
+  --accent: #b8922e;
+  --accent-bright: #c9a84c;
+  --accent-dim: rgba(184, 146, 46, 0.12);
+
+  /* Glass */
+  --glass-bg: rgba(245, 241, 232, 0.52);
+  --glass-border: rgba(26, 21, 16, 0.09);
+  --glass-hi: rgba(255, 255, 255, 0.55); /* top-edge highlight */
+  --glass-shadow:
+    0 16px 64px rgba(26, 21, 16, 0.1), 0 2px 8px rgba(26, 21, 16, 0.05);
+
+  /* Nav */
+  --nav-bg: rgba(245, 241, 232, 0.8);
+  --nav-border: rgba(26, 21, 16, 0.07);
+
+  /* Watermark */
+  --watermark-fill: #1a1510;
+  --watermark-opacity: 0.045;
+
+  /* Pills */
+  --pill-bg: rgba(26, 21, 16, 0.055);
+  --pill-border: rgba(26, 21, 16, 0.11);
+  --pill-fg: #1a1510;
+
+  /* Motion */
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Custom Properties — Dark
+   --------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0d0b;
+    --bg-secondary: #161410;
+    --fg: #f2efe8;
+    --fg-muted: #9a9080;
+    --accent: #c9a84c;
+    --accent-bright: #ddb95a;
+    --accent-dim: rgba(201, 168, 76, 0.1);
+
+    --glass-bg: rgba(14, 13, 11, 0.55);
+    --glass-border: rgba(242, 239, 232, 0.08);
+    --glass-hi: rgba(255, 255, 255, 0.04);
+    --glass-shadow:
+      0 16px 64px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.3);
+
+    --nav-bg: rgba(14, 13, 11, 0.85);
+    --nav-border: rgba(242, 239, 232, 0.06);
+
+    --watermark-fill: #c9a84c;
+    --watermark-opacity: 0.065;
+
+    --pill-bg: rgba(242, 239, 232, 0.055);
+    --pill-border: rgba(242, 239, 232, 0.09);
+    --pill-fg: #f2efe8;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reset
+   --------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  background: var(--bg);
+  color: var(--fg);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ol,
+ul {
+  list-style: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Navigation — floating centered pill, luxury edition
+   
+   Layout: [About] | [Logo] | [Résumé]
+   The vertical rules (|) are CSS pseudo-elements on the logo cell,
+   creating a bracketed monogram effect — like a hallmark.
+   
+   Design principles:
+   - Maximum breathing room between elements
+   - Glass so transparent it barely exists
+   - Logo is the only element with real presence
+   - Links are whisper-weight — present but deferential
+   - Entrance: long slow fade, no movement — arrives like a watermark
+   --------------------------------------------------------------------------- */
+.site-nav {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  /* Generous padding — the breathing room IS the luxury */
+  padding: 0 2.5rem;
+  height: 50px;
+  border-radius: 100px;
+  /* Glass: barely-there — more transparent, more refined */
+  background: var(--nav-bg);
+  border: 1px solid var(--nav-border);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.12),
+    0 1px 4px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 var(--glass-hi);
+  backdrop-filter: blur(32px) saturate(1.8);
+  -webkit-backdrop-filter: blur(32px) saturate(1.8);
+  min-width: 320px;
+  white-space: nowrap;
+  /* Entrance: pure fade, no movement — appears like it was always there */
+  animation: navFade 1.6s 0.3s var(--ease-out) both;
+}
+
+@keyframes navFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Left cell — link right-aligned with generous gap from logo */
+.nav-link-left {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+/* Right cell — link left-aligned */
+.nav-link-right {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 2rem;
+}
+
+/* Logo — center cell */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 0 1.5rem;
+  opacity: 1;
+  transition:
+    opacity 0.25s var(--ease),
+    transform 0.25s var(--ease-spring);
+}
+
+.nav-logo:hover {
+  opacity: 0.8;
+  transform: scale(1.08);
+}
+
+.nav-logo img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+/*
+ * Vertical gold rules — placed on the link cells, not the logo.
+ * This way they never move on hover and have no pseudo-element conflicts.
+ * .nav-link-left gets a rule on its right edge.
+ * .nav-link-right gets a rule on its left edge.
+ */
+.nav-link-left {
+  position: relative;
+}
+
+.nav-link-left::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 14px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.nav-link-right {
+  position: relative;
+}
+
+.nav-link-right::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 14px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Logo visibility — scoped to .nav-logo for full specificity */
+.nav-logo .logo-dark {
+  display: block;
+}
+.nav-logo .logo-light {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-logo .logo-dark {
+    display: none;
+  }
+  .nav-logo .logo-light {
+    display: block;
+  }
+}
+
+/* Nav links — whisper weight, maximum letter-spacing */
+.nav-link {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  transition: color 0.3s var(--ease);
+  position: relative;
+  /* Shift text right to optically compensate for letter-spacing */
+  padding-right: 0.28em;
+}
+
+/* Dot indicator on hover — more refined than an underline */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition:
+    transform 0.25s var(--ease-spring),
+    opacity 0.25s var(--ease);
+  opacity: 0;
+}
+
+.nav-link:hover {
+  color: var(--fg);
+}
+
+.nav-link:hover::after {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+/* Active page indicator — same dot as hover, but persistent */
+.nav-link--active {
+  color: var(--fg);
+}
+
+.nav-link--active::after {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+/* Hide on mobile — the hero panel has its own CTAs */
+@media (max-width: 700px) {
+  .site-nav {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Page Shell
+   The floating nav overlays the content — no padding-top needed on the
+   hero. About/404 pages get a small top offset so content clears the nav.
+   --------------------------------------------------------------------------- */
+.page {
+  min-height: 100vh;
+}
+
+/*
+ * <main> is an accessibility landmark and skip-link target.
+ * It must not create its own height context between .page and .hero.
+ * height: 100% + display: block lets it stretch with its content
+ * without adding an extra full-viewport-height box on mobile.
+ */
+main {
+  display: block;
+  height: 100%;
+}
+
+/* Non-hero pages: push content below the floating nav */
+.page--padded {
+  padding-top: 5rem;
+}
+
+/* ===========================================================================
+   HERO — Cinematic two-layer parallax
+   =========================================================================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 580px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  /* Full height row so the panel can center itself within it */
+  grid-template-rows: 1fr;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Scene container */
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/*
+ * LOAD-IN ANIMATION STRATEGY
+ * ─────────────────────────────────────────────────────────────────────────
+ * The JS parallax writes `style.transform` directly on .hero-bg and
+ * .hero-fg. If we animate `transform` on those same elements in CSS,
+ * the JS will overwrite it the moment the mouse moves — breaking the
+ * animation or causing a jump.
+ *
+ * Solution: introduce wrapper divs (.hero-bg-wrap, .hero-fg-wrap).
+ * - CSS animations run on the WRAPPERS (opacity + translateY/scale).
+ * - JS writes transform on the inner IMGS only.
+ * - The two never touch the same element → zero conflict.
+ *
+ * The wrappers take over all positioning that was previously on the imgs.
+ * The imgs just fill their wrapper and carry the JS-driven transform.
+ * ─────────────────────────────────────────────────────────────────────────
+ */
+
+/* Background wrapper — full scene, carries the fade+scale load-in */
+.hero-bg-wrap {
+  position: absolute;
+  inset: 0;
+  animation: bgReveal 2s 0.1s var(--ease-out) both;
+}
+
+@keyframes bgReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Background img — JS writes transform here, base centering preserved */
+.hero-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110vw;
+  height: 110vh;
+  min-width: 110%;
+  min-height: 110%;
+  /* Base centering. JS uses calc(-50% + Xpx) to preserve this. */
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  object-position: center 30%;
+  will-change: transform;
+  filter: saturate(0.82) brightness(0.76) contrast(1.06);
+}
+
+/*
+ * Foreground wrapper — carries positioning + load-in animation.
+ * Delayed so the figure arrives after the background has settled.
+ * On desktop: positioned right/bottom (same values as old .hero-fg).
+ * On mobile:  centered with translateX(-50%), handled separately below.
+ */
+.hero-fg-wrap {
+  position: absolute;
+  right: clamp(8vw, 14vw, 18vw);
+  bottom: -95%;
+  height: 185%;
+  width: auto;
+  max-width: 55%;
+  /* Rise up from below + fade — no X transform so JS has a clean slate */
+  animation: fgReveal 1.6s 0.8s var(--ease-out) both;
+  /* Flex so the img inside fills correctly */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+@keyframes fgReveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Foreground img — JS writes transform here */
+.hero-fg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+  will-change: transform;
+  transform-origin: top center;
+  filter: drop-shadow(-16px 0 48px rgba(30, 20, 5, 0.5))
+    drop-shadow(0 24px 32px rgba(20, 15, 5, 0.35));
+}
+
+/* Vignette */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      105deg,
+      rgba(8, 7, 5, 0.9) 0%,
+      rgba(8, 7, 5, 0.66) 28%,
+      rgba(8, 7, 5, 0.2) 56%,
+      rgba(8, 7, 5, 0.03) 100%
+    ),
+    linear-gradient(
+      to top,
+      rgba(8, 7, 5, 0.65) 0%,
+      rgba(8, 7, 5, 0.08) 30%,
+      transparent 52%
+    ),
+    linear-gradient(to bottom, rgba(8, 7, 5, 0.28) 0%, transparent 18%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+@media (prefers-color-scheme: light) {
+  .hero-bg {
+    filter: saturate(0.78) brightness(0.68) contrast(1.10);
+  }
+  .hero-vignette {
+    /*
+     * Keep the warm-white character of light mode.
+     * Left side is dense enough for text contrast (0.94 → 0.72).
+     * Right side opens up so the ruins read through (0.08 → 0).
+     * Bottom gradient grounds the scene.
+     */
+    background:
+      linear-gradient(
+        105deg,
+        rgba(245, 241, 232, 0.94) 0%,
+        rgba(245, 241, 232, 0.72) 22%,
+        rgba(245, 241, 232, 0.22) 52%,
+        rgba(245, 241, 232, 0.0) 100%
+      ),
+      linear-gradient(
+        to top,
+        rgba(245, 241, 232, 0.55) 0%,
+        rgba(245, 241, 232, 0.05) 30%,
+        transparent 50%
+      );
+  }
+}
+
+/* ---- Info panel ---- */
+.hero-panel {
+  position: relative;
+  z-index: 10;
+  grid-column: 1;
+  /* Fill the full grid row height so centering works */
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  /* Center the content block vertically within the full-height panel */
+  justify-content: center;
+  padding: 0 clamp(2.5rem, 6.5vw, 5rem);
+  max-width: clamp(420px, 56vw, 720px);
+  gap: 2rem;
+  animation: panelReveal 1.4s 0.1s var(--ease-out) both;
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* H logo mark — hidden on desktop, shown on mobile only (see mobile block) */
+.hero-mark {
+  display: none;
+  pointer-events: none;
+}
+
+.hero-mark path {
+  fill: var(--accent-bright);
+}
+
+@keyframes logoMarkFade {
+  from {
+    opacity: 0;
+    transform: translateY(calc(-50% + 18px));
+  }
+  to {
+    opacity: 0.12;
+    transform: translateY(-50%);
+  }
+}
+
+.hero-panel::after {
+  display: none;
+}
+
+@keyframes panelReveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Eyebrow */
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.58rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  animation: panelReveal 1.4s 0.2s var(--ease-out) both;
+  /* Shift right to optically compensate for letter-spacing */
+  padding-right: 0.32em;
+}
+
+.hero-eyebrow::before {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--accent-bright),
+    rgba(201, 168, 76, 0.2)
+  );
+  flex-shrink: 0;
+}
+
+/* Name — monumental, magazine-cover scale */
+.hero-name {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: clamp(4.2rem, 9vw, 8rem);
+  line-height: 0.87;
+  letter-spacing: -0.038em;
+  color: #f2efe8;
+  animation: panelReveal 1.4s 0.28s var(--ease-out) both;
+}
+
+/* "Habchy." — italic gold, slightly larger for drama */
+.hero-name em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-bright);
+  display: block;
+  font-size: 1.12em;
+  margin-left: -0.04em;
+}
+
+@media (prefers-color-scheme: light) {
+  /* Left vignette is warm-white — dark umber text reads cleanly against it */
+  .hero-name {
+    color: #1A1510;
+  }
+}
+
+/* Tagline */
+.hero-tagline {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.78rem, 1.4vw, 0.92rem);
+  letter-spacing: 0.07em;
+  line-height: 1.8;
+  color: rgba(242, 239, 232, 0.70);
+  animation: panelReveal 1.4s 0.36s var(--ease-out) both;
+}
+
+@media (prefers-color-scheme: light) {
+  .hero-tagline {
+    color: var(--fg-muted);
+  }
+}
+
+/* Gold rule */
+.hero-rule {
+  width: 88px;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), rgba(201, 168, 76, 0));
+  border: none;
+  margin: 0;
+  animation: panelReveal 1.4s 0.42s var(--ease-out) both;
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons
+   --------------------------------------------------------------------------- */
+.btn-group {
+  display: flex;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  animation: panelReveal 1.4s 0.48s var(--ease-out) both;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.85rem 1.75rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background 0.26s var(--ease),
+    border-color 0.26s var(--ease),
+    color 0.26s var(--ease),
+    transform 0.22s var(--ease-spring),
+    box-shadow 0.26s var(--ease);
+}
+
+/* Shimmer sweep on hover */
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 100%
+  );
+  transition: left 0.45s var(--ease-out);
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  left: 160%;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--accent-bright) 100%
+  );
+  color: #0e0d0b;
+  border-color: transparent;
+  /* Inner top highlight for glass-like depth */
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 4px 16px rgba(201, 168, 76, 0.22);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--accent-bright) 0%, #e8c96a 100%);
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 10px 32px rgba(201, 168, 76, 0.38);
+}
+
+.btn-secondary {
+  background: rgba(242, 239, 232, 0.06);
+  color: rgba(242, 239, 232, 0.78);
+  border-color: rgba(242, 239, 232, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(201, 168, 76, 0.06);
+  transform: translateY(-3px);
+}
+
+@media (prefers-color-scheme: light) {
+  /* Left vignette is warm-white — dark text, dark border */
+  .btn-secondary {
+    background: rgba(26, 21, 16, 0.05);
+    color: var(--fg);
+    border-color: rgba(26, 21, 16, 0.18);
+  }
+  .btn-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Social Icons
+   --------------------------------------------------------------------------- */
+.social-icons {
+  display: flex;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+  animation: panelReveal 1.4s 0.54s var(--ease-out) both;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  color: rgba(242, 239, 232, 0.38);
+  font-size: 0.88rem;
+  transition:
+    color 0.22s var(--ease),
+    background 0.22s var(--ease),
+    transform 0.22s var(--ease-spring);
+}
+
+.social-icons a:hover {
+  color: var(--accent-bright);
+  background: rgba(201, 168, 76, 0.09);
+  transform: translateY(-3px);
+}
+
+@media (prefers-color-scheme: light) {
+  .social-icons a {
+    color: rgba(26, 21, 16, 0.38);
+  }
+  .social-icons a:hover {
+    color: var(--accent);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll hint — hidden (no scrollable content on hero-only pages)
+   --------------------------------------------------------------------------- */
+.hero-scroll-hint {
+  display: none;
+}
+
+@keyframes hintFade {
+  to {
+    opacity: 0.42;
+  }
+}
+
+.hero-scroll-hint span {
+  font-family: "Jost", sans-serif;
+  font-size: 0.56rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 232, 0.65);
+  writing-mode: vertical-rl;
+}
+
+@media (prefers-color-scheme: light) {
+  .hero-scroll-hint span {
+    color: var(--fg-muted);
+  }
+}
+
+.scroll-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollDrop 2.4s 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollDrop {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 1;
+  }
+  48% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
+}
+
+/* ===========================================================================
+   MOBILE HERO
+   =========================================================================== */
+@media (max-width: 700px) {
+  .hero {
+    grid-template-columns: 1fr;
+    align-items: flex-end;
+    height: 100svh;
+    min-height: 520px;
+  }
+
+  /*
+   * On mobile the WRAPPER carries the centering transform (translateX(-50%)).
+   * The load-in animation must include the X offset so it doesn't snap
+   * to the wrong position when the animation finishes.
+   * The JS parallax reads isMobile and writes:
+   *   translate3d(calc(-50% + fgXpx), fgYpx, 0)
+   * directly on .hero-fg (the img), so the wrapper's translateX(-50%)
+   * is NOT in play during parallax — the img overrides it. This is fine
+   * because the wrapper just provides the initial centered position before
+   * the first mousemove fires.
+   */
+  .hero-fg-wrap {
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    top: 4vh;
+    /* Explicit width so the wrapper isn't shrink-to-content */
+    width: 88vw;
+    max-width: 88vw;
+    height: 115vh;
+    transform: translateX(-50%);
+    animation: fgRevealMobile 1.6s 0.8s var(--ease-out) both;
+  }
+
+  @keyframes fgRevealMobile {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /*
+   * The img fills the wrapper — no position offset needed.
+   * JS writes plain translate3d(fgXpx, fgYpx, 0) on this element.
+   * No -50% needed here because the WRAPPER already centers it.
+   */
+  .hero-fg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: top center;
+  }
+
+  .hero-panel {
+    max-width: 100%;
+    width: 100%;
+    padding: 1.75rem 1.5rem 2.25rem;
+    /* Snap to the bottom of the grid — override desktop's stretch */
+    align-self: end;
+    /* Proper frosted glass on mobile */
+    background: var(--glass-bg);
+    backdrop-filter: blur(32px) saturate(1.6);
+    -webkit-backdrop-filter: blur(32px) saturate(1.6);
+    border-top: 1px solid var(--glass-border);
+    /* Top highlight edge */
+    box-shadow: inset 0 1px 0 var(--glass-hi);
+    gap: 1rem;
+  }
+
+  /* On mobile: show and reposition the H mark to the right of the text */
+  .hero-mark {
+    display: block;
+    position: absolute;
+    top: 44%;
+    left: auto;
+    right: 4%;
+    transform: translateY(-50%);
+    width: 42vw;
+    height: auto;
+    opacity: 0;
+    z-index: -1;
+    animation: logoMarkFade 2.2s 1.2s var(--ease-out) forwards;
+  }
+
+  .hero-name {
+    font-size: clamp(2.6rem, 11vw, 3.8rem);
+  }
+
+  .hero-vignette {
+    background: linear-gradient(
+      to top,
+      rgba(8, 7, 5, 0.96) 0%,
+      rgba(8, 7, 5, 0.52) 44%,
+      rgba(8, 7, 5, 0.06) 100%
+    );
+  }
+
+  @media (prefers-color-scheme: light) {
+    .hero-vignette {
+      background: linear-gradient(
+        to top,
+        rgba(245, 241, 232, 0.98) 0%,
+        rgba(245, 241, 232, 0.6) 44%,
+        rgba(245, 241, 232, 0.06) 100%
+      );
+    }
+  }
+
+  .hero-scroll-hint {
+    display: none;
+  }
+}
+
+/* ===========================================================================
+   ABOUT PAGE
+   =========================================================================== */
+.about-page {
+  padding: 0 clamp(1.5rem, 5vw, 3.5rem) 7rem;
+}
+
+/* ---- Page header ---- */
+.about-header {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0 clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+  /* Needed for the mobile H mark absolute positioning */
+  position: relative;
+  overflow: visible;
+}
+
+/* Page label spans full width above the two columns */
+.about-header .page-label {
+  grid-column: 1 / -1;
+  font-family: "Jost", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-right: 0.30em;
+}
+
+.about-header .page-label::before {
+  content: "";
+  display: block;
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), rgba(201, 168, 76, 0.2));
+  flex-shrink: 0;
+}
+
+/* Name — left column, large and architectural */
+.about-header h1 {
+  grid-column: 1;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: clamp(3.8rem, 8vw, 6.8rem);
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  margin-bottom: 0;
+}
+
+.about-header h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  display: block;
+  font-size: 1.08em;
+  margin-left: -0.03em;
+}
+
+/* Lead text — right column, vertically centered against the name */
+.about-header .lead {
+  grid-column: 2;
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.88rem, 1.6vw, 1rem);
+  color: var(--fg-muted);
+  letter-spacing: 0.02em;
+  line-height: 1.9;
+  /* Center vertically within the row — sits in the middle of the name height */
+  align-self: center;
+}
+
+/* Thin gold divider between header and content */
+.about-divider {
+  max-width: 860px;
+  margin: 0 auto clamp(1.5rem, 3vw, 2.25rem);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    var(--accent),
+    rgba(201, 168, 76, 0.15),
+    transparent
+  );
+  border: none;
+}
+
+/* Mobile H mark — hidden on desktop */
+.about-header-mark {
+  display: none;
+}
+
+/* Collapse to single column on smaller screens */
+@media (max-width: 680px) {
+  .about-page {
+    padding: 0 clamp(1.25rem, 4vw, 2rem) 5rem;
+  }
+
+  .about-header {
+    grid-template-columns: 1fr;
+    padding-top: clamp(2.5rem, 7vw, 4rem);
+    padding-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .about-header h1,
+  .about-header .lead {
+    grid-column: 1;
+  }
+
+  .about-header h1 {
+    font-size: clamp(3rem, 12vw, 4.5rem);
+  }
+
+  .about-header .lead {
+    margin-top: 1.25rem;
+    align-self: auto;
+    font-size: 0.9rem;
+  }
+
+  /* Bio drop cap smaller on mobile */
+  .bio-text p:first-child::first-letter {
+    font-size: 2.8em;
+  }
+
+  /*
+   * H mark — shown in the top-right of the header on mobile.
+   * Absolutely positioned, very low opacity, gold fill.
+   * Arrives with a slow fade after the header text.
+   */
+  .about-header-mark {
+    display: block;
+    position: absolute;
+    top: -4vw;
+    right: -18vw;
+    width: 62vw;
+    max-width: 280px;
+    height: auto;
+    opacity: 0;
+    pointer-events: none;
+    animation: aboutMarkFade 2s 0.6s var(--ease-out) forwards;
+  }
+
+  @keyframes aboutMarkFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 0.08; transform: translateY(0); }
+  }
+
+  .about-header-mark path {
+    fill: var(--accent-bright);
+  }
+}
+
+/* About watermark */
+.about-watermark-wrap {
+  position: fixed;
+  top: 0;
+  right: -6vw;
+  width: clamp(240px, 48vmin, 460px);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.about-watermark {
+  width: 100%;
+  height: auto;
+  opacity: var(--watermark-opacity);
+  will-change: transform;
+  filter: blur(0.5px);
+}
+
+.wm-path-about {
+  fill: var(--watermark-fill);
+}
+
+/* Content sections */
+.about-sections {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Glass card — with proper inner highlight */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 var(--glass-hi);
+  backdrop-filter: blur(32px) saturate(1.4);
+  -webkit-backdrop-filter: blur(32px) saturate(1.4);
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+  transition:
+    box-shadow 0.32s var(--ease),
+    border-color 0.32s var(--ease),
+    transform 0.32s var(--ease);
+}
+
+.glass-card:hover {
+  border-color: rgba(201, 168, 76, 0.18);
+  box-shadow:
+    var(--glass-shadow),
+    inset 0 1px 0 var(--glass-hi),
+    0 0 0 1px rgba(201, 168, 76, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Bio card gets more vertical padding — it's the main act */
+.glass-card--bio {
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.glass-card .card-label {
+  font-family: "Jost", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.glass-card .card-label::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), rgba(201, 168, 76, 0.2));
+  flex-shrink: 0;
+}
+
+/* Bio text */
+.bio-text {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  line-height: 2.0;
+  color: var(--fg);
+}
+
+.bio-text p + p {
+  margin-top: 1.4em;
+}
+
+/* Drop cap on first paragraph */
+.bio-text p:first-child::first-letter {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: 3.2em;
+  line-height: 0.78;
+  float: left;
+  margin-right: 0.07em;
+  margin-top: 0.08em;
+  margin-bottom: -0.1em;
+  color: var(--accent);
+}
+
+/* Clearfix so subsequent paragraphs don't wrap under the drop cap */
+.bio-text p:first-child::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.bio-text a {
+  color: var(--accent);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.25);
+  transition: border-color 0.2s var(--ease);
+}
+.bio-text a:hover {
+  border-color: var(--accent);
+}
+
+/* Skills pills */
+.pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  padding: 0.44rem 1.05rem;
+  border-radius: 100px;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  color: var(--pill-fg);
+  transition:
+    background 0.22s var(--ease),
+    border-color 0.22s var(--ease),
+    color 0.22s var(--ease),
+    transform 0.22s var(--ease-spring),
+    box-shadow 0.22s var(--ease);
+}
+
+.pill:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(201, 168, 76, 0.15);
+}
+
+/* Language grid — always 5 equal columns to match 5 languages */
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 560px) {
+  /* 3+2 layout on small screens */
+  .lang-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.lang-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 1.1rem 0.75rem;
+  border-radius: 12px;
+  background: var(--pill-bg);
+  border: 1px solid var(--pill-border);
+  text-align: center;
+  transition:
+    background 0.22s var(--ease),
+    border-color 0.22s var(--ease),
+    transform 0.22s var(--ease-spring),
+    box-shadow 0.22s var(--ease);
+}
+
+.lang-item:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(201, 168, 76, 0.14);
+}
+
+.lang-flag {
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.lang-name {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+}
+
+/* Language proficiency dot row — 3 dots, filled = proficient */
+.lang-dots {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.15rem;
+}
+
+.lang-dots span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pill-border);
+  transition: background 0.2s var(--ease);
+}
+
+.lang-dots span.filled {
+  background: var(--accent);
+}
+
+/* Level label — tiny, all caps, muted */
+.lang-level {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-top: 0.2rem;
+  opacity: 0.75;
+}
+
+/* ===========================================================================
+   Scroll Reveal
+   =========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s var(--ease-out),
+    transform 0.8s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger the about page cards so they arrive sequentially */
+.about-sections .reveal:nth-child(1) { transition-delay: 0s;     }
+.about-sections .reveal:nth-child(2) { transition-delay: 0.12s;  }
+.about-sections .reveal:nth-child(3) { transition-delay: 0.24s;  }
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.55s var(--ease-out),
+    transform 0.55s var(--ease-out);
+}
+
+.reveal-stagger.visible > *:nth-child(1) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.04s;
+}
+.reveal-stagger.visible > *:nth-child(2) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.08s;
+}
+.reveal-stagger.visible > *:nth-child(3) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.12s;
+}
+.reveal-stagger.visible > *:nth-child(4) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.16s;
+}
+.reveal-stagger.visible > *:nth-child(5) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.2s;
+}
+.reveal-stagger.visible > *:nth-child(6) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.24s;
+}
+.reveal-stagger.visible > *:nth-child(7) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.28s;
+}
+.reveal-stagger.visible > *:nth-child(8) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.32s;
+}
+.reveal-stagger.visible > *:nth-child(9) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.36s;
+}
+.reveal-stagger.visible > *:nth-child(10) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.4s;
+}
+.reveal-stagger.visible > *:nth-child(11) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.44s;
+}
+.reveal-stagger.visible > *:nth-child(12) {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.48s;
+}
+
+/* ===========================================================================
+   Footer
+   =========================================================================== */
+.page-footer {
+  /* Left-align the back link — more editorial than centered */
+  text-align: left;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 0 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.back-link {
+  font-family: "Jost", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-right: 0.24em;
+  transition:
+    color 0.25s var(--ease),
+    gap 0.25s var(--ease-out);
+}
+
+/* Arrow line — grows on hover */
+.back-link::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.28s var(--ease-out);
+  flex-shrink: 0;
+}
+
+.back-link:hover {
+  color: var(--accent);
+  gap: 0.8rem;
+}
+
+.back-link:hover::before {
+  width: 40px;
+}
+
+/* ===========================================================================
+   404 Page
+   =========================================================================== */
+/* ===========================================================================
+   404 — Not Found
+   =========================================================================== */
+.not-found {
+  /* Fill the full viewport — nav floats over so we don't need to offset */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem clamp(1.25rem, 5vw, 3rem) 3rem;
+  position: relative;
+  /* No overflow:hidden — fixed marquee bg handles its own clipping */
+  overflow: visible;
+}
+
+/*
+ * 404 Marquee Background
+ *
+ * Structure:
+ *   .nf-marquee-bg         ← full viewport, absolute, clipped
+ *     .nf-marquee-row      ← one horizontal row, overflow:hidden
+ *       .nf-marquee-track  ← the sliding element (2× marks for seamless loop)
+ *         .nf-mark-wrap    ← individual mark wrapper with padding
+ *           svg.nf-mark-svg ← the H letterform
+ *
+ * Keyframes are injected by 404.js so the translateX distance matches
+ * the actual mark size set in JS config.
+ */
+
+/* Container — covers the full viewport regardless of nav/padding offsets.
+   Uses fixed position so it always fills the screen edge-to-edge. */
+.nf-marquee-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: 0;
+  animation: nfBgReveal 1.8s 0.2s var(--ease-out) forwards;
+}
+
+@keyframes nfBgReveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Each row is 1/5 of the viewport height */
+.nf-marquee-row {
+  display: flex;
+  align-items: center;
+  height: 20vh;
+  /* No overflow hidden on the row — let marks extend beyond so
+     the ends are never visible. Clipping happens on .nf-marquee-bg */
+  overflow: visible;
+}
+
+/*
+ * Track — the animating strip.
+ * Width is set implicitly by the marks inside.
+ * will-change promotes to its own composite layer for GPU smoothness.
+ */
+.nf-marquee-track {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  will-change: transform;
+}
+
+/* Individual mark wrapper — controls spacing between marks */
+.nf-mark-wrap {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  margin-right: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The SVG — fills its wrapper, inherits fill from path */
+.nf-mark-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Mark fill — uses accent color at very low opacity */
+.nf-mark-path {
+  fill: var(--accent);
+  opacity: 0.10;
+  transition: opacity 0.3s var(--ease);
+}
+
+/* Content — sits above everything */
+.not-found-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: nfContentReveal 1s 0.3s var(--ease-out) both;
+}
+
+@keyframes nfContentReveal {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Eyebrow above the title */
+.not-found-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: 0.6rem;
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-right: 0.30em;
+}
+
+.not-found-eyebrow::before,
+.not-found-eyebrow::after {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), rgba(201, 168, 76, 0.2));
+  flex-shrink: 0;
+}
+
+.not-found-eyebrow::after {
+  background: linear-gradient(to left, var(--accent), rgba(201, 168, 76, 0.2));
+}
+
+.not-found-title {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.not-found-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.not-found-text {
+  font-family: "Jost", sans-serif;
+  font-weight: 300;
+  font-size: clamp(0.82rem, 1.6vw, 0.92rem);
+  color: var(--fg-muted);
+  max-width: 300px;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+}
+
+/* Thin gold rule between text and button */
+.not-found-rule {
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--accent), transparent);
+  border: none;
+  margin: 0;
+}
+
+/* ===========================================================================
+   Font Awesome — self-hosted
+   =========================================================================== */
+@font-face {
+  font-family: "Font Awesome 6 Brands";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/fa-brands-400.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url(../fonts/fa-solid-900.woff2) format("woff2");
+}
+
+.fa,
+.fab,
+.fas {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+}
+
+.fa::before,
+.fab::before,
+.fas::before {
+  content: var(--fa);
+}
+.fab {
+  font-family: "Font Awesome 6 Brands";
+  font-weight: 400;
+}
+.fas {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+}
+
+.fa-envelope {
+  --fa: "\f0e0";
+}
+.fa-github {
+  --fa: "\f09b";
+}
+.fa-x-twitter {
+  --fa: "\e61b";
+}
+.fa-instagram {
+  --fa: "\f16d";
+}
+.fa-twitch {
+  --fa: "\f1e8";
+}
+.fa-youtube {
+  --fa: "\f167";
+}
+.fa-linkedin {
+  --fa: "\f08c";
+}
+
+/* ===========================================================================
+   Responsive — about watermark
+   =========================================================================== */
+@media (max-width: 600px) {
+  .about-watermark-wrap {
+    display: none;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .about-watermark-wrap {
+    right: -16vw;
+    width: clamp(180px, 40vmin, 320px);
+  }
+}
+
+/* ===========================================================================
+   Reduced Motion
+   =========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .hero-panel,
+  .hero-eyebrow,
+  .hero-name,
+  .hero-tagline,
+  .hero-rule,
+  .btn-group,
+  .social-icons {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-mark {
+    animation: none;
+    opacity: 0.12;
+  }
+
+  /* Disable wrapper load-in animations */
+  .hero-bg-wrap {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero-fg-wrap {
+    animation: none;
+    opacity: 1;
+    /* Desktop: no transform needed */
+    transform: none;
+  }
+
+  /* On mobile the wrapper still needs translateX(-50%) for centering
+     even when animations are disabled */
+  @media (max-width: 700px) {
+    .hero-fg-wrap {
+      transform: translateX(-50%);
+    }
+  }
+
+  .hero-bg,
+  .hero-fg,
+  .about-watermark {
+    will-change: auto;
+    transition: none;
+  }
+
+  .hero-scroll-hint {
+    display: none;
+  }
+  .scroll-line {
+    animation: none;
+  }
+  .btn::before {
+    display: none;
+  }
+}

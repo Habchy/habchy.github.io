@@ -1,43 +1,170 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <!-- Preload Critical CSS -->
-    <link rel="preload" href="css/404.css" as="style" />
-    <link rel="stylesheet" href="css/404.css" />
-
-    <!-- Preload and Preconnect External Resources -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
-
-    <!-- JavaScript: Async Loading -->
-    <script async src="assets/js/404.js"></script>
-
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-ES91HT3C25");
-    </script>
+    <meta charset="utf-8" />
+    <!--
+      <base href="/"> anchors all relative URLs to the site root.
+      This is critical for 404.html on GitHub Pages: when the server serves
+      this file for a nested path like /foo/bar/baz, the browser would
+      otherwise resolve relative hrefs (assets/css/style.css, favicon.svg,
+      etc.) against /foo/bar/ — causing every asset to 404 itself and
+      leaving the page completely unstyled and broken.
+    -->
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta
+      name="theme-color"
+      content="#0E0D0B"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#F5F1E8"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Habchy" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!--
+      noindex, nofollow — correct and intentional for a 404 error page.
+      We never want search engines or AI crawlers indexing or following links on this page.
+      The server should also return an HTTP 404 status code for this URL.
+    -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Page not found — this URL doesn't exist on habchy.com. Return to the homepage of Charbel Habchy, developer and Computer Science student at UMass Boston." />
+    <meta name="author" content="Charbel Habchy" />
 
     <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="favicon.png" type="image/png" />
 
-    <title>Charbel Habchy - 404</title>
-  </head>
-  <h1>404</h1>
+    <!-- Preload -->
+    <link rel="preload" href="assets/css/style.css" as="style" />
 
-  <div class="frame">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <div class="caps"></div>
-  <canvas id="canvas"></canvas>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap"
+      />
+    </noscript>
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <title>404 — Page Not Found · Charbel Habchy</title>
+  </head>
+  <body>
+    <!-- =====================================================================
+         Navigation
+         ===================================================================== -->
+    <!--
+      role="navigation" removed — <nav> already carries that implicit ARIA role,
+      so the explicit attribute is redundant per the ARIA spec.
+      href="/about" uses a root-relative path so it resolves correctly regardless
+      of which nested path triggered this 404 page (the <base href="/"> in <head>
+      also covers this, but being explicit here is clearer intent).
+    -->
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="nav-link-left">
+        <a href="/about" class="nav-link">About</a>
+      </div>
+      <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
+        <img
+          src="assets/images/habchy.svg"
+          alt="Habchy"
+          class="logo-dark"
+          width="22"
+          height="25"
+        />
+        <img
+          src="assets/images/habchy-white.svg"
+          alt="Habchy"
+          class="logo-light"
+          width="22"
+          height="25"
+        />
+      </a>
+      <div class="nav-link-right">
+        <a
+          href="assets/Charbel-Habchy-Resume.pdf"
+          class="nav-link"
+          title="Download my resume"
+          >Résumé</a
+        >
+      </div>
+    </nav>
+
+    <!-- =====================================================================
+         404 content
+         ===================================================================== -->
+    <div class="page">
+      <main class="not-found" aria-label="Page not found">
+
+        <!--
+          Marquee background — rows of the H mark scrolling continuously.
+          The marks are injected and animated by 404.js to keep the HTML lean.
+        -->
+        <div class="nf-marquee-bg" aria-hidden="true" id="nf-marquee"></div>
+
+        <!-- Actual message — centered, above the atmospheric elements -->
+        <div class="not-found-content">
+          <span class="not-found-eyebrow">Error 404</span>
+
+          <h1 class="not-found-title">
+            Lost in<br /><em>the ruins.</em>
+          </h1>
+
+          <p class="not-found-text">
+            This page doesn't exist — or perhaps it never did.
+            Let me guide you back.
+          </p>
+
+          <hr class="not-found-rule" />
+
+          <a href="/" class="btn btn-primary">
+            Back to home
+          </a>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- 404 marquee background -->
+    <script src="assets/js/404.js" defer></script>
+
+    <!-- Deferred Analytics -->
+    <script>
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          try {
+            var s = document.createElement("script");
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25";
+            s.async = true;
+            s.onload = function () {
+              window.dataLayer = window.dataLayer || [];
+              function gtag() {
+                dataLayer.push(arguments);
+              }
+              gtag("js", new Date());
+              gtag("config", "G-ES91HT3C25", { transport_type: "beacon" });
+            };
+            document.head.appendChild(s);
+          } catch (e) {
+            console.error("[analytics] Failed to load GA:", e);
+          }
+        }, 2000);
+      });
+    </script>
+  </body>
 </html>
