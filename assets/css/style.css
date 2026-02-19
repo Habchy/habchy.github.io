@@ -118,64 +118,64 @@ ul {
 }
 
 /* ---------------------------------------------------------------------------
-   Navigation — floating centered pill
-   Three cells: [About] [Logo] [Résumé]
-   Floats at the top-center, not full-width.
-   Hidden entirely on mobile.
+   Navigation — floating centered pill, luxury edition
+   
+   Layout: [About] | [Logo] | [Résumé]
+   The vertical rules (|) are CSS pseudo-elements on the logo cell,
+   creating a bracketed monogram effect — like a hallmark.
+   
+   Design principles:
+   - Maximum breathing room between elements
+   - Glass so transparent it barely exists
+   - Logo is the only element with real presence
+   - Links are whisper-weight — present but deferential
+   - Entrance: long slow fade, no movement — arrives like a watermark
    --------------------------------------------------------------------------- */
 .site-nav {
   position: fixed;
-  top: 1.25rem;
+  top: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   z-index: 200;
-  /* Three equal columns so logo is perfectly centered */
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 0;
-  padding: 0 1.75rem;
-  height: 52px;
-  /* Pill shape */
+  /* Generous padding — the breathing room IS the luxury */
+  padding: 0 2.5rem;
+  height: 50px;
   border-radius: 100px;
-  /* Glass */
+  /* Glass: barely-there — more transparent, more refined */
   background: var(--nav-bg);
   border: 1px solid var(--nav-border);
   box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.18),
+    0 4px 24px rgba(0, 0, 0, 0.12),
+    0 1px 4px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 var(--glass-hi);
-  backdrop-filter: blur(28px) saturate(1.6);
-  -webkit-backdrop-filter: blur(28px) saturate(1.6);
-  /* Entrance animation */
-  animation: navDrop 0.9s 0.1s var(--ease-out) both;
-  /* Don't let it shrink below a comfortable width */
-  min-width: 280px;
+  backdrop-filter: blur(32px) saturate(1.8);
+  -webkit-backdrop-filter: blur(32px) saturate(1.8);
+  min-width: 320px;
   white-space: nowrap;
+  /* Entrance: pure fade, no movement — appears like it was always there */
+  animation: navFade 1.6s 0.3s var(--ease-out) both;
 }
 
-@keyframes navDrop {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
+@keyframes navFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-/* Left link — right-aligned within its cell */
+/* Left cell — link right-aligned with generous gap from logo */
 .nav-link-left {
   display: flex;
   justify-content: flex-end;
-  padding-right: 1.5rem;
+  padding-right: 2rem;
 }
 
-/* Right link — left-aligned within its cell */
+/* Right cell — link left-aligned */
 .nav-link-right {
   display: flex;
   justify-content: flex-start;
-  padding-left: 1.5rem;
+  padding-left: 2rem;
 }
 
 /* Logo — center cell */
@@ -183,65 +183,108 @@ ul {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 22px;
-  opacity: 0.85;
-  transition:
-    opacity 0.22s var(--ease),
-    transform 0.22s var(--ease-spring);
-}
-.nav-logo:hover {
+  height: 30px;
+  padding: 0 1.5rem;
   opacity: 1;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease-spring);
+}
+
+.nav-logo:hover {
+  opacity: 0.8;
   transform: scale(1.08);
 }
-.nav-logo img {
-  height: 22px;
-  width: auto;
-}
 
-.logo-dark {
+.nav-logo img {
+  height: 28px;
+  width: auto;
   display: block;
 }
-.logo-light {
-  display: none;
-}
 
-@media (prefers-color-scheme: dark) {
-  .logo-dark {
-    display: none;
-  }
-  .logo-light {
-    display: block;
-  }
-}
-
-/* Nav links */
-.nav-link {
-  font-family: "Jost", sans-serif;
-  font-weight: 400;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-  transition: color 0.22s var(--ease);
+/*
+ * Vertical gold rules — placed on the link cells, not the logo.
+ * This way they never move on hover and have no pseudo-element conflicts.
+ * .nav-link-left gets a rule on its right edge.
+ * .nav-link-right gets a rule on its left edge.
+ */
+.nav-link-left {
   position: relative;
 }
 
-.nav-link::after {
-  content: "";
+.nav-link-left::after {
+  content: '';
   position: absolute;
-  bottom: -3px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 14px;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.nav-link-right {
+  position: relative;
+}
+
+.nav-link-right::before {
+  content: '';
+  position: absolute;
   left: 0;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(to right, var(--accent), transparent);
-  transition: width 0.28s var(--ease-out);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 14px;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Logo visibility — scoped to .nav-logo for full specificity */
+.nav-logo .logo-dark  { display: block; }
+.nav-logo .logo-light { display: none;  }
+
+@media (prefers-color-scheme: dark) {
+  .nav-logo .logo-dark  { display: none;  }
+  .nav-logo .logo-light { display: block; }
+}
+
+/* Nav links — whisper weight, maximum letter-spacing */
+.nav-link {
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  transition: color 0.3s var(--ease);
+  position: relative;
+  /* Shift text right to optically compensate for letter-spacing */
+  padding-right: 0.28em;
+}
+
+/* Dot indicator on hover — more refined than an underline */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.25s var(--ease-spring), opacity 0.25s var(--ease);
+  opacity: 0;
 }
 
 .nav-link:hover {
   color: var(--fg);
 }
+
 .nav-link:hover::after {
-  width: 100%;
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
 }
 
 /* Hide on mobile — the hero panel has its own CTAs */
@@ -286,7 +329,43 @@ ul {
   z-index: 0;
 }
 
-/* Background — Baalbek panorama */
+/*
+ * LOAD-IN ANIMATION STRATEGY
+ * ─────────────────────────────────────────────────────────────────────────
+ * The JS parallax writes `style.transform` directly on .hero-bg and
+ * .hero-fg. If we animate `transform` on those same elements in CSS,
+ * the JS will overwrite it the moment the mouse moves — breaking the
+ * animation or causing a jump.
+ *
+ * Solution: introduce wrapper divs (.hero-bg-wrap, .hero-fg-wrap).
+ * - CSS animations run on the WRAPPERS (opacity + translateY/scale).
+ * - JS writes transform on the inner IMGS only.
+ * - The two never touch the same element → zero conflict.
+ *
+ * The wrappers take over all positioning that was previously on the imgs.
+ * The imgs just fill their wrapper and carry the JS-driven transform.
+ * ─────────────────────────────────────────────────────────────────────────
+ */
+
+/* Background wrapper — full scene, carries the fade+scale load-in */
+.hero-bg-wrap {
+  position: absolute;
+  inset: 0;
+  animation: bgReveal 2s 0.1s var(--ease-out) both;
+}
+
+@keyframes bgReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Background img — JS writes transform here, base centering preserved */
 .hero-bg {
   position: absolute;
   top: 50%;
@@ -295,6 +374,7 @@ ul {
   height: 110vh;
   min-width: 110%;
   min-height: 110%;
+  /* Base centering. JS uses calc(-50% + Xpx) to preserve this. */
   transform: translate(-50%, -50%);
   object-fit: cover;
   object-position: center 30%;
@@ -302,18 +382,46 @@ ul {
   filter: saturate(0.82) brightness(0.76) contrast(1.06);
 }
 
-/* Foreground — Suit cutout */
-.hero-fg {
+/*
+ * Foreground wrapper — carries positioning + load-in animation.
+ * Delayed so the figure arrives after the background has settled.
+ * On desktop: positioned right/bottom (same values as old .hero-fg).
+ * On mobile:  centered with translateX(-50%), handled separately below.
+ */
+.hero-fg-wrap {
   position: absolute;
   right: clamp(8vw, 14vw, 18vw);
   bottom: -95%;
   height: 185%;
   width: auto;
   max-width: 55%;
+  /* Rise up from below + fade — no X transform so JS has a clean slate */
+  animation: fgReveal 1.6s 0.8s var(--ease-out) both;
+  /* Flex so the img inside fills correctly */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+@keyframes fgReveal {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Foreground img — JS writes transform here */
+.hero-fg {
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   object-position: top center;
   will-change: transform;
-  transform-origin: bottom center;
+  transform-origin: top center;
   filter: drop-shadow(-16px 0 48px rgba(30, 20, 5, 0.5))
     drop-shadow(0 24px 32px rgba(20, 15, 5, 0.35));
 }
@@ -374,50 +482,34 @@ ul {
   flex-direction: column;
   gap: 1.5rem;
   animation: panelReveal 1.2s 0.05s var(--ease-out) both;
-  /* Logo mark watermark — inlined as background, bottom-right of panel */
   isolation: isolate;
+  /* Allow the H mark to extend beyond the panel boundary */
+  overflow: visible;
 }
 
-/*
- * The H logo mark as a panel watermark.
- * We use a CSS mask-image approach: the SVG path is referenced as a
- * data URI mask, filled with the accent color at very low opacity.
- * This gives a ghostly brand presence without adding an extra element.
- * The SVG viewBox is 0 0 3971 4497 — we scale it to ~180px wide.
- */
-.hero-panel::after {
-  content: "";
-  position: absolute;
-  bottom: clamp(1rem, 3vw, 2rem);
-  right: clamp(1rem, 3vw, 2rem);
-  width: 120px;
-  height: 136px;
-  opacity: 0.08;
+/* H logo mark — hidden on desktop, shown on mobile only (see mobile block) */
+.hero-mark {
+  display: none;
   pointer-events: none;
-  z-index: -1;
-  background-color: var(--accent-bright);
-  /* SVG H path as mask — the letterform shape is cut out of the color */
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3971.7893 4497.9053'%3E%3Cg transform='translate(-2132.5701,-1799.2671)'%3E%3Cpath d='m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z'/%3E%3C/g%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3971.7893 4497.9053'%3E%3Cg transform='translate(-2132.5701,-1799.2671)'%3E%3Cpath d='m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z'/%3E%3C/g%3E%3C/svg%3E");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  /* Fade in after the panel arrives */
-  animation: logoMarkFade 1.2s 1s var(--ease-out) both;
+}
+
+.hero-mark path {
+  fill: var(--accent-bright);
 }
 
 @keyframes logoMarkFade {
   from {
     opacity: 0;
-    transform: scale(0.92);
+    transform: translateY(calc(-50% + 18px));
   }
   to {
-    opacity: 0.08;
-    transform: scale(1);
+    opacity: 0.12;
+    transform: translateY(-50%);
   }
+}
+
+.hero-panel::after {
+  display: none;
 }
 
 @keyframes panelReveal {
@@ -735,13 +827,50 @@ ul {
     min-height: 520px;
   }
 
-  .hero-fg {
+  /*
+   * On mobile the WRAPPER carries the centering transform (translateX(-50%)).
+   * The load-in animation must include the X offset so it doesn't snap
+   * to the wrong position when the animation finishes.
+   * The JS parallax reads isMobile and writes:
+   *   translate3d(calc(-50% + fgXpx), fgYpx, 0)
+   * directly on .hero-fg (the img), so the wrapper's translateX(-50%)
+   * is NOT in play during parallax — the img overrides it. This is fine
+   * because the wrapper just provides the initial centered position before
+   * the first mousemove fires.
+   */
+  .hero-fg-wrap {
     left: 50%;
     right: auto;
-    bottom: -59%;
+    bottom: auto;
+    top: 4vh;
+    /* Explicit width so the wrapper isn't shrink-to-content */
+    width: 88vw;
+    max-width: 88vw;
+    height: 115vh;
     transform: translateX(-50%);
-    max-width: 90%;
-    height: 155%;
+    animation: fgRevealMobile 1.6s 0.8s var(--ease-out) both;
+  }
+
+  @keyframes fgRevealMobile {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /*
+   * The img fills the wrapper — no position offset needed.
+   * JS writes plain translate3d(fgXpx, fgYpx, 0) on this element.
+   * No -50% needed here because the WRAPPER already centers it.
+   */
+  .hero-fg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     object-position: top center;
   }
 
@@ -759,9 +888,19 @@ ul {
     gap: 1rem;
   }
 
-  /* Hide the H watermark on mobile — too cramped */
-  .hero-panel::after {
-    display: none;
+  /* On mobile: show and reposition the H mark to the right of the text */
+  .hero-mark {
+    display: block;
+    position: absolute;
+    top: 44%;
+    left: auto;
+    right: 4%;
+    transform: translateY(-50%);
+    width: 42vw;
+    height: auto;
+    opacity: 0;
+    z-index: -1;
+    animation: logoMarkFade 2.2s 1.2s var(--ease-out) forwards;
   }
 
   .hero-name {
@@ -1314,10 +1453,31 @@ ul {
     transform: none;
   }
 
-  .hero-panel::after {
+  .hero-mark {
     animation: none;
-    opacity: 0.08;
+    opacity: 0.12;
+  }
+
+  /* Disable wrapper load-in animations */
+  .hero-bg-wrap {
+    animation: none;
+    opacity: 1;
     transform: none;
+  }
+
+  .hero-fg-wrap {
+    animation: none;
+    opacity: 1;
+    /* Desktop: no transform needed */
+    transform: none;
+  }
+
+  /* On mobile the wrapper still needs translateX(-50%) for centering
+     even when animations are disabled */
+  @media (max-width: 700px) {
+    .hero-fg-wrap {
+      transform: translateX(-50%);
+    }
   }
 
   .hero-bg,

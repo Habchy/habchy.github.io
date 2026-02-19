@@ -119,32 +119,29 @@
 
           if (heroFg) {
             /*
-             * On mobile (≤700px) the CSS base transform is translateX(-50%)
-             * for centering. The JS transform overwrites the entire transform
-             * property, so we must re-include the -50% offset on mobile,
-             * otherwise the centering is lost the moment parallax fires.
+             * The centering architecture changed with the wrapper refactor:
              *
-             * On desktop the figure is positioned with right/bottom so no
-             * base translateX is needed — just the parallax delta.
+             * DESKTOP: .hero-fg-wrap is positioned with right/bottom.
+             *   The img (.hero-fg) has no base transform — JS writes
+             *   plain translate3d(fgXpx, fgYpx, 0).
              *
+             * MOBILE: .hero-fg-wrap carries left:50% + translateX(-50%)
+             *   as a CSS base style. The img (.hero-fg) fills the wrapper
+             *   at width/height 100% with no position offset of its own.
+             *   JS writes plain translate3d(fgXpx, fgYpx, 0) on the img —
+             *   no -50% needed because the WRAPPER already centers it.
+             *   Adding -50% here would double-apply the offset and shift
+             *   the figure off to the left.
+             *
+             * Both cases: same plain transform. No isMobile branching needed.
              * Y movement is dampened to 0.55× so the figure stays grounded.
              */
-            var isMobile = window.innerWidth <= 700;
-            if (isMobile) {
-              heroFg.style.transform =
-                "translate3d(calc(-50% + " +
-                fgX.toFixed(3) +
-                "px), " +
-                (fgY * 0.55).toFixed(3) +
-                "px, 0)";
-            } else {
-              heroFg.style.transform =
-                "translate3d(" +
-                fgX.toFixed(3) +
-                "px, " +
-                (fgY * 0.55).toFixed(3) +
-                "px, 0)";
-            }
+            heroFg.style.transform =
+              "translate3d(" +
+              fgX.toFixed(3) +
+              "px, " +
+              (fgY * 0.55).toFixed(3) +
+              "px, 0)";
           }
 
           /* Continue loop only if still moving */

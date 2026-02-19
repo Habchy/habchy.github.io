@@ -3,8 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#F7F6F1" media="(prefers-color-scheme: light)" />
+    <meta
+      name="theme-color"
+      content="#111110"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#F7F6F1"
+      media="(prefers-color-scheme: light)"
+    />
     <meta name="robots" content="noindex, nofollow" />
 
     <!-- Favicon -->
@@ -20,7 +28,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap"
       media="print"
-      onload="this.media='all'"
+      onload="this.media = 'all'"
     />
     <noscript>
       <link
@@ -35,7 +43,6 @@
     <title>404 — Page Not Found · Charbel Habchy</title>
   </head>
   <body>
-
     <!-- =====================================================================
          Navigation
          ===================================================================== -->
@@ -44,11 +51,28 @@
         <a href="about" class="nav-link">About</a>
       </div>
       <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
-        <img src="assets/images/habchy.svg"       alt="Habchy" class="logo-dark"  width="22" height="25" />
-        <img src="assets/images/habchy-white.svg" alt="Habchy" class="logo-light" width="22" height="25" />
+        <img
+          src="assets/images/habchy.svg"
+          alt="Habchy"
+          class="logo-dark"
+          width="22"
+          height="25"
+        />
+        <img
+          src="assets/images/habchy-white.svg"
+          alt="Habchy"
+          class="logo-light"
+          width="22"
+          height="25"
+        />
       </a>
       <div class="nav-link-right">
-        <a href="assets/Charbel%20Habchy%20Resume%20June%202024.pdf" class="nav-link" title="Download my resume">Résumé</a>
+        <a
+          href="assets/Charbel%20Habchy%20Resume%20June%202024.pdf"
+          class="nav-link"
+          title="Download my resume"
+          >Résumé</a
+        >
       </div>
     </nav>
 
@@ -57,7 +81,6 @@
          ===================================================================== -->
     <div class="page page--padded">
       <main class="not-found" aria-label="Page not found">
-
         <!--
           The large "404" acts as its own typographic watermark — rendered
           at very low opacity so it sits as a background texture behind the
@@ -68,38 +91,38 @@
         <h1 class="not-found-title">Page not found.</h1>
 
         <p class="not-found-text">
-          The page you're looking for doesn't exist or has been moved.
-          Let's get you back on track.
+          The page you're looking for doesn't exist or has been moved. Let's get
+          you back on track.
         </p>
 
-        <a href="/" class="btn btn-primary" style="margin-top: 0.5rem;">
+        <a href="/" class="btn btn-primary" style="margin-top: 0.5rem">
           Back to home
         </a>
-
       </main>
     </div>
 
     <!-- Deferred Analytics -->
     <script>
-      window.addEventListener('load', function () {
+      window.addEventListener("load", function () {
         setTimeout(function () {
           try {
-            var s = document.createElement('script');
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25';
+            var s = document.createElement("script");
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25";
             s.async = true;
             s.onload = function () {
               window.dataLayer = window.dataLayer || [];
-              function gtag() { dataLayer.push(arguments); }
-              gtag('js', new Date());
-              gtag('config', 'G-ES91HT3C25', { transport_type: 'beacon' });
+              function gtag() {
+                dataLayer.push(arguments);
+              }
+              gtag("js", new Date());
+              gtag("config", "G-ES91HT3C25", { transport_type: "beacon" });
             };
             document.head.appendChild(s);
           } catch (e) {
-            console.error('[analytics] Failed to load GA:', e);
+            console.error("[analytics] Failed to load GA:", e);
           }
         }, 2000);
       });
     </script>
-
   </body>
 </html>
