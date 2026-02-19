@@ -10,6 +10,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="Habchy" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Explicit index signal — this page is intentionally indexed. See comment near canonical tag. -->
+    <meta name="robots" content="index, follow" />
     <meta
       name="description"
       content="The complete visual and motion system behind habchy.com — colors, typography, glassmorphism, parallax, animation, and the H monogram."
@@ -33,12 +35,20 @@
     <link rel="canonical" href="https://habchy.com/design-language" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <!-- og:type "article" is correct for a technical document/design system reference page -->
+    <meta property="og:type" content="article" />
+    <meta property="article:author" content="https://habchy.com/" />
+    <meta property="article:published_time" content="2026-02-19T00:00:00+00:00" />
+    <meta property="article:modified_time" content="2026-02-19T00:00:00+00:00" />
+    <meta property="article:section" content="Design" />
+    <meta property="article:tag" content="Design System" />
+    <meta property="article:tag" content="CSS" />
+    <meta property="article:tag" content="Web Development" />
     <meta property="og:url" content="https://habchy.com/design-language" />
     <meta property="og:title" content="Design Language — Visual &amp; Motion System · Habchy.com" />
     <meta
       property="og:description"
-      content="The complete visual and motion system behind habchy.com — colors, typography, glassmorphism, parallax, animation, and the H monogram."
+      content="The complete visual and motion design system behind habchy.com — CSS tokens, color palettes, Cormorant Garamond typography, glassmorphism, parallax animation, and the H monogram mark."
     />
     <meta
       property="og:image"
@@ -58,7 +68,7 @@
     <meta name="twitter:title" content="Design Language — Visual &amp; Motion System · Habchy.com" />
     <meta
       name="twitter:description"
-      content="The complete visual and motion system behind habchy.com — colors, typography, glassmorphism, parallax, animation, and the H monogram."
+      content="The complete visual and motion design system behind habchy.com — CSS tokens, color palettes, Cormorant Garamond typography, glassmorphism, parallax animation, and the H monogram mark."
     />
     <meta
       name="twitter:image"
@@ -74,7 +84,7 @@
         "@id": "https://habchy.com/design-language#webpage",
         "url": "https://habchy.com/design-language",
         "name": "Design Language — Visual & Motion System · Habchy.com",
-        "description": "The complete visual and motion system behind habchy.com — colors, typography, glassmorphism, parallax, animation, and the H monogram.",
+        "description": "The complete visual and motion design system behind habchy.com — CSS tokens, color palettes, Cormorant Garamond typography, glassmorphism, parallax animation, and the H monogram mark.",
         "dateModified": "2026-02-19",
         "author": { "@type": "Person", "@id": "https://habchy.com/#person" },
         "isPartOf": { "@type": "WebSite", "@id": "https://habchy.com/#website" },
@@ -131,6 +141,8 @@
 
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/images/icon-192x192.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
     <link rel="preload" href="assets/css/style.css" as="style" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
