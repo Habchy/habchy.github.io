@@ -1,43 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <!-- Preload Critical CSS -->
-    <link rel="preload" href="css/404.css" as="style" />
-    <link rel="stylesheet" href="css/404.css" />
-
-    <!-- Preload and Preconnect External Resources -->
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.gstatic.com" crossorigin />
-
-    <!-- JavaScript: Async Loading -->
-    <script async src="assets/js/404.js"></script>
-
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-ES91HT3C25");
-    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111110" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F7F6F1" media="(prefers-color-scheme: light)" />
+    <meta name="robots" content="noindex, nofollow" />
 
     <!-- Favicon -->
     <link rel="icon" href="favicon.png" type="image/png" />
 
-    <title>Charbel Habchy - 404</title>
-  </head>
-  <h1>404</h1>
+    <!-- Preload -->
+    <link rel="preload" href="assets/css/style.css" as="style" />
 
-  <div class="frame">
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-  <div class="caps"></div>
-  <canvas id="canvas"></canvas>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400&display=swap"
+      />
+    </noscript>
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <title>404 — Page Not Found · Charbel Habchy</title>
+  </head>
+  <body>
+
+    <!-- =====================================================================
+         Navigation
+         ===================================================================== -->
+    <nav class="site-nav" role="navigation" aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="Charbel Habchy — Home">
+        <img src="assets/images/habchy.svg"       alt="Habchy logo" class="logo-dark"  width="28" height="32" />
+        <img src="assets/images/habchy-white.svg" alt="Habchy logo" class="logo-light" width="28" height="32" />
+      </a>
+      <div class="nav-links">
+        <a href="about" class="nav-link">About</a>
+        <a href="assets/Charbel%20Habchy%20Resume%20June%202024.pdf" class="nav-link" title="Download my resume">Résumé</a>
+      </div>
+    </nav>
+
+    <!-- =====================================================================
+         404 content
+         ===================================================================== -->
+    <div class="page">
+      <main class="not-found" aria-label="Page not found">
+
+        <!--
+          The large "404" acts as its own typographic watermark — rendered
+          at very low opacity so it sits as a background texture behind the
+          actual message. No extra decorations needed.
+        -->
+        <p class="not-found-code" aria-hidden="true">404</p>
+
+        <h1 class="not-found-title">Page not found.</h1>
+
+        <p class="not-found-text">
+          The page you're looking for doesn't exist or has been moved.
+          Let's get you back on track.
+        </p>
+
+        <a href="/" class="btn btn-primary" style="margin-top: 0.5rem;">
+          Back to home
+        </a>
+
+      </main>
+    </div>
+
+    <!-- Deferred Analytics -->
+    <script>
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          try {
+            var s = document.createElement('script');
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25';
+            s.async = true;
+            s.onload = function () {
+              window.dataLayer = window.dataLayer || [];
+              function gtag() { dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'G-ES91HT3C25', { transport_type: 'beacon' });
+            };
+            document.head.appendChild(s);
+          } catch (e) {
+            console.error('[analytics] Failed to load GA:', e);
+          }
+        }, 2000);
+      });
+    </script>
+
+  </body>
 </html>
