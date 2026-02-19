@@ -299,8 +299,7 @@ ul {
   will-change: transform;
   transform-origin: bottom center;
   /* Warm drop shadow to embed him in the sunlit ruins scene */
-  filter:
-    drop-shadow(-16px 0 48px rgba(30, 20, 5, 0.50))
+  filter: drop-shadow(-16px 0 48px rgba(30, 20, 5, 0.5))
     drop-shadow(0 24px 32px rgba(20, 15, 5, 0.35));
 }
 
