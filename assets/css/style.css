@@ -313,6 +313,16 @@ ul {
   opacity: 1;
 }
 
+/* Active page indicator — same dot as hover, but persistent */
+.nav-link--active {
+  color: var(--fg);
+}
+
+.nav-link--active::after {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
 /* Hide on mobile — the hero panel has its own CTAs */
 @media (max-width: 700px) {
   .site-nav {
