@@ -79,27 +79,40 @@
     <!-- =====================================================================
          404 content
          ===================================================================== -->
-    <div class="page page--padded">
+    <div class="page">
       <main class="not-found" aria-label="Page not found">
+
         <!--
-          The large "404" acts as its own typographic watermark — rendered
-          at very low opacity so it sits as a background texture behind the
-          actual message. No extra decorations needed.
+          Marquee background — rows of the H mark scrolling continuously.
+          The marks are injected and animated by 404.js to keep the HTML lean.
         -->
-        <p class="not-found-code" aria-hidden="true">404</p>
+        <div class="nf-marquee-bg" aria-hidden="true" id="nf-marquee"></div>
 
-        <h1 class="not-found-title">Page not found.</h1>
+        <!-- Actual message — centered, above the atmospheric elements -->
+        <div class="not-found-content">
+          <span class="not-found-eyebrow">Error 404</span>
 
-        <p class="not-found-text">
-          The page you're looking for doesn't exist or has been moved. Let's get
-          you back on track.
-        </p>
+          <h1 class="not-found-title">
+            Lost in<br /><em>the ruins.</em>
+          </h1>
 
-        <a href="/" class="btn btn-primary" style="margin-top: 0.5rem">
-          Back to home
-        </a>
+          <p class="not-found-text">
+            This page doesn't exist — or perhaps it never did.
+            Let me guide you back.
+          </p>
+
+          <hr class="not-found-rule" />
+
+          <a href="/" class="btn btn-primary">
+            Back to home
+          </a>
+        </div>
+
       </main>
     </div>
+
+    <!-- 404 marquee background -->
+    <script src="assets/js/404.js" defer></script>
 
     <!-- Deferred Analytics -->
     <script>
