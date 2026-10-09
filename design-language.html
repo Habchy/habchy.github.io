@@ -59,7 +59,7 @@
     />
     <meta
       property="article:modified_time"
-      content="2026-02-19T00:00:00+00:00"
+      content="2026-02-19T12:00:00+00:00"
     />
     <meta property="article:section" content="Design" />
     <meta property="article:tag" content="Design System" />
@@ -566,11 +566,49 @@
         overflow: hidden;
         border: 1px solid var(--glass-border);
         box-shadow: var(--glass-shadow);
+        cursor: pointer;
+        /* Lift + gold border on hover — same treatment as glass cards */
+        transition:
+          transform 0.22s var(--ease-spring),
+          border-color 0.26s var(--ease),
+          box-shadow 0.26s var(--ease);
+      }
+
+      .dl-swatch:hover {
+        transform: translateY(-3px);
+        border-color: rgba(201, 168, 76, 0.35);
+        box-shadow:
+          var(--glass-shadow),
+          0 0 0 1px rgba(201, 168, 76, 0.12),
+          0 8px 24px rgba(201, 168, 76, 0.1);
       }
 
       .dl-swatch-chip {
         height: 64px;
         display: block;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Gold shimmer sweep — triggered by .dl-swatch--copied on the parent */
+      .dl-swatch-chip::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          105deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.28) 50%,
+          transparent 100%
+        );
+        transform: translateX(-100%);
+        transition: transform 0s; /* no transition at rest */
+        pointer-events: none;
+      }
+
+      .dl-swatch--copied .dl-swatch-chip::after {
+        transform: translateX(160%);
+        transition: transform 0.5s var(--ease-out);
       }
 
       .dl-swatch-meta {
@@ -593,6 +631,36 @@
         font-size: 0.62rem;
         color: var(--accent-bright);
         letter-spacing: 0.04em;
+        transition: opacity 0.2s var(--ease);
+      }
+
+      /* "Copied" confirmation — fades in over the hex value */
+      .dl-swatch-copied-label {
+        font-family: "Jost", sans-serif;
+        font-size: 0.58rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent-bright);
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.2s var(--ease);
+        pointer-events: none;
+      }
+
+      .dl-swatch--copied .dl-swatch-hex {
+        opacity: 0;
+      }
+
+      .dl-swatch--copied .dl-swatch-copied-label {
+        opacity: 1;
+      }
+
+      /* Wrapper that holds hex + copied label in the same space */
+      .dl-swatch-hex-wrap {
+        position: relative;
+        height: 0.85rem; /* matches hex font-size line height */
+        display: flex;
+        align-items: center;
       }
 
       .dl-swatch-token {
@@ -1231,9 +1299,232 @@
         </header>
 
         <!-- ══════════════════════════════════════════════════════════════
+             TABLE OF CONTENTS
+             ══════════════════════════════════════════════════════════════ -->
+        <style>
+          /* ── Table of contents — editorial index style ───────────────── */
+
+          .dl-toc {
+            margin-bottom: 5rem;
+          }
+
+          /* Top rule — full-width gold-to-transparent */
+          .dl-toc-rule-top {
+            height: 1px;
+            background: linear-gradient(
+              to right,
+              var(--accent),
+              rgba(201, 168, 76, 0.18) 60%,
+              transparent
+            );
+            margin-bottom: 1.25rem;
+          }
+
+          /* Header row */
+          .dl-toc-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+          }
+
+          .dl-toc-title {
+            font-family: "Cormorant Garamond", serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.45rem;
+            color: var(--fg);
+            letter-spacing: -0.01em;
+            line-height: 1;
+          }
+
+          .dl-toc-meta {
+            font-family: "Jost", sans-serif;
+            font-weight: 300;
+            font-size: 0.55rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
+            opacity: 0.5;
+            padding-right: 0.22em;
+          }
+
+          /* Four-column grid */
+          .dl-toc-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 0.5rem;
+          }
+
+          @media (max-width: 700px) {
+            .dl-toc-grid {
+              grid-template-columns: repeat(2, 1fr);
+            }
+          }
+
+          /* Every entry */
+          .dl-toc-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 0.1rem;
+            padding: 0.9rem 1rem 0.75rem 0;
+            text-decoration: none;
+            border-top: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+            transition:
+              border-top-color 0.25s var(--ease),
+              background 0.25s var(--ease);
+          }
+
+          /* Gold wash that sweeps up from the bottom on hover */
+          .dl-toc-item::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+              to top,
+              rgba(201, 168, 76, 0.06) 0%,
+              transparent 100%
+            );
+            opacity: 0;
+            transition: opacity 0.3s var(--ease);
+            pointer-events: none;
+          }
+
+          .dl-toc-item:hover {
+            border-top-color: var(--accent);
+          }
+
+          .dl-toc-item:hover::before {
+            opacity: 1;
+          }
+
+          /* Number — large, italic, Cormorant — the visual anchor of each cell */
+          .dl-toc-num {
+            font-family: "Cormorant Garamond", serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.6rem;
+            line-height: 1;
+            color: var(--accent-bright);
+            opacity: 0.18;
+            letter-spacing: -0.02em;
+            flex-shrink: 0;
+            transition:
+              opacity 0.25s var(--ease),
+              transform 0.28s var(--ease-out);
+            display: block;
+          }
+
+          .dl-toc-item:hover .dl-toc-num {
+            opacity: 0.65;
+            transform: translateY(-2px);
+          }
+
+          /* Label — sits below the number, small and precise */
+          .dl-toc-label {
+            font-family: "Jost", sans-serif;
+            font-weight: 300;
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--fg-muted);
+            transition: color 0.25s var(--ease);
+            padding-right: 0.1em; /* optical letter-spacing compensation */
+          }
+
+          .dl-toc-item:hover .dl-toc-label {
+            color: var(--fg);
+          }
+
+          /* Bottom rule */
+          .dl-toc-rule-bottom {
+            height: 1px;
+            background: var(--glass-border);
+          }
+        </style>
+
+        <nav class="dl-toc" aria-label="Document sections">
+          <div class="dl-toc-rule-top"></div>
+          <div class="dl-toc-header">
+            <span class="dl-toc-title">Contents</span>
+            <span class="dl-toc-meta">16 sections</span>
+          </div>
+          <div class="dl-toc-grid">
+            <a class="dl-toc-item" href="#dl-s01"
+              ><span class="dl-toc-num">01</span
+              ><span class="dl-toc-label">Core Concept</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s02"
+              ><span class="dl-toc-num">02</span
+              ><span class="dl-toc-label">Color System</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s03"
+              ><span class="dl-toc-num">03</span
+              ><span class="dl-toc-label">Typography</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s04"
+              ><span class="dl-toc-num">04</span
+              ><span class="dl-toc-label">Glassmorphism</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s04b"
+              ><span class="dl-toc-num">04b</span
+              ><span class="dl-toc-label">Browser Chrome</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s05"
+              ><span class="dl-toc-num">05</span
+              ><span class="dl-toc-label">Spacing</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s06"
+              ><span class="dl-toc-num">06</span
+              ><span class="dl-toc-label">Motion &amp; Animation</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s07"
+              ><span class="dl-toc-num">07</span
+              ><span class="dl-toc-label">Parallax System</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s08"
+              ><span class="dl-toc-num">08</span
+              ><span class="dl-toc-label">Navigation</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s09"
+              ><span class="dl-toc-num">09</span
+              ><span class="dl-toc-label">H Monogram</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s09b"
+              ><span class="dl-toc-num">09b</span
+              ><span class="dl-toc-label">Logo Variants</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s10"
+              ><span class="dl-toc-num">10</span
+              ><span class="dl-toc-label">Page Breakdown</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s11"
+              ><span class="dl-toc-num">11</span
+              ><span class="dl-toc-label">Buttons</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s12"
+              ><span class="dl-toc-num">12</span
+              ><span class="dl-toc-label">A11y &amp; Performance</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s13"
+              ><span class="dl-toc-num">13</span
+              ><span class="dl-toc-label">Files &amp; SEO</span></a
+            >
+            <a class="dl-toc-item" href="#dl-s14"
+              ><span class="dl-toc-num">14</span
+              ><span class="dl-toc-label">Hard Rules</span></a
+            >
+          </div>
+          <div class="dl-toc-rule-bottom"></div>
+        </nav>
+
+        <!-- ══════════════════════════════════════════════════════════════
              01 · CORE CONCEPT
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s01">
           <div class="dl-section-head">
             <span class="dl-section-num">01</span>
             <span class="dl-section-title">Core Concept &amp; Philosophy</span>
@@ -1307,7 +1598,7 @@
         <!-- ══════════════════════════════════════════════════════════════
              02 · COLOR SYSTEM
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s02">
           <div class="dl-section-head">
             <span class="dl-section-num">02</span>
             <span class="dl-section-title">Color System</span>
@@ -1322,7 +1613,10 @@
               <div class="dl-swatch-chip" style="background: #0e0d0b"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Charcoal</div>
-                <div class="dl-swatch-hex">#0E0D0B</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#0E0D0B</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--bg</div>
               </div>
             </div>
@@ -1330,7 +1624,10 @@
               <div class="dl-swatch-chip" style="background: #161410"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Deep Umber</div>
-                <div class="dl-swatch-hex">#161410</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#161410</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--bg-secondary</div>
               </div>
             </div>
@@ -1338,7 +1635,10 @@
               <div class="dl-swatch-chip" style="background: #f2efe8"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Sand White</div>
-                <div class="dl-swatch-hex">#F2EFE8</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#F2EFE8</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--fg</div>
               </div>
             </div>
@@ -1346,7 +1646,10 @@
               <div class="dl-swatch-chip" style="background: #9a9080"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Dust</div>
-                <div class="dl-swatch-hex">#9A9080</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#9A9080</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--fg-muted</div>
               </div>
             </div>
@@ -1354,7 +1657,10 @@
               <div class="dl-swatch-chip" style="background: #c9a84c"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Gold</div>
-                <div class="dl-swatch-hex">#C9A84C</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#C9A84C</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--accent</div>
               </div>
             </div>
@@ -1362,7 +1668,10 @@
               <div class="dl-swatch-chip" style="background: #ddb95a"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Bright Gold</div>
-                <div class="dl-swatch-hex">#DDB95A</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#DDB95A</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--accent-bright</div>
               </div>
             </div>
@@ -1382,7 +1691,10 @@
               ></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Parchment</div>
-                <div class="dl-swatch-hex">#F5F1E8</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#F5F1E8</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--bg</div>
               </div>
             </div>
@@ -1396,7 +1708,10 @@
               ></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Linen</div>
-                <div class="dl-swatch-hex">#EDE8DC</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#EDE8DC</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--bg-secondary</div>
               </div>
             </div>
@@ -1404,7 +1719,10 @@
               <div class="dl-swatch-chip" style="background: #1a1510"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Umber</div>
-                <div class="dl-swatch-hex">#1A1510</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#1A1510</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--fg</div>
               </div>
             </div>
@@ -1412,7 +1730,10 @@
               <div class="dl-swatch-chip" style="background: #6b5f4a"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Sienna</div>
-                <div class="dl-swatch-hex">#6B5F4A</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#6B5F4A</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--fg-muted</div>
               </div>
             </div>
@@ -1420,7 +1741,10 @@
               <div class="dl-swatch-chip" style="background: #b8922e"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Antique Gold</div>
-                <div class="dl-swatch-hex">#B8922E</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#B8922E</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--accent</div>
               </div>
             </div>
@@ -1428,7 +1752,10 @@
               <div class="dl-swatch-chip" style="background: #c9a84c"></div>
               <div class="dl-swatch-meta">
                 <div class="dl-swatch-name">Gold</div>
-                <div class="dl-swatch-hex">#C9A84C</div>
+                <div class="dl-swatch-hex-wrap">
+                  <div class="dl-swatch-hex">#C9A84C</div>
+                  <span class="dl-swatch-copied-label">Copied</span>
+                </div>
                 <div class="dl-swatch-token">--accent-bright</div>
               </div>
             </div>
@@ -1555,12 +1882,73 @@
               light/dark switch breaks.
             </div>
           </div>
+
+          <script>
+            /* ---------------------------------------------------------------
+               Color swatch copy-to-clipboard
+               Delegated listener on .dl-palette containers — reads the hex
+               value from .dl-swatch-hex, copies it, then plays the shimmer
+               + "Copied" feedback for 1.6s before resetting.
+               --------------------------------------------------------------- */
+            (function () {
+              try {
+                document
+                  .querySelectorAll(".dl-palette")
+                  .forEach(function (palette) {
+                    palette.addEventListener("click", function (e) {
+                      var swatch = e.target.closest(".dl-swatch");
+                      if (!swatch) return;
+
+                      /* Read hex from the text content of .dl-swatch-hex */
+                      var hexEl = swatch.querySelector(".dl-swatch-hex");
+                      if (!hexEl) return;
+                      var hex = hexEl.textContent.trim();
+
+                      /* Copy to clipboard */
+                      if (
+                        navigator.clipboard &&
+                        navigator.clipboard.writeText
+                      ) {
+                        navigator.clipboard
+                          .writeText(hex)
+                          .catch(function () {});
+                      } else {
+                        /* Fallback for older browsers */
+                        try {
+                          var ta = document.createElement("textarea");
+                          ta.value = hex;
+                          ta.style.cssText =
+                            "position:fixed;opacity:0;pointer-events:none;";
+                          document.body.appendChild(ta);
+                          ta.select();
+                          document.execCommand("copy");
+                          document.body.removeChild(ta);
+                        } catch (err) {
+                          /* silent fail */
+                        }
+                      }
+
+                      /* Trigger shimmer + "Copied" label */
+                      swatch.classList.add("dl-swatch--copied");
+
+                      /* Reset after 1.6s */
+                      clearTimeout(swatch._copyTimer);
+                      swatch._copyTimer = setTimeout(function () {
+                        swatch.classList.remove("dl-swatch--copied");
+                      }, 1600);
+                    });
+                  });
+              } catch (err) {
+                console.error("[dl-swatch-copy]", err);
+              }
+            })();
+          </script>
         </section>
 
         <!-- ══════════════════════════════════════════════════════════════
              03 · TYPOGRAPHY
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s03">
           <div class="dl-section-head">
             <span class="dl-section-num">03</span>
             <span class="dl-section-title">Typography System</span>
@@ -1597,7 +1985,7 @@
                 color: var(--fg);
               "
             >
-              Charbel<br /><em
+              Developer.<br /><em
                 style="
                   font-style: italic;
                   font-weight: 400;
@@ -1606,7 +1994,7 @@
                   font-size: 1.08em;
                   margin-left: -0.03em;
                 "
-                >Habchy.</em
+                >Explorer.</em
               >
             </div>
             <div class="dl-type-meta">
@@ -1619,6 +2007,7 @@
                 letter-spacing: −0.03em<br />
                 color: var(--fg) (adapts to mode)<br />
                 em: italic 400, 1.08em, var(--accent)<br />
+                Current text: "Developer. / Explorer."<br />
                 Mobile: clamp(3rem, 12vw, 4.5rem)
               </div>
             </div>
@@ -1696,7 +2085,26 @@
 
           <!-- Back link -->
           <div class="dl-type-block">
-            <div class="s-back-link">Back to home</div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 1.75rem 2rem;
+                background: var(--glass-bg);
+                border-radius: 10px;
+                border: 1px solid var(--glass-border);
+              "
+            >
+              <a
+                href="#"
+                class="back-link"
+                onclick="return false;"
+                tabindex="-1"
+                aria-hidden="true"
+                >Back to home</a
+              >
+            </div>
             <div class="dl-type-meta">
               <div class="dl-type-meta-label">Footer / Back Link</div>
               <div class="dl-type-meta-specs">
@@ -1763,7 +2171,7 @@
         <!-- ══════════════════════════════════════════════════════════════
              04 · GLASSMORPHISM
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s04">
           <div class="dl-section-head">
             <span class="dl-section-num">04</span>
             <span class="dl-section-title"
@@ -1878,7 +2286,63 @@
             </div>
           </div>
 
-          <div class="dl-warn">
+          <!-- ── Live demo ─────────────────────────────────────────────── -->
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 1rem;
+              margin-top: 1.5rem;
+            "
+          >
+            <!-- Standard glass card — resting state -->
+            <div class="glass-card" style="cursor: default">
+              <span class="card-label">Bio</span>
+              <p
+                style="
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-weight: 300;
+                  font-size: 0.82rem;
+                  color: var(--fg-muted);
+                  line-height: 1.75;
+                "
+              >
+                Born in Beirut, raised in Boston. Building fast, modern
+                experiences from the ground up.
+              </p>
+            </div>
+
+            <!-- Glass card — skills pill variant -->
+            <div class="glass-card" style="cursor: default">
+              <span class="card-label">Skills</span>
+              <div
+                class="pill-grid reveal-stagger visible"
+                style="margin-top: 0.25rem"
+              >
+                <span class="pill">JavaScript</span>
+                <span class="pill">React</span>
+                <span class="pill">Python</span>
+                <span class="pill">CSS</span>
+                <span class="pill">Node.js</span>
+              </div>
+            </div>
+          </div>
+          <p
+            style="
+              font-family: &quot;Jost&quot;, sans-serif;
+              font-size: 0.55rem;
+              letter-spacing: 0.18em;
+              text-transform: uppercase;
+              color: var(--fg-muted);
+              opacity: 0.45;
+              text-align: center;
+              margin-top: 0.75rem;
+            "
+          >
+            Hover the cards to see lift + gold border glow
+          </p>
+
+          <div class="dl-warn" style="margin-top: 1.5rem">
             <strong>Safari gotcha:</strong>
             <code>backdrop-filter</code> requires the element to have a non-100%
             opaque background. If you set
@@ -1888,9 +2352,391 @@
         </section>
 
         <!-- ══════════════════════════════════════════════════════════════
+             04b · BROWSER CHROME POLISH
+             Custom scrollbar, text selection, social icon tooltips.
+             These are part of the design language — they extend the gold
+             accent system into browser-native UI surfaces.
+             ══════════════════════════════════════════════════════════════ -->
+        <section class="dl-section" id="dl-s04b">
+          <div class="dl-section-head">
+            <span class="dl-section-num">04b</span>
+            <span class="dl-section-title">Browser Chrome Polish</span>
+            <div class="dl-section-rule"></div>
+          </div>
+
+          <!-- Custom Scrollbar -->
+          <div class="dl-box">
+            <div class="dl-box-label">
+              Custom Scrollbar — gold thumb on transparent track
+            </div>
+            <div class="dl-kv">
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Width / height</span
+                ><span class="dl-kv-val"
+                  ><code>6px × 6px</code> — thin, unobtrusive. Webkit only
+                  (<code>::-webkit-scrollbar</code>). Firefox uses
+                  <code>scrollbar-width: thin</code>.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Track</span
+                ><span class="dl-kv-val"
+                  ><code>background: transparent</code> — the track is
+                  invisible. Only the thumb is visible.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Thumb (dark)</span
+                ><span class="dl-kv-val"
+                  ><code>rgba(201, 168, 76, 0.35)</code> resting →
+                  <code>rgba(221, 185, 90, 0.65)</code> hover →
+                  <code>rgba(232, 201, 106, 0.8)</code> active.
+                  <code>border-radius: 100px</code>.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Thumb (light)</span
+                ><span class="dl-kv-val"
+                  ><code>rgba(184, 146, 46, 0.30)</code> resting →
+                  <code>rgba(184, 146, 46, 0.55)</code> hover →
+                  <code>rgba(184, 146, 46, 0.75)</code> active. Slightly darker
+                  base to stay visible on parchment.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Firefox</span
+                ><span class="dl-kv-val"
+                  ><code
+                    >scrollbar-width: thin; scrollbar-color: rgba(201, 168, 76,
+                    0.35) transparent</code
+                  >
+                  on <code>*</code>. Light mode override:
+                  <code>rgba(184, 146, 46, 0.3) transparent</code>.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Corner</span
+                ><span class="dl-kv-val"
+                  ><code
+                    >::-webkit-scrollbar-corner { background: transparent
+                    }</code
+                  >
+                  — hides the dead corner where horizontal and vertical
+                  scrollbars meet.</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Scrollbar live demo -->
+          <div
+            style="
+              height: 120px;
+              overflow-y: scroll;
+              margin-top: 0.75rem;
+              background: var(--glass-bg);
+              border: 1px solid var(--glass-border);
+              border-radius: 10px;
+              padding: 1.25rem 1.5rem;
+              backdrop-filter: blur(12px);
+              -webkit-backdrop-filter: blur(12px);
+            "
+            aria-label="Scrollbar demo — scroll to see the gold thumb"
+          >
+            <p
+              style="
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-size: 0.55rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--accent);
+                opacity: 0.7;
+                margin-bottom: 0.75rem;
+              "
+            >
+              Scroll to see the gold thumb
+            </p>
+            <p
+              style="
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-weight: 300;
+                font-size: 0.78rem;
+                color: var(--fg-muted);
+                line-height: 1.8;
+                margin-bottom: 0.75rem;
+              "
+            >
+              The scrollbar thumb is gold at 35% opacity at rest, brightening to
+              65% on hover and 80% on active. The track is fully transparent —
+              only the thumb is visible.
+            </p>
+            <p
+              style="
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-weight: 300;
+                font-size: 0.78rem;
+                color: var(--fg-muted);
+                line-height: 1.8;
+                margin-bottom: 0.75rem;
+              "
+            >
+              In light mode the base shifts to
+              <code>rgba(184,146,46,0.30)</code> — slightly darker to stay
+              visible against the warm parchment background.
+            </p>
+            <p
+              style="
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-weight: 300;
+                font-size: 0.78rem;
+                color: var(--fg-muted);
+                line-height: 1.8;
+              "
+            >
+              Firefox uses <code>scrollbar-width: thin</code> and
+              <code>scrollbar-color</code> — the same gold values, no custom
+              thumb shape available.
+            </p>
+          </div>
+
+          <!-- Text Selection -->
+          <div class="dl-box" style="margin-top: 0.75rem">
+            <div class="dl-box-label">
+              Text Selection — <code>::selection</code>
+            </div>
+            <div class="dl-kv">
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Dark mode</span
+                ><span class="dl-kv-val"
+                  >background: <code>rgba(201, 168, 76, 0.22)</code> — faint
+                  gold wash. color: <code>#E8C96A</code> — bright gold text.
+                  text-shadow: dual gold glow (<code
+                    >0 0 12px rgba(232,201,106,0.55), 0 0 28px
+                    rgba(201,168,76,0.2)</code
+                  >). Feels like light catching gilded lettering.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Light mode</span
+                ><span class="dl-kv-val"
+                  >background: <code>rgba(26, 21, 16, 0.85)</code> — deep umber
+                  wash. color: <code>#E8C96A</code> — same bright gold.
+                  text-shadow: slightly softer glow (<code
+                    >0 0 10px rgba(232,201,106,0.5), 0 0 24px
+                    rgba(201,168,76,0.18)</code
+                  >). Like ink on parchment catching candlelight.</span
+                >
+              </div>
+            </div>
+            <div class="dl-warn" style="margin-top: 1rem">
+              <strong>Note:</strong> <code>text-shadow</code> inside
+              <code>::selection</code> is not supported in Firefox — it is
+              silently ignored. The color + background still apply correctly in
+              all browsers.
+            </div>
+          </div>
+
+          <!-- Social Icon Tooltips -->
+          <div class="dl-box" style="margin-top: 0.75rem">
+            <div class="dl-box-label">
+              Social Icon Tooltips — pure CSS, glassmorphism
+            </div>
+            <!-- Live demo — hover each icon to see the tooltip -->
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                padding: 2.5rem 1rem 1.5rem;
+                background: var(--glass-bg);
+                border-radius: 10px;
+                border: 1px solid var(--glass-border);
+                margin-bottom: 1.25rem;
+              "
+            >
+              <!-- Reuse .social-icons so the existing tooltip CSS fires for free -->
+              <ul
+                class="social-icons"
+                role="list"
+                style="justify-content: center"
+              >
+                <li role="listitem">
+                  <a
+                    href="#"
+                    aria-label="GitHub"
+                    data-tooltip="GitHub"
+                    onclick="return false;"
+                    tabindex="-1"
+                  >
+                    <i
+                      class="fab"
+                      style="--fa: &quot;\f09b&quot;"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li role="listitem">
+                  <a
+                    href="#"
+                    aria-label="LinkedIn"
+                    data-tooltip="LinkedIn"
+                    onclick="return false;"
+                    tabindex="-1"
+                  >
+                    <i
+                      class="fab"
+                      style="--fa: &quot;\f08c&quot;"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li role="listitem">
+                  <a
+                    href="#"
+                    aria-label="Instagram"
+                    data-tooltip="Instagram"
+                    onclick="return false;"
+                    tabindex="-1"
+                  >
+                    <i
+                      class="fab"
+                      style="--fa: &quot;\f16d&quot;"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+                <li role="listitem">
+                  <a
+                    href="#"
+                    aria-label="X / Twitter"
+                    data-tooltip="X / Twitter"
+                    onclick="return false;"
+                    tabindex="-1"
+                  >
+                    <i
+                      class="fab"
+                      style="--fa: &quot;\e61b&quot;"
+                      aria-hidden="true"
+                    ></i>
+                  </a>
+                </li>
+              </ul>
+              <p
+                style="
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-size: 0.55rem;
+                  letter-spacing: 0.18em;
+                  text-transform: uppercase;
+                  color: var(--fg-muted);
+                  opacity: 0.5;
+                "
+              >
+                Hover to preview
+              </p>
+            </div>
+
+            <p
+              style="
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-size: 0.78rem;
+                color: var(--fg-muted);
+                line-height: 1.75;
+                font-weight: 300;
+                margin-bottom: 1rem;
+              "
+            >
+              Tooltips are driven entirely by CSS — no JavaScript. The label
+              text comes from a <code>data-tooltip</code> attribute on each
+              <code>&lt;a&gt;</code> via
+              <code>content: attr(data-tooltip)</code>. The tooltip is a
+              <code>::before</code> pseudo-element; there is no arrow (<code
+                >::after</code
+              >
+              is <code>display: none</code>).
+            </p>
+            <div class="dl-kv">
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Trigger</span
+                ><span class="dl-kv-val"
+                  ><code>data-tooltip="Label"</code> attribute on
+                  <code>.social-icons a</code>. The <code>&lt;a&gt;</code> must
+                  have <code>position: relative</code> as the anchor.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Position</span
+                ><span class="dl-kv-val"
+                  ><code>bottom: calc(100% + 8px); left: 50%</code>.
+                  Horizontally centered via
+                  <code>transform: translateX(-50%) translateY(4px)</code>
+                  (resting) → <code>translateY(0)</code> on hover.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Surface</span
+                ><span class="dl-kv-val"
+                  >Glass: <code>var(--glass-bg)</code>,
+                  <code>backdrop-filter: blur(24px)</code>,
+                  <code>1px solid var(--glass-border)</code>,
+                  <code>var(--glass-shadow)</code> + inner highlight + faint
+                  gold ring <code>0 0 0 1px rgba(201,168,76,0.06)</code>.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Typography</span
+                ><span class="dl-kv-val"
+                  >Jost 300, 0.58rem, letter-spacing 0.22em, uppercase. color:
+                  <code>var(--accent-bright)</code>. Padding:
+                  <code>0.35rem 0.75rem 0.35rem calc(0.75rem + 0.22em)</code>
+                  — extra left padding compensates for letter-spacing trailing
+                  gap to keep text optically centered.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Animation</span
+                ><span class="dl-kv-val"
+                  >opacity 0→1 + translateY(4px→0) on hover. Duration:
+                  <code>0.2s var(--ease)</code> /
+                  <code>0.2s var(--ease-out)</code>.
+                  <code>pointer-events: none</code> always — never blocks
+                  clicks.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Touch devices</span
+                ><span class="dl-kv-val"
+                  ><code>@media (hover: none)</code> sets both pseudo-elements
+                  to <code>display: none</code>. Tooltips never appear on mobile
+                  — no hover state exists.</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="dl-dodont" style="margin-top: 1.5rem">
+            <div class="dl-do">
+              <div class="dl-do-label">Do</div>
+              Keep the scrollbar thumb using the gold accent tokens. If you add
+              a new scrollable container, the global <code>*</code>
+              Firefox rule already covers it. For Webkit, the
+              <code>::-webkit-scrollbar</code> rules on <code>:root</code>
+              cover everything.
+            </div>
+            <div class="dl-dont">
+              <div class="dl-dont-label">Don't</div>
+              Don't add a tooltip arrow (<code>::after</code> triangle) — the
+              current design intentionally omits it for a cleaner float. Don't
+              use JS tooltip libraries; the pure-CSS approach is zero-overhead
+              and already handles all edge cases.
+            </div>
+          </div>
+        </section>
+
+        <!-- ══════════════════════════════════════════════════════════════
              05 · SPACING
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s05">
           <div class="dl-section-head">
             <span class="dl-section-num">05</span>
             <span class="dl-section-title">Spacing Scale</span>
@@ -1987,7 +2833,7 @@
         <!-- ══════════════════════════════════════════════════════════════
              06 · MOTION & ANIMATION
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s06">
           <div class="dl-section-head">
             <span class="dl-section-num">06</span>
             <span class="dl-section-title">Motion &amp; Animation</span>
@@ -2112,7 +2958,7 @@
                   <td>2.2s / delay 1.2s</td>
                   <td>
                     opacity 0→0.12, translateY(calc(-50%+18px)→-50%). Defined
-                    once but ends at opacity 0.12, not 1.
+                    once but ends at opacity 0.12, not 1. (Mobile hero only.)
                   </td>
                 </tr>
                 <tr>
@@ -2120,7 +2966,7 @@
                   <td>.about-header-mark (mobile)</td>
                   <td>2s / delay 0.6s</td>
                   <td>
-                    opacity 0→0.08, translateY(10px→0). Arrives quietly after
+                    opacity 0→0.05, translateY(10px→0). Arrives quietly after
                     heading text.
                   </td>
                 </tr>
@@ -2155,6 +3001,27 @@
                     Pill children stagger at 0.04s increments up to child 12.
                   </td>
                 </tr>
+                <tr>
+                  <td>scrollDrop</td>
+                  <td>.scroll-line</td>
+                  <td>2.4s / delay 1.8s, infinite</td>
+                  <td>
+                    Scroll hint line on index.html — scaleY 0→1 (top origin)
+                    then 0→1 (bottom origin) with opacity fade. Currently
+                    <code>display: none</code> — exists but is intentionally
+                    hidden. Do not remove the CSS or HTML.
+                  </td>
+                </tr>
+                <tr>
+                  <td>hintFade</td>
+                  <td>.hero-scroll-hint</td>
+                  <td>—</td>
+                  <td>
+                    Fade-in for the scroll hint container. Currently unused
+                    (<code>display: none</code> on the element). Paired with
+                    <code>scrollDrop</code>.
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -2171,12 +3038,261 @@
               at the bottom of style.css.</strong
             >
           </div>
+
+          <!-- ── Scroll reveal demo ─────────────────────────────────────── -->
+          <style>
+            /*
+             * Scoped reveal classes for the demo — mirror the real .reveal /
+             * .reveal-stagger rules from style.css exactly, but prefixed so
+             * they only affect elements inside #dl-reveal-demo. This avoids
+             * the real IntersectionObserver in parallax.js interfering.
+             */
+            #dl-reveal-demo .dl-rv {
+              opacity: 0;
+              transform: translateY(32px);
+              transition:
+                opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            #dl-reveal-demo .dl-rv.in {
+              opacity: 1;
+              transform: translateY(0);
+            }
+
+            /* Stagger wrapper — children start hidden */
+            #dl-reveal-demo .dl-rv-stagger > * {
+              opacity: 0;
+              transform: translateY(20px);
+              transition:
+                opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            #dl-reveal-demo .dl-rv-stagger.in > *:nth-child(1) {
+              opacity: 1;
+              transform: none;
+              transition-delay: 0.04s;
+            }
+            #dl-reveal-demo .dl-rv-stagger.in > *:nth-child(2) {
+              opacity: 1;
+              transform: none;
+              transition-delay: 0.08s;
+            }
+            #dl-reveal-demo .dl-rv-stagger.in > *:nth-child(3) {
+              opacity: 1;
+              transform: none;
+              transition-delay: 0.12s;
+            }
+            #dl-reveal-demo .dl-rv-stagger.in > *:nth-child(4) {
+              opacity: 1;
+              transform: none;
+              transition-delay: 0.16s;
+            }
+            #dl-reveal-demo .dl-rv-stagger.in > *:nth-child(5) {
+              opacity: 1;
+              transform: none;
+              transition-delay: 0.2s;
+            }
+            #dl-reveal-demo .dl-rv-stagger.in > *:nth-child(6) {
+              opacity: 1;
+              transform: none;
+              transition-delay: 0.24s;
+            }
+
+            /* Card stagger — 3 cards at 0 / 0.12s / 0.24s */
+            #dl-reveal-demo .dl-rv-card-1 {
+              transition-delay: 0s;
+            }
+            #dl-reveal-demo .dl-rv-card-2 {
+              transition-delay: 0.12s;
+            }
+            #dl-reveal-demo .dl-rv-card-3 {
+              transition-delay: 0.24s;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              #dl-reveal-demo .dl-rv,
+              #dl-reveal-demo .dl-rv-stagger > * {
+                transition: none;
+                opacity: 1;
+                transform: none;
+              }
+            }
+          </style>
+
+          <div id="dl-reveal-demo" style="margin-top: 1.5rem">
+            <button
+              class="btn btn-secondary"
+              style="margin-bottom: 1.25rem; font-size: 0.58rem"
+              onclick="dlRevealReplay()"
+            >
+              Replay animation
+            </button>
+
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <!-- Row 1: .reveal — single element fade-up -->
+              <div
+                class="dl-rv dl-rv-card-1 in"
+                style="
+                  background: var(--glass-bg);
+                  border: 1px solid var(--glass-border);
+                  border-radius: 12px;
+                  padding: 1.25rem 1.5rem;
+                  backdrop-filter: blur(16px);
+                  -webkit-backdrop-filter: blur(16px);
+                  box-shadow:
+                    var(--glass-shadow),
+                    inset 0 1px 0 var(--glass-hi);
+                "
+              >
+                <p
+                  style="
+                    font-family: &quot;Jost&quot;, sans-serif;
+                    font-size: 0.58rem;
+                    letter-spacing: 0.18em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    margin-bottom: 0.4rem;
+                  "
+                >
+                  .reveal — card 1 · delay 0s
+                </p>
+                <p
+                  style="
+                    font-family: &quot;Jost&quot;, sans-serif;
+                    font-weight: 300;
+                    font-size: 0.78rem;
+                    color: var(--fg-muted);
+                    line-height: 1.6;
+                  "
+                >
+                  Fades up from <code>translateY(32px)</code>. Duration:
+                  <code>0.8s var(--ease-out)</code>.
+                </p>
+              </div>
+
+              <!-- Row 2: .reveal card 2 — delayed 0.12s -->
+              <div
+                class="dl-rv dl-rv-card-2 in"
+                style="
+                  background: var(--glass-bg);
+                  border: 1px solid var(--glass-border);
+                  border-radius: 12px;
+                  padding: 1.25rem 1.5rem;
+                  backdrop-filter: blur(16px);
+                  -webkit-backdrop-filter: blur(16px);
+                  box-shadow:
+                    var(--glass-shadow),
+                    inset 0 1px 0 var(--glass-hi);
+                "
+              >
+                <p
+                  style="
+                    font-family: &quot;Jost&quot;, sans-serif;
+                    font-size: 0.58rem;
+                    letter-spacing: 0.18em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    margin-bottom: 0.4rem;
+                  "
+                >
+                  .reveal — card 2 · delay 0.12s
+                </p>
+                <p
+                  style="
+                    font-family: &quot;Jost&quot;, sans-serif;
+                    font-weight: 300;
+                    font-size: 0.78rem;
+                    color: var(--fg-muted);
+                    line-height: 1.6;
+                  "
+                >
+                  Same animation, staggered. The 3 about-page cards arrive at
+                  0s, 0.12s, 0.24s.
+                </p>
+              </div>
+
+              <!-- Row 3: .reveal-stagger — direct children cascade -->
+              <div
+                class="dl-rv-stagger dl-rv-card-3 in"
+                style="
+                  background: var(--glass-bg);
+                  border: 1px solid var(--glass-border);
+                  border-radius: 12px;
+                  padding: 1.25rem 1.5rem;
+                  backdrop-filter: blur(16px);
+                  -webkit-backdrop-filter: blur(16px);
+                  box-shadow:
+                    var(--glass-shadow),
+                    inset 0 1px 0 var(--glass-hi);
+                "
+              >
+                <p
+                  style="
+                    font-family: &quot;Jost&quot;, sans-serif;
+                    font-size: 0.58rem;
+                    letter-spacing: 0.18em;
+                    text-transform: uppercase;
+                    color: var(--accent);
+                    margin-bottom: 0.75rem;
+                  "
+                >
+                  .reveal-stagger — card 3 · delay 0.24s · children cascade at
+                  0.04s
+                </p>
+                <!-- Direct children — no wrapper div — so > * selector hits them -->
+                <span class="pill">JavaScript</span>
+                <span class="pill" style="margin-left: 0.55rem"
+                  >TypeScript</span
+                >
+                <span class="pill" style="margin-left: 0.55rem">React</span>
+                <span class="pill" style="margin-left: 0.55rem">Python</span>
+                <span class="pill" style="margin-left: 0.55rem">Node.js</span>
+                <span class="pill" style="margin-left: 0.55rem">CSS</span>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            /* ---------------------------------------------------------------
+               Scroll reveal replay — double rAF guarantees the browser
+               commits the class-removal paint before re-adding .in,
+               so the transition fires cleanly every time.
+               --------------------------------------------------------------- */
+            function dlRevealReplay() {
+              try {
+                var rvEls = document.querySelectorAll("#dl-reveal-demo .dl-rv");
+                var staggerEls = document.querySelectorAll(
+                  "#dl-reveal-demo .dl-rv-stagger",
+                );
+                var all = Array.prototype.slice
+                  .call(rvEls)
+                  .concat(Array.prototype.slice.call(staggerEls));
+
+                /* Step 1: strip .in from everything — elements snap to hidden */
+                all.forEach(function (el) {
+                  el.classList.remove("in");
+                });
+
+                /* Step 2: double rAF — first frame commits the removal,
+                   second frame is the earliest we can re-add .in */
+                requestAnimationFrame(function () {
+                  requestAnimationFrame(function () {
+                    all.forEach(function (el) {
+                      el.classList.add("in");
+                    });
+                  });
+                });
+              } catch (err) {
+                console.error("[dl-reveal-replay]", err);
+              }
+            }
+          </script>
         </section>
 
         <!-- ══════════════════════════════════════════════════════════════
              07 · PARALLAX SYSTEM
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s07">
           <div class="dl-section-head">
             <span class="dl-section-num">07</span>
             <span class="dl-section-title"
@@ -2405,12 +3521,210 @@
               </div>
             </div>
           </div>
+
+          <!-- ── Parallax demo ──────────────────────────────────────────── -->
+          <div
+            id="dl-parallax-demo"
+            style="
+              position: relative;
+              height: 260px;
+              border-radius: 14px;
+              border: 1px solid var(--glass-border);
+              overflow: hidden;
+              cursor: crosshair;
+              margin-top: 1.5rem;
+              background: #0e0d0b;
+            "
+            aria-label="Interactive parallax demo — move your cursor"
+          >
+            <!-- Background layer — Baalbek panorama -->
+            <img
+              id="dl-para-bg"
+              src="assets/images/Baalbek-Panorama.jpeg"
+              alt=""
+              style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 115%;
+                height: 115%;
+                object-fit: cover;
+                object-position: center 30%;
+                transform: translate(-50%, -50%);
+                will-change: transform;
+                filter: saturate(0.82) brightness(0.76) contrast(1.06);
+                pointer-events: none;
+                user-select: none;
+              "
+            />
+            <!-- Vignette — left-side text readability -->
+            <div
+              style="
+                position: absolute;
+                inset: 0;
+                background:
+                  linear-gradient(
+                    105deg,
+                    rgba(8, 7, 5, 0.82) 0%,
+                    rgba(8, 7, 5, 0.45) 35%,
+                    rgba(8, 7, 5, 0.05) 70%,
+                    transparent 100%
+                  ),
+                  linear-gradient(
+                    to top,
+                    rgba(8, 7, 5, 0.55) 0%,
+                    transparent 45%
+                  );
+                pointer-events: none;
+                z-index: 1;
+              "
+            ></div>
+            <!-- Foreground layer — H monogram in gold, always legible over the dark panorama -->
+            <svg
+              id="dl-para-fg"
+              viewBox="0 0 3971.7893 4497.9053"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+              style="
+                position: absolute;
+                right: 6%;
+                top: 50%;
+                transform: translateY(-50%);
+                width: clamp(120px, 28%, 200px);
+                height: auto;
+                display: block;
+                will-change: transform;
+                pointer-events: none;
+                user-select: none;
+                z-index: 2;
+                filter: drop-shadow(-8px 0 32px rgba(201, 168, 76, 0.35))
+                  drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55));
+              "
+            >
+              <g transform="translate(-2132.5701,-1799.2671)">
+                <path
+                  style="fill: #c9a84c"
+                  d="m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z"
+                />
+              </g>
+            </svg>
+            <!-- Label overlay -->
+            <div
+              style="
+                position: absolute;
+                bottom: 1rem;
+                left: 1.25rem;
+                z-index: 3;
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-size: 0.55rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: rgba(242, 239, 232, 0.45);
+              "
+            >
+              Move cursor to feel depth
+            </div>
+          </div>
+
+          <script>
+            /* ---------------------------------------------------------------
+               Design-language page — inline parallax demo
+               Scoped entirely to #dl-parallax-demo. Uses the same BG_STRENGTH
+               / FG_STRENGTH / LERP constants as parallax.js so the demo is
+               a faithful representation of the real effect.
+               --------------------------------------------------------------- */
+            (function () {
+              try {
+                var demo = document.getElementById("dl-parallax-demo");
+                var bg = document.getElementById("dl-para-bg");
+                var fg = document.getElementById("dl-para-fg");
+                if (!demo || !bg || !fg) return;
+
+                /* Skip on reduced-motion or touch */
+                if (
+                  window.matchMedia &&
+                  window.matchMedia("(prefers-reduced-motion: reduce)").matches
+                )
+                  return;
+                if ("ontouchstart" in window) return;
+
+                var BG_STRENGTH = 0.022;
+                var FG_STRENGTH = 0.058;
+                var LERP = 0.07;
+
+                var bgX = 0,
+                  bgY = 0,
+                  fgX = 0,
+                  fgY = 0;
+                var bgTX = 0,
+                  bgTY = 0,
+                  fgTX = 0,
+                  fgTY = 0;
+                var rafId = null;
+
+                demo.addEventListener(
+                  "mousemove",
+                  function (e) {
+                    var r = demo.getBoundingClientRect();
+                    var cx = r.left + r.width / 2;
+                    var cy = r.top + r.height / 2;
+                    bgTX = (e.clientX - cx) * BG_STRENGTH;
+                    bgTY = (e.clientY - cy) * BG_STRENGTH;
+                    fgTX = (e.clientX - cx) * FG_STRENGTH;
+                    fgTY = (e.clientY - cy) * FG_STRENGTH;
+                    if (!rafId) rafId = requestAnimationFrame(tick);
+                  },
+                  { passive: true },
+                );
+
+                demo.addEventListener("mouseleave", function () {
+                  bgTX = bgTY = fgTX = fgTY = 0;
+                  if (!rafId) rafId = requestAnimationFrame(tick);
+                });
+
+                function tick() {
+                  rafId = null;
+                  bgX += (bgTX - bgX) * LERP;
+                  bgY += (bgTY - bgY) * LERP;
+                  fgX += (fgTX - fgX) * LERP;
+                  fgY += (fgTY - fgY) * LERP;
+
+                  bg.style.transform =
+                    "translate3d(calc(-50% + " +
+                    bgX.toFixed(2) +
+                    "px), " +
+                    "calc(-50% + " +
+                    bgY.toFixed(2) +
+                    "px), 0)";
+                  /* Preserve the CSS translateY(-50%) vertical centering
+                     and add the parallax delta on top of it. */
+                  fg.style.transform =
+                    "translate3d(" +
+                    fgX.toFixed(2) +
+                    "px, " +
+                    "calc(-50% + " +
+                    (fgY * 0.55).toFixed(2) +
+                    "px), 0)";
+
+                  var moving =
+                    Math.abs(bgTX - bgX) > 0.05 ||
+                    Math.abs(bgTY - bgY) > 0.05 ||
+                    Math.abs(fgTX - fgX) > 0.05 ||
+                    Math.abs(fgTY - fgY) > 0.05;
+                  if (moving) rafId = requestAnimationFrame(tick);
+                }
+              } catch (err) {
+                console.error("[dl-parallax-demo] init failed:", err);
+              }
+            })();
+          </script>
         </section>
 
         <!-- ══════════════════════════════════════════════════════════════
              08 · NAVIGATION
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s08">
           <div class="dl-section-head">
             <span class="dl-section-num">08</span>
             <span class="dl-section-title">Navigation — Floating Pill</span>
@@ -2564,12 +3878,127 @@
               this is effectively a desktop-only Easter egg link.
             </p>
           </div>
+
+          <!-- ── Live demo ─────────────────────────────────────────────── -->
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: 1.5rem;
+              padding: 2.5rem 1.5rem;
+              background: var(--glass-bg);
+              border: 1px solid var(--glass-border);
+              border-radius: 14px;
+              backdrop-filter: blur(24px);
+              -webkit-backdrop-filter: blur(24px);
+              box-shadow:
+                var(--glass-shadow),
+                inset 0 1px 0 var(--glass-hi);
+              margin-top: 1.5rem;
+            "
+          >
+            <!-- Replica nav pill — non-navigating, purely demonstrative -->
+            <nav
+              style="
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+                align-items: center;
+                padding: 0 2.5rem;
+                height: 50px;
+                border-radius: 100px;
+                background: var(--nav-bg);
+                border: 1px solid var(--nav-border);
+                box-shadow:
+                  0 4px 24px rgba(0, 0, 0, 0.12),
+                  0 1px 4px rgba(0, 0, 0, 0.08),
+                  inset 0 1px 0 var(--glass-hi);
+                backdrop-filter: blur(32px) saturate(1.8);
+                -webkit-backdrop-filter: blur(32px) saturate(1.8);
+                min-width: 320px;
+                white-space: nowrap;
+              "
+              aria-label="Nav demo (non-functional)"
+            >
+              <!-- Left cell with gold rule on right edge -->
+              <div
+                class="nav-link-left"
+                style="
+                  display: flex;
+                  justify-content: flex-end;
+                  padding-right: 2rem;
+                "
+              >
+                <a
+                  href="#"
+                  class="nav-link"
+                  onclick="return false;"
+                  tabindex="-1"
+                  >About</a
+                >
+              </div>
+              <!-- Logo center -->
+              <a
+                href="#"
+                class="nav-logo"
+                onclick="return false;"
+                tabindex="-1"
+                aria-label="Logo demo"
+              >
+                <img
+                  src="assets/images/habchy.svg"
+                  alt="H"
+                  class="logo-dark"
+                  width="22"
+                  height="25"
+                />
+                <img
+                  src="assets/images/habchy-white.svg"
+                  alt="H"
+                  class="logo-light"
+                  width="22"
+                  height="25"
+                />
+              </a>
+              <!-- Right cell with gold rule on left edge -->
+              <div
+                class="nav-link-right"
+                style="
+                  display: flex;
+                  justify-content: flex-start;
+                  padding-left: 2rem;
+                "
+              >
+                <a
+                  href="#"
+                  class="nav-link nav-link--active"
+                  onclick="return false;"
+                  tabindex="-1"
+                  >Résumé</a
+                >
+              </div>
+            </nav>
+
+            <p
+              style="
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-size: 0.55rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--fg-muted);
+                opacity: 0.45;
+              "
+            >
+              Hover links for dot indicator · Résumé shown with active state ·
+              Logo hover scales
+            </p>
+          </div>
         </section>
 
         <!-- ══════════════════════════════════════════════════════════════
              09 · H MONOGRAM — USAGE RULES
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s09">
           <div class="dl-section-head">
             <span class="dl-section-num">09</span>
             <span class="dl-section-title">H Monogram — Every Placement</span>
@@ -2634,10 +4063,10 @@
                   Inline SVG, class <code>.about-header-mark</code>. Absolutely
                   positioned within <code>.about-header</code>:
                   <code
-                    >top: -4vw; right: -18vw; width: 62vw; max-width:
+                    >top: -6vw; right: -10vw; width: 62vw; max-width:
                     280px</code
                   >. The negative right causes it to bleed half off-screen.
-                  Opacity animates <code>0→0.08</code> via
+                  Opacity animates <code>0→0.05</code> via
                   <code>aboutMarkFade</code> (2s delay 0.6s). Fill:
                   <code>var(--accent-bright)</code>.
                 </span>
@@ -2702,7 +4131,7 @@
         <!-- ══════════════════════════════════════════════════════════════
              09b · LOGO — VISUAL VARIANTS & FILE GUIDE
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s09b">
           <div class="dl-section-head">
             <span class="dl-section-num">09b</span>
             <span class="dl-section-title"
@@ -2992,7 +4421,7 @@
         <!-- ══════════════════════════════════════════════════════════════
              10 · PAGE-BY-PAGE BREAKDOWN
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s10">
           <div class="dl-section-head">
             <span class="dl-section-num">10</span>
             <span class="dl-section-title">Page-by-Page Breakdown</span>
@@ -3102,6 +4531,18 @@
                 >
               </div>
               <div class="dl-kv-row">
+                <span class="dl-kv-key">Scroll hint</span
+                ><span class="dl-kv-val"
+                  ><code>.hero-scroll-hint</code> — exists in the HTML
+                  (<code>aria-hidden="true"</code>) but is
+                  <code>display: none</code> in CSS. Contains a
+                  <code>.scroll-line</code> div animated by
+                  <code>scrollDrop</code> (2.4s infinite scaleY pulse) and a
+                  vertical text label. Do not remove — it may be re-enabled. See
+                  Section 06 animation inventory.</span
+                >
+              </div>
+              <div class="dl-kv-row">
                 <span class="dl-kv-key">Script</span
                 ><span class="dl-kv-val"
                   ><code>assets/js/parallax.js</code> deferred. Analytics
@@ -3156,11 +4597,45 @@
                 <span class="dl-kv-key">Drop cap</span
                 ><span class="dl-kv-val"
                   ><code>.bio-text p:first-child::first-letter</code>: Cormorant
-                  Garamond 600, 3.2em, float left. A
-                  <code>::after</code> clearfix pseudo-element on the same
-                  paragraph prevents following paragraphs from wrapping under
-                  the float.</span
+                  Garamond 600, 3.2em, float left, color
+                  <code>var(--accent)</code>. A <code>::after</code> clearfix
+                  pseudo-element on the same paragraph prevents following
+                  paragraphs from wrapping under the float.</span
                 >
+              </div>
+
+              <!-- Drop cap live demo -->
+              <div
+                class="dl-kv-row"
+                style="border-bottom: none; padding-bottom: 0"
+              >
+                <span
+                  class="dl-kv-key"
+                  style="align-self: flex-start; padding-top: 0.1rem"
+                  >Live demo</span
+                >
+                <div
+                  class="bio-text"
+                  style="
+                    font-size: 0.82rem;
+                    line-height: 1.85;
+                    max-width: 480px;
+                    color: var(--fg-muted);
+                  "
+                >
+                  <p>
+                    Born in Beirut, raised in Boston since age three — I've
+                    spent my whole life between two worlds, and I think that's
+                    made me a better builder. The drop cap floats left and the
+                    clearfix <code>::after</code> on this paragraph prevents the
+                    next one from wrapping beneath it.
+                  </p>
+                  <p>
+                    This second paragraph starts cleanly on a new line — proof
+                    the clearfix is working. Without it, this text would wrap
+                    under the large floated initial letter.
+                  </p>
+                </div>
               </div>
               <div class="dl-kv-row">
                 <span class="dl-kv-key">Skills grid</span
@@ -3197,6 +4672,25 @@
                   driven at 0.32× speed.</span
                 >
               </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">.bio-text a links</span
+                ><span class="dl-kv-val"
+                  >color: <code>var(--accent)</code>. Underline via
+                  <code>border-bottom: 1px solid rgba(201,168,76,0.25)</code>
+                  — faint at rest, brightens to <code>var(--accent)</code> on
+                  hover. Transition: <code>0.2s var(--ease)</code>.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">.page / .page--padded</span
+                ><span class="dl-kv-val"
+                  ><code>.page</code>:
+                  <code>min-height: 100vh; overflow-x: hidden</code> — the root
+                  shell for every page. <code>.page--padded</code> adds
+                  <code>padding-top: 5rem</code> to clear the fixed nav on
+                  non-hero pages (about, design-language).</span
+                >
+              </div>
             </div>
           </div>
 
@@ -3209,11 +4703,13 @@
                 ><span class="dl-kv-val"
                   ><code>.not-found</code> is
                   <code
-                    >min-height: 100vh; display: flex; flex-direction: column;
+                    >height: 100vh; height: 100svh; max-height: 100vh;
+                    max-height: 100svh; display: flex; flex-direction: column;
                     align-items: center; justify-content: center; overflow:
-                    visible</code
-                  >. The marquee is <code>position: fixed; inset: 0</code> so it
-                  fills the screen independently.</span
+                    hidden</code
+                  >. Locked to exactly the viewport — no scroll. The marquee is
+                  <code>position: fixed; inset: 0</code> so it fills the screen
+                  independently.</span
                 >
               </div>
               <div class="dl-kv-row">
@@ -3247,6 +4743,16 @@
                 >
               </div>
               <div class="dl-kv-row">
+                <span class="dl-kv-key">body.no-scroll</span
+                ><span class="dl-kv-val"
+                  >Applied by 404.html directly on the
+                  <code>&lt;body&gt;</code> element:
+                  <code>class="no-scroll"</code>. CSS sets
+                  <code>overflow: hidden</code> — locks the page to exactly the
+                  viewport. Prevents any scroll on the 404 page.</span
+                >
+              </div>
+              <div class="dl-kv-row">
                 <span class="dl-kv-key">noindex</span
                 ><span class="dl-kv-val"
                   ><code
@@ -3258,20 +4764,322 @@
               </div>
             </div>
           </div>
+
+          <!-- ── Marquee demo ───────────────────────────────────────────── -->
+          <style>
+            /* Scoped keyframes for the design-language marquee demo only.
+               Named with -dl- prefix so they never collide with the real
+               404 page keyframes (nfMarqueeLeft / nfMarqueeRight). */
+            /* totalShift = (MARK_SIZE 42 + GAP 50) × MARKS_PER_ROW 20 = 1840px */
+            @keyframes dl-marquee-left {
+              from {
+                transform: translateX(0);
+              }
+              to {
+                transform: translateX(-1840px);
+              }
+            }
+            @keyframes dl-marquee-right {
+              from {
+                transform: translateX(-1840px);
+              }
+              to {
+                transform: translateX(0);
+              }
+            }
+
+            .dl-marquee-demo {
+              position: relative;
+              height: 250px;
+              border-radius: 14px;
+              border: 1px solid var(--glass-border);
+              overflow: hidden;
+              background: var(--bg);
+              margin-top: 1.5rem;
+            }
+            .dl-marquee-demo-bg {
+              position: absolute;
+              inset: 0;
+              overflow: hidden; /* clip marks to card bounds */
+              pointer-events: none;
+              user-select: none;
+            }
+            .dl-marquee-demo-row {
+              display: flex;
+              align-items: center;
+              /* Row height matches mark size so marks sit cleanly in their lane */
+              height: 50px; /* 250px ÷ 5 rows */
+              overflow: hidden; /* prevent marks bleeding into adjacent rows */
+            }
+            .dl-marquee-demo-track {
+              display: flex;
+              align-items: center;
+              flex-shrink: 0;
+              will-change: transform;
+            }
+            .dl-marquee-demo-track--left {
+              animation: dl-marquee-left 48s linear infinite;
+            }
+            .dl-marquee-demo-track--right {
+              animation: dl-marquee-right 52s linear infinite;
+            }
+            .dl-marquee-demo-wrap {
+              flex-shrink: 0;
+              /* 42px fits cleanly inside the 50px row with 4px breathing room top/bottom */
+              width: 42px;
+              height: 42px;
+              margin-right: 50px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .dl-marquee-demo-wrap svg {
+              width: 100%;
+              height: 100%;
+              display: block;
+            }
+            .dl-marquee-demo-wrap path {
+              fill: var(--accent);
+              opacity: 0.1;
+            }
+            .dl-marquee-demo-label {
+              position: absolute;
+              inset: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-family: "Jost", sans-serif;
+              font-size: 0.55rem;
+              letter-spacing: 0.18em;
+              text-transform: uppercase;
+              color: var(--fg-muted);
+              opacity: 0.45;
+              pointer-events: none;
+              z-index: 1;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .dl-marquee-demo-track {
+                animation: none;
+              }
+            }
+          </style>
+
+          <div class="dl-marquee-demo" aria-label="404 marquee background demo">
+            <div class="dl-marquee-demo-bg" id="dl-marquee-demo-bg"></div>
+            <div class="dl-marquee-demo-label">
+              404 marquee background — live preview
+            </div>
+          </div>
+
+          <script>
+            /* ---------------------------------------------------------------
+               Design-language page — inline marquee demo
+               Mirrors the exact structure 404.js builds.
+               MARK_SIZE 42px, GAP 50px, 20 marks per row × 2 (seamless loop)
+               totalShift = (42+50) × 20 = 1840px. Rows alternate left/right.
+               --------------------------------------------------------------- */
+            (function () {
+              try {
+                var container = document.getElementById("dl-marquee-demo-bg");
+                if (!container) return;
+
+                var ROWS = 5;
+                var MARKS_PER_ROW = 20;
+                var PATH =
+                  "m 2187.2791,6296.0601 c -34.9451,-7.4781 -58.7209,-45.3239 -53.1963,-80.1006 -1.7733,-477.7714 -0.9213,-955.5474 -1.5101,-1433.3208 -0.047,-619.7758 0.4961,-1239.5525 2.5086,-1859.3254 7.3192,-42.5973 44.4812,-74.699 84.8283,-85.8451 362.3519,-116.8098 725.9315,-229.7751 1089.3221,-343.2877 22.8993,-7.1677 48.6392,-12.0798 71.24,-1.1264 25.7638,11.2471 39.0597,39.4496 40.8995,66.2968 2.6499,30.1393 -0.037,60.4248 0.9525,90.6305 0.5928,114.5016 0.9678,229.003 0.4925,343.5058 -0.2909,199.1955 -0.7705,398.4012 1.841,597.5849 4.972,42.8007 57.5495,70.5399 96.04,51.9918 162.8956,-48.8365 324.6934,-101.2347 487.3062,-150.9932 264.8701,-82.4053 529.2774,-166.3217 794.1971,-248.5482 30.5177,-7.6213 63.2388,-22.3453 76.6864,-52.8537 11.331,-22.3054 8.3343,-47.8122 8.3034,-71.8651 2.3803,-303.0327 -1.878,-606.1026 3.6428,-909.1126 5.6192,-45.2403 45.3708,-80.0986 88.4266,-89.7478 71.1685,-20.8927 141.5139,-44.4691 212.493,-65.9898 265.1115,-82.8465 529.9394,-166.6161 795.2948,-248.6723 28.84,-7.9941 64.2035,-11.0924 88.0609,10.6172 18.3861,16.406 22.234,42.5704 21.0773,65.9422 1.3874,51.4523 -0.1432,102.9363 1.2736,154.3885 3.6746,1032.7084 9.4395,2065.4371 5.6717,3098.1466 -3.0119,42.5777 -38.0628,77.7779 -78.1823,88.6144 -41.2115,12.4487 -81.4813,27.811 -122.4417,41.0766 -303.6819,102.6246 -608.3402,202.3463 -912.2763,304.1993 -30.544,8.8946 -68.605,1.4234 -86.2744,-27.1227 -18.0848,-26.5453 -13.4038,-60.031 -14.1095,-90.2684 -3.9967,-417.4951 1.2282,-835.0279 -3.6054,-1252.5158 -0.6413,-16.993 1.2888,-35.7084 -9.8505,-50.0432 -15.7642,-22.8383 -47.331,-33.5332 -73.4762,-23.5613 -49.2133,11.3756 -95.6948,31.7628 -144.1794,45.626 -357.9138,119.488 -715.8267,238.9796 -1073.8536,358.1274 -37.2713,12.8999 -74.9503,24.8301 -111.6947,39.1252 -28.1254,13.3204 -51.2842,42.1589 -48.7664,74.5597 -5.2878,383.4801 1.4645,767.0279 -4.7649,1150.4974 -0.7249,24.7045 -0.4247,50.4251 -11.7077,73.128 -11.6674,26.6122 -34.4365,47.8777 -62.0114,57.2151 -38.4396,15.3202 -78.7373,25.2677 -117.5164,39.6635 -302.6575,102.4724 -607.2776,199.0642 -909.4869,302.8752 -29.8542,9.9477 -59.4573,20.7985 -89.4512,30.2318 -13.9455,2.6348 -28.1629,0.741 -42.203,0.2562 z";
+
+                function buildMark() {
+                  var svg = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "svg",
+                  );
+                  svg.setAttribute("viewBox", "0 0 3971.7893 4497.9053");
+                  var g = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "g",
+                  );
+                  g.setAttribute(
+                    "transform",
+                    "translate(-2132.5701,-1799.2671)",
+                  );
+                  var path = document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "path",
+                  );
+                  path.setAttribute("d", PATH);
+                  g.appendChild(path);
+                  svg.appendChild(g);
+                  return svg;
+                }
+
+                for (var r = 0; r < ROWS; r++) {
+                  var row = document.createElement("div");
+                  row.className = "dl-marquee-demo-row";
+                  var track = document.createElement("div");
+                  var goLeft = r % 2 === 0;
+                  track.className =
+                    "dl-marquee-demo-track " +
+                    (goLeft
+                      ? "dl-marquee-demo-track--left"
+                      : "dl-marquee-demo-track--right");
+                  /* Stagger start so rows don't pulse in sync */
+                  track.style.animationDelay = "-" + r * 3.5 + "s";
+
+                  for (var i = 0; i < MARKS_PER_ROW * 2; i++) {
+                    var wrap = document.createElement("div");
+                    wrap.className = "dl-marquee-demo-wrap";
+                    wrap.appendChild(buildMark());
+                    track.appendChild(wrap);
+                  }
+                  row.appendChild(track);
+                  container.appendChild(row);
+                }
+              } catch (err) {
+                console.error("[dl-marquee-demo] init failed:", err);
+              }
+            })();
+          </script>
         </section>
 
         <!-- ══════════════════════════════════════════════════════════════
              11 · BUTTONS
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s11">
           <div class="dl-section-head">
             <span class="dl-section-num">11</span>
             <span class="dl-section-title">Buttons</span>
             <div class="dl-section-rule"></div>
           </div>
 
+          <!-- ── Live demo ─────────────────────────────────────────────── -->
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 2rem;
+              padding: 3rem 2rem;
+              background: var(--glass-bg);
+              border: 1px solid var(--glass-border);
+              border-radius: 14px;
+              backdrop-filter: blur(24px);
+              -webkit-backdrop-filter: blur(24px);
+              box-shadow:
+                var(--glass-shadow),
+                inset 0 1px 0 var(--glass-hi);
+              margin-bottom: 1.5rem;
+            "
+          >
+            <!-- Primary row -->
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <p
+                style="
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-size: 0.55rem;
+                  letter-spacing: 0.2em;
+                  text-transform: uppercase;
+                  color: var(--accent);
+                  opacity: 0.7;
+                "
+              >
+                .btn-primary
+              </p>
+              <div
+                style="
+                  display: flex;
+                  gap: 0.75rem;
+                  flex-wrap: wrap;
+                  align-items: center;
+                "
+              >
+                <button class="btn btn-primary" onclick="return false;">
+                  View my work
+                </button>
+                <button class="btn btn-primary" onclick="return false;">
+                  Download résumé
+                </button>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div style="height: 1px; background: var(--glass-border)"></div>
+
+            <!-- Secondary row -->
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <p
+                style="
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-size: 0.55rem;
+                  letter-spacing: 0.2em;
+                  text-transform: uppercase;
+                  color: var(--accent);
+                  opacity: 0.7;
+                "
+              >
+                .btn-secondary
+              </p>
+              <div
+                style="
+                  display: flex;
+                  gap: 0.75rem;
+                  flex-wrap: wrap;
+                  align-items: center;
+                "
+              >
+                <button class="btn btn-secondary" onclick="return false;">
+                  Learn more
+                </button>
+                <button class="btn btn-secondary" onclick="return false;">
+                  Get in touch
+                </button>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div style="height: 1px; background: var(--glass-border)"></div>
+
+            <!-- Side by side — as used on the hero -->
+            <div style="display: flex; flex-direction: column; gap: 0.75rem">
+              <p
+                style="
+                  font-family: &quot;Jost&quot;, sans-serif;
+                  font-size: 0.55rem;
+                  letter-spacing: 0.2em;
+                  text-transform: uppercase;
+                  color: var(--accent);
+                  opacity: 0.7;
+                "
+              >
+                Paired — as used on the hero (.btn-group)
+              </p>
+              <div class="btn-group" style="animation: none">
+                <button class="btn btn-primary" onclick="return false;">
+                  View my work
+                </button>
+                <button class="btn btn-secondary" onclick="return false;">
+                  Download résumé
+                </button>
+              </div>
+            </div>
+
+            <p
+              style="
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-size: 0.55rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--fg-muted);
+                opacity: 0.45;
+                text-align: center;
+                margin-top: -0.5rem;
+              "
+            >
+              Hover to see shimmer sweep &amp; lift
+            </p>
+          </div>
+
+          <!-- ── Spec boxes ─────────────────────────────────────────────── -->
           <div class="dl-box">
-            <div class="dl-box-label">Base .btn</div>
+            <div class="dl-box-label">Base .btn — shared properties</div>
             <div class="dl-kv">
               <div class="dl-kv-row">
                 <span class="dl-kv-key">Typography</span
@@ -3285,22 +5093,29 @@
                 >
               </div>
               <div class="dl-kv-row">
-                <span class="dl-kv-key">Padding</span
+                <span class="dl-kv-key">Padding / radius</span
                 ><span class="dl-kv-val"
                   ><code>0.85rem 1.75rem</code>. border-radius:
-                  <code>2px</code> — intentionally almost square. This contrasts
-                  with the very rounded nav pill and cards. Sharpness =
-                  precision.</span
+                  <code>2px</code> — intentionally almost square. Contrasts with
+                  the rounded nav pill and cards. Sharpness = precision.</span
                 >
               </div>
               <div class="dl-kv-row">
-                <span class="dl-kv-key">Shimmer</span
+                <span class="dl-kv-key">Shimmer on hover</span
                 ><span class="dl-kv-val"
-                  ><code>::before</code> pseudo-element:
-                  <code>left: -100%</code> → <code>left: 160%</code> on hover. A
-                  60%-wide angled white gradient sweeps through. Transition:
-                  0.45s ease-out. Creates a luxurious light-across-surface
-                  effect.</span
+                  ><code>::before</code> pseudo-element sweeps
+                  <code>left: -100% → 160%</code>. A 60%-wide angled white
+                  gradient at 105deg. Transition:
+                  <code>0.45s var(--ease-out)</code>. Creates a
+                  light-across-surface effect.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Lift on hover</span
+                ><span class="dl-kv-val"
+                  ><code>transform: translateY(-3px)</code> via
+                  <code>0.22s var(--ease-spring)</code>. Slight overshoot makes
+                  it feel alive.</span
                 >
               </div>
             </div>
@@ -3337,8 +5152,9 @@
               <div class="dl-kv-row">
                 <span class="dl-kv-key">hover</span
                 ><span class="dl-kv-val"
-                  >Brighter gradient, <code>translateY(-3px)</code>, larger gold
-                  glow shadow.</span
+                  >Gradient brightens to
+                  <code>var(--accent-bright) → #E8C96A</code>. Shadow expands to
+                  <code>0 10px 32px rgba(201,168,76,0.38)</code>.</span
                 >
               </div>
             </div>
@@ -3352,7 +5168,8 @@
                 ><span class="dl-kv-val"
                   ><code>background: rgba(242,239,232,0.06)</code>, color:
                   <code>rgba(242,239,232,0.78)</code>, border:
-                  <code>rgba(242,239,232,0.18)</code>. Subtle glass look.</span
+                  <code>rgba(242,239,232,0.18)</code>. Subtle glass look.
+                  <code>backdrop-filter: blur(8px)</code>.</span
                 >
               </div>
               <div class="dl-kv-row">
@@ -3368,7 +5185,8 @@
                 <span class="dl-kv-key">hover (both)</span
                 ><span class="dl-kv-val"
                   >border → <code>var(--accent)</code>, color →
-                  <code>var(--accent)</code>, bg → gold dim,
+                  <code>var(--accent)</code>, bg →
+                  <code>var(--accent-dim)</code>,
                   <code>translateY(-3px)</code>.</span
                 >
               </div>
@@ -3386,7 +5204,7 @@
         <!-- ══════════════════════════════════════════════════════════════
              12 · ACCESSIBILITY & PERFORMANCE
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s12">
           <div class="dl-section-head">
             <span class="dl-section-num">12</span>
             <span class="dl-section-title"
@@ -3396,6 +5214,58 @@
           </div>
 
           <div class="dl-box">
+            <div class="dl-box-label">Skip link — <code>.skip-link</code></div>
+            <p
+              style="
+                font-family: &quot;Jost&quot;, sans-serif;
+                font-size: 0.78rem;
+                color: var(--fg-muted);
+                line-height: 1.75;
+                font-weight: 300;
+                margin-bottom: 1rem;
+              "
+            >
+              Visually hidden until focused via keyboard — satisfies WCAG 2.1 SC
+              2.4.1 (Bypass Blocks). Present on every page as the first
+              focusable element. Tab to it on any page to see it snap into view.
+            </p>
+            <div class="dl-kv">
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Resting state</span
+                ><span class="dl-kv-val"
+                  ><code>position: absolute; top: -100%</code> — off-screen
+                  above the viewport. Invisible to sighted users.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Focus state</span
+                ><span class="dl-kv-val"
+                  ><code>top: 0</code> — snaps to the top-left corner.
+                  <code>outline: 2px solid #0e0d0b</code>. Transition:
+                  <code>0.15s ease</code>.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">Appearance</span
+                ><span class="dl-kv-val"
+                  >background: <code>var(--accent-bright)</code>. color:
+                  <code>#0e0d0b</code> (charcoal — always dark regardless of
+                  mode for contrast). <code>border-radius: 0 0 4px 4px</code> —
+                  flat top, rounded bottom, drops from the top edge.</span
+                >
+              </div>
+              <div class="dl-kv-row">
+                <span class="dl-kv-key">z-index</span
+                ><span class="dl-kv-val"
+                  ><code>9999</code> — above everything including the nav (<code
+                    >z-index: 200</code
+                  >).</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="dl-box" style="margin-top: 0.75rem">
             <div class="dl-box-label">Accessibility checklist</div>
             <div class="dl-kv">
               <div class="dl-kv-row">
@@ -3504,7 +5374,7 @@
                 ><span class="dl-kv-val"
                   >GA script injected dynamically 2000ms after the
                   <code>load</code> event. Never in <code>&lt;head&gt;</code>,
-                  never blocking. ID: <code>G-ES91HT3C25</code>.</span
+                  never blocking. ID redacted from this document.</span
                 >
               </div>
               <div class="dl-kv-row">
@@ -3541,7 +5411,7 @@
         <!-- ══════════════════════════════════════════════════════════════
              13 · FILE STRUCTURE & SEO
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s13">
           <div class="dl-section-head">
             <span class="dl-section-num">13</span>
             <span class="dl-section-title">File Structure, SEO &amp; Meta</span>
@@ -3574,15 +5444,17 @@
               <div class="dl-kv-row">
                 <span class="dl-kv-key">design-language.html</span
                 ><span class="dl-kv-val"
-                  >This document. noindex, nofollow. Logo links home from
-                  here.</span
+                  >This document. Intentionally indexed (<code
+                    >index, follow</code
+                  >) — it is a legitimate SEO/GEO asset demonstrating design
+                  system thinking. Logo links home from here.</span
                 >
               </div>
               <div class="dl-kv-row">
                 <span class="dl-kv-key">assets/css/style.css</span
                 ><span class="dl-kv-val"
                   >Single shared stylesheet — all tokens, all components, all
-                  pages. 1844 lines.</span
+                  pages. 2105 lines.</span
                 >
               </div>
               <div class="dl-kv-row">
@@ -3715,7 +5587,7 @@
         <!-- ══════════════════════════════════════════════════════════════
              14 · WHAT NEVER TO DO
              ══════════════════════════════════════════════════════════════ -->
-        <section class="dl-section">
+        <section class="dl-section" id="dl-s14">
           <div class="dl-section-head">
             <span class="dl-section-num">14</span>
             <span class="dl-section-title">What Never to Do — Hard Rules</span>
@@ -3820,29 +5692,5 @@
         </footer>
       </div>
     </div>
-
-    <!-- Deferred Analytics -->
-    <script>
-      window.addEventListener("load", function () {
-        setTimeout(function () {
-          try {
-            var s = document.createElement("script");
-            s.src = "https://www.googletagmanager.com/gtag/js?id=G-ES91HT3C25";
-            s.async = true;
-            s.onload = function () {
-              window.dataLayer = window.dataLayer || [];
-              function gtag() {
-                dataLayer.push(arguments);
-              }
-              gtag("js", new Date());
-              gtag("config", "G-ES91HT3C25", { transport_type: "beacon" });
-            };
-            document.head.appendChild(s);
-          } catch (e) {
-            console.error("[analytics] Failed to load GA:", e);
-          }
-        }, 2000);
-      });
-    </script>
   </body>
 </html>
